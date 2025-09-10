@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>OATI - Sistema de Registro de Actividades</title>
+    <title>OATI - Sistema de Registro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -19,196 +24,306 @@
         
         * {
             -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            box-sizing: border-box;
+        }
+        
+        input, textarea, select {
+            -webkit-user-select: text;
+            user-select: text;
         }
         
         body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding-bottom: 70px;
+            background-color: #f5f5f5;
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-bottom: 80px;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: calc(80px + env(safe-area-inset-bottom));
         }
+        
+        /* Header optimizado para Android */
         .header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 15px 0;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 16px 0;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
             position: sticky;
             top: 0;
             z-index: 1000;
+            padding-top: env(safe-area-inset-top);
         }
+        
+        /* Mejoras de tarjetas para Android */
         .card {
-            border-radius: 10px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 16px;
             border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+        
+        .card:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
         .card-header {
             background-color: var(--secondary-color);
             color: white;
-            border-radius: 10px 10px 0 0 !important;
-            font-weight: bold;
-            padding: 12px 15px;
-            font-size: 1rem;
+            border-radius: 12px 12px 0 0 !important;
+            font-weight: 600;
+            padding: 14px 16px;
+            font-size: 1.05rem;
         }
+        
+        /* Formularios optimizados para tactil */
         .form-section {
             margin-bottom: 20px;
-            padding: 12px;
+            padding: 16px;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
         }
+        
         .btn {
-            padding: 10px 16px;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
         }
+        
+        .btn:active {
+            transform: scale(0.96);
+        }
+        
         .btn-lg {
-            padding: 12px 20px;
+            padding: 16px 24px;
+            font-size: 1.1rem;
         }
+        
         .required-field::after {
             content: " *";
             color: red;
         }
+        
+        /* Botones de acción optimizados para Android */
         .action-buttons .btn {
-            padding: 6px 10px;
-            margin: 2px;
+            padding: 12px 16px;
+            margin: 4px;
+            min-height: 44px;
         }
-        .stats-box {
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            background-color: #e9ecef;
-            margin-bottom: 15px;
-        }
-        .stats-number {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-        .connection-status {
-            position: fixed;
-            bottom: 70px;
-            right: 15px;
-            padding: 8px 12px;
-            border-radius: 50px;
-            font-weight: bold;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-        .online {
-            background-color: var(--success-color);
-            color: white;
-        }
+        
+        /* Navegación inferior optimizada para Android */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             background: white;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
             z-index: 1000;
             display: flex;
             justify-content: space-around;
             padding: 8px 0;
+            padding-bottom: calc(8px + env(safe-area-inset-bottom));
+            border-top: 1px solid #eee;
         }
+        
         .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 5px 10px;
+            padding: 8px 12px;
             color: #6c757d;
             text-decoration: none;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             flex: 1;
+            transition: color 0.2s;
+            min-height: 56px;
+            justify-content: center;
         }
+        
         .nav-item.active {
             color: var(--primary-color);
         }
+        
         .nav-icon {
-            font-size: 1.2rem;
-            margin-bottom: 3px;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
         }
+        
+        /* Campos de formulario optimizados para Android */
         .form-control, .form-select {
-            padding: 10px 12px;
+            padding: 14px 16px;
             font-size: 1rem;
-            border-radius: 8px;
+            border-radius: 10px;
+            min-height: 48px;
+            border: 1px solid #ddd;
         }
+        
         .form-label {
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 500;
+            font-size: 0.95rem;
         }
-        .mobile-actions {
-            position: sticky;
-            bottom: 60px;
-            background: white;
-            padding: 10px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 999;
-            display: none;
-        }
-        .search-bar {
-            position: sticky;
-            top: 70px;
-            z-index: 999;
-            background: white;
-            padding: 10px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+        
+        /* Toast notifications para Android */
         .toast-container {
             position: fixed;
-            top: 80px;
+            top: 90px;
             right: 10px;
             z-index: 9999;
             max-width: 300px;
         }
+        
+        /* Mejoras para listas táctiles */
+        .list-group-item {
+            padding: 16px;
+            border-left: none;
+            border-right: none;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .list-group-item:first-child {
+            border-top: none;
+        }
+        
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* Mejoras visuales para estadísticas */
+        .stats-box {
+            text-align: center;
+            padding: 16px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+            color: white;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stats-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        /* Indicador de conexión */
+        .connection-status {
+            position: fixed;
+            bottom: 80px;
+            right: 16px;
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .online {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        .offline {
+            background-color: var(--danger-color);
+            color: white;
+        }
+        
+        /* Mejoras de rendimiento para Android */
         .tab-content {
-            padding-bottom: 60px;
+            padding-bottom: 80px;
+            transform: translateZ(0);
         }
-        .offcanvas-body {
-            padding: 20px;
+        
+        /* Barra de búsqueda sticky */
+        .search-bar {
+            position: sticky;
+            top: 80px;
+            z-index: 990;
+            background: white;
+            padding: 12px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            margin-bottom: 16px;
         }
-        .option-search {
-            margin-bottom: 15px;
+        
+        /* Efectos de carga para Android */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+            min-height: 20px;
         }
-        .option-item {
-            white-space: normal;
-            word-wrap: break-word;
-            text-align: left;
-        }
-        @media (max-width: 768px) {
-            .mobile-actions {
-                display: block;
+        
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
             }
-            .action-buttons {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .action-buttons .btn {
-                flex: 1;
-                min-width: 45%;
-                margin: 3px;
+            100% {
+                background-position: -200% 0;
             }
         }
+        
+        /* Mejora para el área de swipe */
         .swipe-area {
-            display: none;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+            margin: 12px auto;
+            width: 60px;
         }
-        @media (max-width: 576px) {
-            .container {
-                padding-left: 10px;
-                padding-right: 10px;
+        
+        /* Ajustes para modo oscuro en Android */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: #f1f1f1;
             }
-            .swipe-area {
-                display: block;
-                height: 10px;
-                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-                border-radius: 5px;
-                margin: 8px 0;
-                width: 50px;
-                margin-left: auto;
-                margin-right: auto;
+            
+            .form-section, .card, .search-bar {
+                background-color: #1e1e1e;
+                color: #f1f1f1;
+            }
+            
+            .form-control, .form-select {
+                background-color: #2d2d2d;
+                border-color: #444;
+                color: #f1f1f1;
+            }
+            
+            .bottom-nav {
+                background-color: #1e1e1e;
+                border-top-color: #333;
+            }
+            
+            .nav-item {
+                color: #aaa;
+            }
+            
+            .nav-item.active {
+                color: var(--accent-color);
+            }
+            
+            .list-group-item {
+                background-color: #1e1e1e;
+                color: #f1f1f1;
+                border-color: #333;
             }
         }
     </style>
@@ -218,8 +333,8 @@
 
     <div class="header text-center">
         <div class="container">
-            <h1 style="font-size: 1.4rem; margin-bottom: 0;">OATI - Registro de Actividades</h1>
-            <p class="lead" style="font-size: 0.9rem; margin-bottom: 0;">Oficina de Apoyo Técnico Informático</p>
+            <h1 style="font-size: 1.4rem; margin-bottom: 4px;">OATI - Registro de Actividades</h1>
+            <p style="font-size: 0.9rem; margin-bottom: 0; opacity: 0.9;">Oficina de Apoyo Técnico Informático</p>
         </div>
     </div>
 
@@ -254,28 +369,24 @@
                                         
                                         <div class="mb-3">
                                             <label for="trabajoRealizado" class="form-label required-field">Trabajo Realizado</label>
-                                            <div class="input-group">
-                                                <select class="form-select" id="trabajoRealizado" required>
-                                                    <option value="">Seleccione el trabajo realizado</option>
-                                                    <!-- Las opciones se cargarán dinámicamente -->
-                                                </select>
-                                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTrabajo">
-                                                    <i class="fas fa-list"></i>
-                                                </button>
-                                            </div>
+                                            <select class="form-select" id="trabajoRealizado" required>
+                                                <option value="">Seleccione el trabajo realizado</option>
+                                                <option value="ACTUALIZACIÓN DE ANTIVIRUS">ACTUALIZACIÓN DE ANTIVIRUS</option>
+                                                <option value="ADECUACION DE APLICACIÓN">ADECUACION DE APLICACIÓN</option>
+                                                <option value="ANALISIS DE COMPUTADOR">ANALISIS DE COMPUTADOR</option>
+                                                <option value="INSTALACION DE EQUIPOS">INSTALACION DE EQUIPOS</option>
+                                                <option value="REPARACION DE EQUIPOS">REPARACION DE EQUIPOS</option>
+                                            </select>
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="dependencia" class="form-label required-field">Dependencia</label>
-                                            <div class="input-group">
-                                                <select class="form-select" id="dependencia" required>
-                                                    <option value="">Seleccione una dependencia</option>
-                                                    <!-- Las opciones se cargarán dinámicamente -->
-                                                </select>
-                                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDependencia">
-                                                    <i class="fas fa-list"></i>
-                                                </button>
-                                            </div>
+                                            <select class="form-select" id="dependencia" required>
+                                                <option value="">Seleccione una dependencia</option>
+                                                <option value="DAR MERIDA">DAR MERIDA</option>
+                                                <option value="INFORMATICA - DAR MERIDA">INFORMATICA - DAR MERIDA</option>
+                                                <option value="SISTEMA DE SEGURIDAD">SISTEMA DE SEGURIDAD</option>
+                                            </select>
                                         </div>
                                         
                                         <div class="mb-3">
@@ -285,7 +396,7 @@
                                         
                                         <div class="mb-3">
                                             <label for="detalleTrabajo" class="form-label required-field">Detalle del Trabajo</label>
-                                            <textarea class="form-control" id="detalleTrabajo" rows="2" required></textarea>
+                                            <textarea class="form-control" id="detalleTrabajo" rows="3" required></textarea>
                                         </div>
                                         
                                         <div class="mb-3">
@@ -322,11 +433,6 @@
                                         <h5 style="font-size: 1.1rem;"><i class="fas fa-desktop me-2"></i>Información del Equipo</h5>
                                         
                                         <div class="mb-3">
-                                            <label for="fechaCierre" class="form-label">Fecha de Cierre</label>
-                                            <input type="date" class="form-control" id="fechaCierre">
-                                        </div>
-                                        
-                                        <div class="mb-3">
                                             <label for="operatividad" class="form-label required-field">Operatividad del Equipo</label>
                                             <select class="form-select" id="operatividad" required>
                                                 <option value="">Seleccione una opción</option>
@@ -351,28 +457,18 @@
                                         
                                         <div class="mb-3">
                                             <label for="marca" class="form-label required-field">Marca</label>
-                                            <div class="input-group">
-                                                <select class="form-select" id="marca" required>
-                                                    <option value="">Seleccione una marca</option>
-                                                    <!-- Las opciones se cargarán dinámicamente -->
-                                                </select>
-                                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMarca">
-                                                    <i class="fas fa-list"></i>
-                                                </button>
-                                            </div>
+                                            <select class="form-select" id="marca" required>
+                                                <option value="">Seleccione una marca</option>
+                                                <option value="DELL">DELL</option>
+                                                <option value="HP">HP</option>
+                                                <option value="LENOVO">LENOVO</option>
+                                                <option value="OTRA">OTRA</option>
+                                            </select>
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="modelo" class="form-label required-field">Modelo</label>
-                                            <div class="input-group">
-                                                <select class="form-select" id="modelo" required>
-                                                    <option value="">Seleccione un modelo</option>
-                                                    <!-- Las opciones se cargarán dinámicamente -->
-                                                </select>
-                                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasModelo">
-                                                    <i class="fas fa-list"></i>
-                                                </button>
-                                            </div>
+                                            <input type="text" class="form-control" id="modelo" required>
                                         </div>
                                         
                                         <div class="mb-3">
@@ -401,347 +497,281 @@
                         </form>
                     </div>
                 </div>
+                
+                <div class="mobile-actions">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-secondary">
+                            <i class="fas fa-camera me-2"></i>Agregar Foto
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-tab">
+                <div class="search-bar">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar actividades...">
+                        <button class="btn btn-outline-primary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span><i class="fas fa-table me-2"></i>Registro de Actividades</span>
+                        <span class="badge bg-primary rounded-pill">3</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Reparación de Laptop</h6>
+                                    <small class="text-muted">Hoy</small>
+                                </div>
+                                <p class="mb-1">DAR MERIDA - Oficina de Rectoría</p>
+                                <small class="text-muted">Completado</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Instalación de Software</h6>
+                                    <small class="text-muted">Ayer</small>
+                                </div>
+                                <p class="mb-1">INFORMATICA - DAR MERIDA</p>
+                                <small class="text-muted">En Proceso</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Mantenimiento Preventivo</h6>
+                                    <small class="text-muted">15/05/2023</small>
+                                </div>
+                                <p class="mb-1">SISTEMA DE SEGURIDAD</p>
+                                <small class="text-muted">Completado</small>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="stats-box">
+                            <h6>Total Actividades</h6>
+                            <div class="stats-number">24</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="stats-box">
+                            <h6>Completadas</h6>
+                            <div class="stats-number">18</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie me-2"></i>Estadísticas
+                    </div>
+                    <div class="card-body">
+                        <div style="height: 200px; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border-radius: 8px;">
+                            <p class="text-center text-muted">Gráfico de actividades por categoría<br><small>(Se mostraría aquí)</small></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <i class="fas fa-history me-2"></i>Actividades Recientes
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Mantenimiento</h6>
+                                    <small class="text-muted">75%</small>
+                                </div>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Reparación</h6>
+                                    <small class="text-muted">15%</small>
+                                </div>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 15%"></div>
+                                </div>
+                            </div>
+                            <div class="list-group-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">Instalación</h6>
+                                    <small class="text-muted">10%</small>
+                                </div>
+                                <div class="progress mt-2" style="height: 8px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 10%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-cog me-2"></i>Configuración
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-0">Modo Oscuro</h6>
+                                    <small>Activar interfaz oscura</small>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="darkModeSwitch">
+                                </div>
+                            </div>
+                            <div class="list-group-item">
+                                <h6 class="mb-2">Sincronización</h6>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-primary">
+                                        <i class="fas fa-sync me-2"></i>Sincronizar Ahora
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="list-group-item">
+                                <h6 class="mb-2">Copia de Seguridad</h6>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-outline-success">
+                                        <i class="fas fa-download me-2"></i>Exportar Datos
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Offcanvas para Trabajo Realizado -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasTrabajo">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Trabajos Realizados</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="option-search mb-3">
-                <input type="text" class="form-control" placeholder="Buscar trabajo..." id="searchTrabajo">
-            </div>
-            <div class="list-group" id="listaTrabajos" style="max-height: 70vh; overflow-y: auto;">
-                <!-- Las opciones se cargarán dinámicamente -->
-            </div>
-        </div>
+    <!-- Indicador de estado de almacenamiento -->
+    <div id="connectionStatus" class="connection-status online">
+        <i class="fas fa-database me-1"></i> Local
     </div>
 
-    <!-- Offcanvas para Dependencias -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDependencia">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Dependencias</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="option-search mb-3">
-                <input type="text" class="form-control" placeholder="Buscar dependencia..." id="searchDependencia">
-            </div>
-            <div class="list-group" id="listaDependencias" style="max-height: 70vh; overflow-y: auto;">
-                <!-- Las opciones se cargarán dinámicamente -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Offcanvas para Marcas -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMarca">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Marcas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="option-search mb-3">
-                <input type="text" class="form-control" placeholder="Buscar marca..." id="searchMarca">
-            </div>
-            <div class="list-group" id="listaMarcas" style="max-height: 70vh; overflow-y: auto;">
-                <!-- Las opciones se cargarán dinámicamente -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Offcanvas para Modelos -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasModelo">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title">Modelos</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="option-search mb-3">
-                <input type="text" class="form-control" placeholder="Buscar modelo..." id="searchModelo">
-            </div>
-            <div class="list-group" id="listaModelos" style="max-height: 70vh; overflow-y: auto;">
-                <!-- Las opciones se cargarán dinámicamente -->
-            </div>
-        </div>
+    <!-- Navegación inferior -->
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active" data-bs-target="register">
+            <div class="nav-icon"><i class="fas fa-plus-circle"></i></div>
+            <span>Nuevo</span>
+        </a>
+        <a href="#" class="nav-item" data-bs-target="activities">
+            <div class="nav-icon"><i class="fas fa-list"></i></div>
+            <span>Actividades</span>
+        </a>
+        <a href="#" class="nav-item" data-bs-target="stats">
+            <div class="nav-icon"><i class="fas fa-chart-bar"></i></div>
+            <span>Estadísticas</span>
+        </a>
+        <a href="#" class="nav-item" data-bs-target="settings">
+            <div class="nav-icon"><i class="fas fa-cog"></i></div>
+            <span>Ajustes</span>
+        </a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Datos completos para las opciones
-        const trabajosRealizados = [
-            "ACTUALIZACIÓN DE ANTIVIRUS",
-            "ADECUACION DE APLICACIÓN, PARA EL ACCESO DEL FUNCIONARIO A LA MISMA",
-            "ANALISIS DE COMPUTADOR CON DR. WEB ANTIVIRUS",
-            "ANALISIS DE COMPUTADOR CON KASPERSKY ANTIVIRUS",
-            "ANALISIS DE DISCO DURO DE COMPUTADOR CON HDD REGENERADOR",
-            "ANALISIS DE DISCO DURO DE COMPUTADOR CON VICTORIA RESCUE",
-            "CENTRAL TELEFONICA",
-            "CONFIGURACION DE FECHA Y HORA",
-            "CONFIGURACION DE SISTEMA GISA",
-            "CONFIGURACION DE TELEFONO PARA CONEXIÓN WIFI",
-            "CREACCION DE CARPETA COMPARTIDA",
-            "CREACCION DE CUENTA PARA EN ACCESO AL SISTEMA DE BIENES PUBLICOS",
-            "CREACION DE CORREO ELECTRONICO",
-            "CREACION DE CUENTA DE ACCESO A SISTEMA DE BIENES PUBLICOS",
-            "CREACION DE CUENTA DE ACCESO A SISTEMA PROMANAGER",
-            "CREACION DE CUENTA DE USUARIO DE LA RED MAGISTRATURA",
-            "CREACION EDITOR DE SENTENCIAS PAGINA TSJ",
-            "DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTRATURA",
-            "DESCONEXION DE EQUIPO DE COMPUTACION DE LA RED MAGISTRATURA",
-            "DESHABILITAR CUENTA DE ACCESO A INTERNET",
-            "DESHABILITAR CUENTA DE EDITOR DE TEXTO TSJ",
-            "DESHABILITAR CUENTA DE RED MAGISTRATURA",
-            "ELABORACION DE PROYECTOS",
-            "EVENTOS / INSTALACION DE EQUIPOS AUDIOVISUALES",
-            "FORMACION AL USUARIO",
-            "HABILITAR ACCESO A CARPETA COMPARTIDA",
-            "HABILITAR CUENTA DE ACCESO A INTERNET",
-            "HABILITAR CUENTA DE RED MAGISTRATURA",
-            "HABILITAR CUENTAS DE USUARIO PARA EL ACCESO AL SISTEMA DE BIENES PUBLICOS",
-            "HABILITAR USUARIO PARA EL ACCESO AL SISTEMA GISA REPORTES",
-            "INCORPORACION DE EQUIPO A MAGISTRATURA",
-            "INSTALACION BATERIA CR032",
-            "INSTALACION CABLEADO DE RED",
-            "INSTALACION CABLEADO TELEFONICO",
-            "INSTALACION CAMARA DE SEGURIDAD",
-            "INSTALACION DE ANTENAS INALAMBRICAS / ROUTER / INTERCONEXION DE SEDES",
-            "INSTALACION DE APLICACIONES",
-            "INSTALACION DE CAMARAS DE SEGURIDAD",
-            "INSTALACION DE CENTRAL TELEFONICA",
-            "INSTALACION DE ESCANER",
-            "INSTALACION DE IMPRESORA",
-            "INSTALACION DE MONITOR",
-            "INSTALACION DE REGULADOR",
-            "INSTALACIÓN DE SISTEMA OPERATIVO CON CARACTERISTICAS PARA SERVIDOR CON SUS APLICACIONES BASICAS",
-            "INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES DE OFIMATICA",
-            "INSTALACION DISCO DURO",
-            "INSTALACION FUENTE DE PODER",
-            "INSTALACION MEMORIA RAM",
-            "INSTALACION TARJETA DE RED ALAMBRICA",
-            "INSTALACION TARJETA DE RED INALAMBRICA",
-            "INSTALACION DE EQUIPOS DE COMPUTACION",
-            "HABILITAR ACCESO A FORMATO EN EXCEL",
-            "ASIGNACIÓN DE GRUPO DE TRABAJO EN DIRECTORIO ACTIVO",
-            "INSTALACION TARJETA DE VIDEO",
-            "INSTALACION UNIDAD OF DVD",
-            "MANTENIMIENTO 'LIMPIEZA INTERNA' DEL COMPUTADOR",
-            "MANTENIMIENTO / ACTUALIZACIÓN INTERNO DE BASE DE DATOS GISA",
-            "MANTENIMIENTO DE SERVIDORES",
-            "MANTENIMIENTO INTERNO DE FORMATO DE CONTROL OF IMPRESIONES",
-            "MANTENIMIENTO INTERNO OF BASE DE DATOS INTRADAR",
-            "MANTENIMIENTO INTERNO OF BASE DE DATOS PROMANAGER",
-            "MANTENIMIENTO O REFRESCAMIENTO DE USUARIO",
-            "MOVIMIENTO DE EQUIPOS",
-            "PREPARACION DE INFORMACION PARA LA DIRECCION (DESPACHO)",
-            "PREPARACION DE INFORMACION PARA LA ODI",
-            "REALIZACION DE INFORME",
-            "RECUPERACION DE INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE",
-            "REINCORPORACION DE EQUIPO DE COMPUTACION A RED MAGISTRATURA",
-            "REPARACION CABLEADO TELEFONICO",
-            "REPARACION DE CABLEADO DE RED",
-            "REPARACION DE CAFETERA",
-            "REPARACION DE EXTENSION TELEFONICA",
-            "REPARACION DE LAPTOP",
-            "REPORTE DE AVERIAS TELEFONICAS DEM",
-            "RESPALDO DE BASES DE DATOS",
-            "RESPALDO DE INFORMACION DE AUDIENCIAS",
-            "RESPALDO DE SERVIDORES",
-            "RESPALDO Y INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES BASICAS OFIMATICA Y ANTIVIRUS",
-            "RESPALDOS CD / DVD",
-            "RESTABLECIMIENTO DE CONTRASEÑA DE INTERNET",
-            "RESTABLECIMIENTO DE CONTRASEÑA DE PAGINA TSJ",
-            "RESTABLECIMIENTO DE CONTRASEÑA PARA INGRESAR A LA RED MAGISTRATURA",
-            "RESTRUCTURACION DE CABLEADO Y PUNTOS DE RED",
-            "REVISION DE CABLEADO DE RED",
-            "REVISION DE COMPUTADOR",
-            "REVISION DE FUNCIONALIDAD DE IMPRESORA",
-            "REVISION DE MONITORES",
-            "REVISION DE MOUSE",
-            "REVISION DE SERVIDOR",
-            "REVISION DE TECLADO",
-            "REVISION EDITOR DE SENTENCIAS",
-            "SISTEMAS JUDICIALES",
-            "SMART SENSOR",
-            "SOLICITUDES OF ACCESO INTERNET",
-            "SOPORTE AL USUARIO",
-            "SOPORTE DE RED INALAMBRICA",
-            "SOPORTE DE SOFTWARE",
-            "TAREAS ADMINISTRATIVAS"
-        ];
-
-        const dependencias = [
-            "BIENES PUBLICOS - DAR MERIDA",
-            "CESTA TICKET - DAR MERIDA",
-            "CIRCUITO JUDICIAL DE PROTECCION DE NIÑOS, NIÑAS Y ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "CIRCUITO JUDICIAL DE PROTECCIÓN DEL NIÑO, NIÑA Y ADOLESCENTE DEL ESTADO MÉRIDA, SEDE EL VIGÍA",
-            "CIRCUITO JUDICIAL LABORAL DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA. EXT VIGÍA",
-            "DAR MERIDA",
-            "DIRECCION ADMINISTRATIVA REGIONAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "FASDEM Y BIENESTAR SOCIAL -DAR MERIDA",
-            "FINANZAS - DAR MERIDA",
-            "INFORMATICA - DAR MERIDA",
-            "INSPECTORIA GENERAL DE LOS TRIBUNALES",
-            "JUZGADO PRIMERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "JUZGADO SUPERIOR AGRARIO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "JUZGADO SUPERIOR PRIMERO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "JUZGADO SUPERIOR SEGUNDO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "OFICINA DE RECTORÍA",
-            "PARTICIPACION CIUDADANA - DAR MERIDA",
-            "PERSONAL - RECLUTAMIENTO - DAR MERIDA",
-            "SALA DE AUDIENCIAS - DAR MERIDA",
-            "SISTEMA DE SEGURIDAD ELECTRONICA (SISEEL)",
-            "TRIBUNAL CUARTO OF MUNICIPIO ORDINARIO Y EJECUTOR OF MEDIDAS OF LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO OF MERIDA",
-            "TRIBUNAL TERCERO OF MUNICIPIO ORDINARIO Y EJECUTOR OF MEDIDAS OF LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO OF MERIDA",
-            "OCII - DAR MERIDA",
-            "CIRCUITO JUDICIAL PENAL CON COMPETENCIA EN MATERIA OF DELITO OF VIOLENCIA CONTRA LA MUJER DEL ESTADO MERIDA",
-            "JUZGADO SEGUNDO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA",
-            "PROVEEDURIA - DAR MERIDA",
-            "SERVICIOS JUDICIALES - DAR MERIDA",
-            "NOMINA - DAR MERIDA",
-            "ORGE",
-            "RECEPCCION - DAR MERIDA",
-            "SECRETARIA - DAR MERIDA",
-            "DEFENSA PUBLICA",
-            "TRIBUNAL SEGUNDO OF MUNICIPIO ORDINARIO Y EJECUTOR OF MEDIDAS OF LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA",
-            "TRIBUNAL PRIMERO OF MUNICIPIO ORDINARIO Y EJECUTOR OF MEDIDAS OF LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA",
-            "TRIBUNAL PRIMERO OF MUNICIPIO ORDINARIO Y EJECUTOR OF MEDIDAS OF LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO OF MERIDA",
-            "OFICINA DE JEFE DE PERSONAL - DAR MERIDA",
-            "INFRAESTRUCTURA - DAR MERIDA",
-            "SERVICIOS MÉDICOS",
-            "OFICINA DE SEGURIDAD DE LA DAR"
-        ];
-
-        const marcas = [
-            "ARKTEK", "BOSCH", "CANON", "CARTUCHO 49", "CLON", "DELL", "ERICSSON", 
-            "FORZA", "GENERICA", "GENIUS", "HP", "IBM", "INTER POWER", "LANPRO", 
-            "LENOVO", "LG", "NO APLICA", "PANASONIC", "SAMSUNG", "SIEMENS", "SKIL", 
-            "SMART SENSOR", "SONEVIEW", "VARIOS", "VIT", "ZUH IPOING", "ZUHI POINT"
-        ];
-
-        const modelos = [
-            "1577-E6S", "2413-01", "3105MW", "3300U", "6636-AC1", "6792+B5:B61", 
-            "8171-NBS", "8183-DFS", "8306-KRS", "9482-bw8", "9632-CA4", "9632-F95", 
-            "ACCU 6000", "BIONAIRE", "DC5700", "DOK-K5313", "E1210-01", "E2220-01", 
-            "E2220-03", "E2230-03", "E2710", "EUROSET 8055", "F6W15A", "FVR1211B", 
-            "G3010", "G41", "H170-1", "HP 3003 DW", "HP 4003DW", "HP 4250", 
-            "HP LASERJET P2035", "HP3003", "HP-49A", "HP-G3010", "IR3025", "IR3225", 
-            "K639", "KB0225", "KX-TG3510LAB", "LASER JET PRO M102W", "LASET JET 107A", 
-            "LJM101", "LP5AI", "LPJ2-23", "M106", "M2100-01-01", "M2400", "M2420", 
-            "M426", "M55E", "M600", "M696", "MTM818848S", "NO APLICA", "OPTIPLEX 7010", 
-            "P1300", "P2015", "P2413", "P3005", "PCR-600", "SIN MODELO", 
-            "SKIL 9003 700W 115ML", "SR954", "ST1020M4-02", "SUPER HOBBY 400w 3/8´´", 
-            "V1N1058", "VARIOS", "VIT M2400", "9704", "MFP452DW"
-        ];
-
-        // Función para cargar opciones en los selects
-        function cargarOpcionesEnSelect() {
-            const selectTrabajo = document.getElementById('trabajoRealizado');
-            trabajosRealizados.forEach(trabajo => {
-                const option = document.createElement('option');
-                option.value = trabajo;
-                option.textContent = trabajo;
-                selectTrabajo.appendChild(option);
-            });
+        // Detectar si es Android
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        
+        // Ajustes específicos para Android
+        if (isAndroid) {
+            document.body.classList.add('android-device');
+            console.log('Dispositivo Android detectado');
             
-            const selectDependencia = document.getElementById('dependencia');
-            dependencias.forEach(dependencia => {
-                const option = document.createElement('option');
-                option.value = dependencia;
-                option.textContent = dependencia;
-                selectDependencia.appendChild(option);
-            });
-            
-            const selectMarca = document.getElementById('marca');
-            marcas.forEach(marca => {
-                const option = document.createElement('option');
-                option.value = marca;
-                option.textContent = marca;
-                selectMarca.appendChild(option);
-            });
-            
-            const selectModelo = document.getElementById('modelo');
-            modelos.forEach(modelo => {
-                const option = document.createElement('option');
-                option.value = modelo;
-                option.textContent = modelo;
-                selectModelo.appendChild(option);
+            // Prevenir zoom en inputs en Android
+            document.addEventListener('DOMContentLoaded', function() {
+                const inputs = document.querySelectorAll('input, select, textarea');
+                inputs.forEach(input => {
+                    input.addEventListener('touchstart', function(e) {
+                        this.style.fontSize = '16px'; // Previene zoom en Android
+                    });
+                    
+                    input.addEventListener('blur', function() {
+                        this.style.fontSize = '';
+                    });
+                });
             });
         }
 
-        // Función para cargar opciones en los offcanvas
-        function cargarOpcionesEnOffcanvas() {
-            // Cargar trabajos realizados
-            const listaTrabajos = document.getElementById('listaTrabajos');
-            listaTrabajos.innerHTML = '';
-            trabajosRealizados.forEach(trabajo => {
-                const item = document.createElement('button');
-                item.type = 'button';
-                item.className = 'list-group-item list-group-item-action option-item';
-                item.textContent = trabajo;
-                item.addEventListener('click', () => {
-                    document.getElementById('trabajoRealizado').value = trabajo;
-                    bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasTrabajo')).hide();
-                    showToast(`Trabajo seleccionado: ${trabajo}`, 'success');
+        // Funcionalidad de la navegación inferior
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remover clase active de todos los items
+                document.querySelectorAll('.nav-item').forEach(i => {
+                    i.classList.remove('active');
                 });
-                listaTrabajos.appendChild(item);
-            });
-            
-            // Cargar dependencias
-            const listaDependencias = document.getElementById('listaDependencias');
-            listaDependencias.innerHTML = '';
-            dependencias.forEach(dependencia => {
-                const item = document.createElement('button');
-                item.type = 'button';
-                item.className = 'list-group-item list-group-item-action option-item';
-                item.textContent = dependencia;
-                item.addEventListener('click', () => {
-                    document.getElementById('dependencia').value = dependencia;
-                    bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasDependencia')).hide();
-                    showToast(`Dependencia seleccionada: ${dependencia}`, 'success');
+                
+                // Agregar clase active al item clickeado
+                this.classList.add('active');
+                
+                // Cambiar entre secciones
+                const target = this.getAttribute('data-bs-target');
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('show', 'active');
                 });
-                listaDependencias.appendChild(item);
+                document.getElementById(target).classList.add('show', 'active');
+                
+                // Mostrar toast de ejemplo
+                showToast('Has navegado a ' + target, 'info');
             });
-            
-            // Cargar marcas
-            const listaMarcas = document.getElementById('listaMarcas');
-            listaMarcas.innerHTML = '';
-            marcas.forEach(marca => {
-                const item = document.createElement('button');
-                item.type = 'button';
-                item.className = 'list-group-item list-group-item-action option-item';
-                item.textContent = marca;
-                item.addEventListener('click', () => {
-                    document.getElementById('marca').value = marca;
-                    bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasMarca')).hide();
-                    showToast(`Marca seleccionada: ${marca}`, 'success');
-                });
-                listaMarcas.appendChild(item);
-            });
-            
-            // Cargar modelos
-            const listaModelos = document.getElementById('listaModelos');
-            listaModelos.innerHTML = '';
-            modelos.forEach(modelo => {
-                const item = document.createElement('button');
-                item.type = 'button';
-                item.className = 'list-group-item list-group-item-action option-item';
-                item.textContent = modelo;
-                item.addEventListener('click', () => {
-                    document.getElementById('modelo').value = modelo;
-                    bootstrap.Offcanvas.getInstance(document.getElementById('offcanvasModelo')).hide();
-                    showToast(`Modelo seleccionado: ${modelo}`, 'success');
-                });
-                listaModelos.appendChild(item);
-            });
-        }
+        });
 
+        // Establecer fecha actual por defecto
+        document.getElementById('fecha').valueAsDate = new Date();
+        
+        // Manejar envío del formulario
+        document.getElementById('activityForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validación básica
+            let valid = true;
+            this.querySelectorAll('[required]').forEach(input => {
+                if (!input.value) {
+                    input.classList.add('is-invalid');
+                    valid = false;
+                } else {
+                    input.classList.remove('is-invalid');
+                }
+            });
+            
+            if (!valid) {
+                showToast('Por favor complete todos los campos obligatorios', 'error');
+                return;
+            }
+            
+            // Simular envío
+            const submitBtn = document.getElementById('submitButton');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Guardando...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                showToast('Actividad guardada correctamente', 'success');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Limpiar formulario después de guardar
+                this.reset();
+                document.getElementById('fecha').valueAsDate = new Date();
+            }, 1500);
+        });
+        
         // Función para mostrar notificaciones toast
         function showToast(message, type = 'info') {
             // Crear elemento toast
@@ -777,45 +807,40 @@
             });
         }
         
-        // Establecer fecha actual por defecto
-        document.getElementById('fecha').valueAsDate = new Date();
-        
-        // Manejar envío del formulario
-        document.getElementById('activityForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        // Modo oscuro
+        const darkModeSwitch = document.getElementById('darkModeSwitch');
+        if (darkModeSwitch) {
+            // Verificar preferencia del sistema
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+                darkModeSwitch.checked = true;
+            }
             
-            // Validar formulario
-            let isValid = true;
-            const requiredFields = this.querySelectorAll('[required]');
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('is-invalid');
+            darkModeSwitch.addEventListener('change', function() {
+                if (this.checked) {
+                    document.body.classList.add('dark-mode');
+                    showToast('Modo oscuro activado', 'info');
                 } else {
-                    field.classList.remove('is-invalid');
+                    document.body.classList.remove('dark-mode');
+                    showToast('Modo claro activado', 'info');
                 }
             });
-            
-            if (isValid) {
-                showToast('Actividad guardada correctamente', 'success');
-                
-                // Aquí iría la lógica para guardar la actividad en localStorage
-                setTimeout(() => {
-                    // Limpiar formulario después de guardar
-                    this.reset();
-                    document.getElementById('fecha').valueAsDate = new Date();
-                }, 1000);
-            } else {
-                showToast('Por favor complete todos los campos requeridos', 'error');
-            }
-        });
+        }
         
-        // Inicializar la aplicación
-        document.addEventListener('DOMContentLoaded', function() {
-            cargarOpcionesEnSelect();
-            cargarOpcionesEnOffcanvas();
+        // Simular carga de datos
+        setTimeout(() => {
             showToast('Sistema OATI cargado correctamente', 'success');
-        });
+        }, 1000);
+        
+        // Mejorar el desplazamiento en Android
+        if (isAndroid) {
+            document.addEventListener('touchmove', function(e) {
+                // Prevenir desplazamiento cuando se tocan inputs
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+        }
     </script>
 </body>
 </html>
