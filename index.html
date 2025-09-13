@@ -399,6 +399,29 @@
             align-items: center;
             justify-content: center;
         }
+        
+        /* Estilos para campos de búsqueda en selects */
+        .select-search {
+            margin-bottom: 10px;
+        }
+        
+        /* Estilos para campos condicionales */
+        .conditional-field {
+            display: none;
+        }
+        
+        /* Icono de almacenamiento */
+        .storage-icon {
+            font-size: 1.2rem;
+            margin-right: 5px;
+        }
+        
+        /* Mensaje de información sobre fechas */
+        .date-info {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -416,7 +439,7 @@
                 <div class="card fade-in">
                     <div class="card-header">
                         <span><i class="fas fa-plus-circle me-2"></i>Nuevo Registro</span>
-                        <span class="feature-badge">Sistema Local</span>
+                        <span class="feature-badge"><i class="fas fa-database storage-icon"></i> Almacenamiento Local</span>
                     </div>
                     <div class="card-body">
                         <form id="activityForm">
@@ -434,23 +457,186 @@
                                                 <option value="Reparación">Reparación</option>
                                                 <option value="Instalación">Instalación</option>
                                                 <option value="Soporte">Soporte Técnico</option>
-                                                <option value="Otro">Otro</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
                                             </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otraCategoriaField">
+                                            <label for="otraCategoria" class="form-label">Especifique otra categoría</label>
+                                            <input type="text" class="form-control" id="otraCategoria" placeholder="Ingrese la categoría">
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="trabajoRealizado" class="form-label required-field">Trabajo Realizado</label>
-                                            <textarea class="form-control" id="trabajoRealizado" rows="2" required placeholder="Describa el trabajo realizado..."></textarea>
+                                            <select class="form-select" id="trabajoRealizado" required>
+                                                <option value="">Seleccione un trabajo realizado</option>
+                                                <option value="ACTUALIZACIÓN DE ANTIVIRUS">ACTUALIZACIÓN DE ANTIVIRUS</option>
+                                                <option value="ADECUACION DE APLICACIÓN, PARA EL ACCESO DEL FUNCIONARIO A LA MISMA">ADECUACION DE APLICACIÓN, PARA EL ACCESO DEL FUNCIONARIO A LA MISMA</option>
+                                                <option value="ANALISIS DE COMPUTADOR CON DR. WEB ANTIVIRUS">ANALISIS DE COMPUTADOR CON DR. WEB ANTIVIRUS</option>
+                                                <option value="ANALISIS DE COMPUTADOR CON KASPERSKY ANTIVIRUS">ANALISIS DE COMPUTADOR CON KASPERSKY ANTIVIRUS</option>
+                                                <option value="ANALISIS DE DISCO DURO DE COMPUTADOR CON HDD REGENERADOR">ANALISIS DE DISCO DURO DE COMPUTADOR CON HDD REGENERADOR</option>
+                                                <option value="ANALISIS DE DISCO DURO DE COMPUTADOR CON VICTORIA RESCUE">ANALISIS DE DISCO DURO DE COMPUTADOR CON VICTORIA RESCUE</option>
+                                                <option value="CONFIGURACION DE FECHA Y HORA">CONFIGURACION DE FECHA Y HORA</option>
+                                                <option value="CONFIGURACION DE SISTEMA GISA">CONFIGURACION DE SISTEMA GISA</option>
+                                                <option value="CREACCION DE CARPETA COMPARTIDA">CREACCION DE CARPETA COMPARTIDA</option>
+                                                <option value="CREACCION DE CUENTA PARA EN ACCESO AL SISTEMA DE BIENES PUBLICOS">CREACCION DE CUENTA PARA EN ACCESO AL SISTEMA DE BIENES PUBLICOS</option>
+                                                <option value="CREACION DE CORREO ELECTRONICO">CREACION DE CORREO ELECTRONICO</option>
+                                                <option value="CREACION DE CUENTA DE ACCESO A SISTEMA DE BIENES PUBLICOS">CREACION DE CUENTA DE ACCESO A SISTEMA DE BIENES PUBLICOS</option>
+                                                <option value="CREACION DE CUENTA DE ACCESO A SISTEMA PROMANAGER">CREACION DE CUENTA DE ACCESO A SISTEMA PROMANAGER</option>
+                                                <option value="CREACION DE CUENTA DE USUARIO DE LA RED MAGISTRATURA">CREACION DE CUENTA DE USUARIO DE LA RED MAGISTRATURA</option>
+                                                <option value="CREACION EDITOR DE SENTENCIAS PAGINA TSJ">CREACION EDITOR DE SENTENCIAS PAGINA TSJ</option>
+                                                <option value="DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTRATURA">DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTRATURA</option>
+                                                <option value="DESCONEXION DE EQUIPO DE COMPUTACION DE LA RED MAGISTRATURA">DESCONEXION DE EQUIPO DE COMPUTACION DE LA RED MAGISTRATURA</option>
+                                                <option value="DESHABILITAR CUENTA DE ACCESO A INTERNET">DESHABILITAR CUENTA DE ACCESO A INTERNET</option>
+                                                <option value="DESHABILITAR CUENTA DE EDITOR DE TEXTO TSJ">DESHABILITAR CUENTA DE EDITOR DE TEXTO TSJ</option>
+                                                <option value="DESHABILITAR CUENTA DE RED MAGISTRATURA">DESHABILITAR CUENTA DE RED MAGISTRATURA</option>
+                                                <option value="ELABORACION DE PROYECTOS">ELABORACION DE PROYECTOS</option>
+                                                <option value="EVENTOS / INSTALACION DE EQUIPOS AUDIOVISUALES">EVENTOS / INSTALACION DE EQUIPOS AUDIOVISUALES</option>
+                                                <option value="FORMACION AL USUARIO">FORMACION AL USUARIO</option>
+                                                <option value="HABILITAR ACCESO A CARPETA COMPARTIDA">HABILITAR ACCESO A CARPETA COMPARTIDA</option>
+                                                <option value="HABILITAR CUENTA DE ACCESO A INTERNET">HABILITAR CUENTA DE ACCESO A INTERNET</option>
+                                                <option value="HABILITAR CUENTA DE RED MAGISTRATURA">HABILITAR CUENTA DE RED MAGISTRATURA</option>
+                                                <option value="HABILITAR CUENTAS DE USUARIO PARA EL ACCESO AL SISTEMA DE BIENES PUBLICOS">HABILITAR CUENTAS DE USUARIO PARA EL ACCESO AL SISTEMA DE BIENES PUBLICOS</option>
+                                                <option value="HABILITAR USUARIO PARA EL ACCESO AL SISTEMA GISA REPORTES">HABILITAR USUARIO PARA EL ACCESO AL SISTEMA GISA REPORTES</option>
+                                                <option value="INCORPORACION DE EQUIPO A MAGISTRATURA">INCORPORACION DE EQUIPO A MAGISTRATURA</option>
+                                                <option value="INSTALACION BATERIA CR032">INSTALACION BATERIA CR032</option>
+                                                <option value="INSTALACION CABLEADO DE RED">INSTALACION CABLEADO DE RED</option>
+                                                <option value="INSTALACION CABLEADO TELEFONICO">INSTALACION CABLEADO TELEFONICO</option>
+                                                <option value="INSTALACION CAMARA DE SEGURIDAD">INSTALACION CAMARA DE SEGURIDAD</option>
+                                                <option value="INSTALACION DE ANTENAS INALAMBRICAS / ROUTER / INTERCONEXION DE SEDES">INSTALACION DE ANTENAS INALAMBRICAS / ROUTER / INTERCONEXION DE SEDES</option>
+                                                <option value="INSTALACION DE APLICACIONES">INSTALACION DE APLICACIONES</option>
+                                                <option value="INSTALACION DE CAMARAS DE SEGURIDAD">INSTALACION DE CAMARAS DE SEGURIDAD</option>
+                                                <option value="INSTALACION DE ESCANER">INSTALACION DE ESCANER</option>
+                                                <option value="INSTALACION DE IMPRESORA">INSTALACION DE IMPRESORA</option>
+                                                <option value="INSTALACION DE MONITOR">INSTALACION DE MONITOR</option>
+                                                <option value="INSTALACION DE REGULADOR">INSTALACION DE REGULADOR</option>
+                                                <option value="INSTALACIÓN DE SISTEMA OPERATIVO CON CARACTERISTICAS PARA SERVIDOR CON SUS APLICACIONES BASICAS">INSTALACIÓN DE SISTEMA OPERATIVO CON CARACTERISTICAS PARA SERVIDOR CON SUS APLICACIONES BASICAS</option>
+                                                <option value="INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES DE OFIMATICA">INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES DE OFIMATICA</option>
+                                                <option value="INSTALACION DISCO DURO">INSTALACION DISCO DURO</option>
+                                                <option value="INSTALACION FUENTE DE PODER">INSTALACION FUENTE DE PODER</option>
+                                                <option value="INSTALACION MEMORIA RAM">INSTALACION MEMORIA RAM</option>
+                                                <option value="INSTALACION TARJETA DE RED ALAMBRICA">INSTALACION TARJETA DE RED ALAMBRICA</option>
+                                                <option value="INSTALACION TARJETA DE RED INALAMBRICA">INSTALACION TARJETA DE RED INALAMBRICA</option>
+                                                <option value="INSTALACION DE EQUIPOS DE COMPUTACION">INSTALACION DE EQUIPOS DE COMPUTACION</option>
+                                                <option value="HABILITAR ACCESO A FORMATO EN EXCEL">HABILITAR ACCESO A FORMATO EN EXCEL</option>
+                                                <option value="ASIGNACIÓN DE GRUPO DE TRABAJO EN DIRECTORIO ACTIVO">ASIGNACIÓN DE GRUPO DE TRABAJO EN DIRECTORIO ACTIVO</option>
+                                                <option value="INSTALACION TARJETA DE VIDEO">INSTALACION TARJETA DE VIDEO</option>
+                                                <option value="INSTALACION UNIDAD DE DVD">INSTALACION UNIDAD DVD</option>
+                                                <option value="MANTENIMIENTO 'LIMPIEZA INTERNA' DEL COMPUTADOR">MANTENIMIENTO "LIMPIEZA INTERNA" DEL COMPUTADOR</option>
+                                                <option value="MANTENIMIENTO / ACTUALIZACIÓN INTERNO DE BASE DE DATOS GISA">MANTENIMIENTO / ACTUALIZACIÓN INTERNO DE BASE DE DATOS GISA</option>
+                                                <option value="MANTENIMIENTO DE SERVIDORES">MANTENIMIENTO DE SERVIDORES</option>
+                                                <option value="MANTENIMIENTO INTERNO DE FORMATO DE CONTROL DE IMPRESIONES">MANTENIMIENTO INTERNO DE FORMATO DE CONTROL DE IMPRESIONES</option>
+                                                <option value="MANTENIMIENTO INTERNO DE BASE DE DATOS INTRADAR">MANTENIMIENTO INTERNO DE BASE DE DATOS INTRADAR</option>
+                                                <option value="MANTENIMIENTO INTERNO DE BASE DE DATOS PROMANAGER">MANTENIMIENTO INTERNO DE BASE DE DATOS PROMANAGER</option>
+                                                <option value="MANTENIMIENTO O REFRESCAMIENTO DE USUARIO">MANTENIMIENTO O REFRESCAMIENTO DE USUARIO</option>
+                                                <option value="MOVIMIENTO DE EQUIPOS">MOVIMIENTO DE EQUIPOS</option>
+                                                <option value="PREPARACION DE INFORMACION PARA LA DIRECCION (DESPACHO)">PREPARACION DE INFORMACION PARA LA DIRECCION (DESPACHO)</option>
+                                                <option value="PREPARACION DE INFORMACION PARA LA ODI">PREPARACION DE INFORMACION PARA LA ODI</option>
+                                                <option value="REALIZACION DE INFORME">REALIZACION DE INFORME</option>
+                                                <option value="RECUPERACION DE INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE">RECUPERACION DE INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE</option>
+                                                <option value="REINCORPORACION DE EQUIPO DE COMPUTACION A RED MAGISTRATURA">REINCORPORACION DE EQUIPO DE COMPUTACION A RED MAGISTRATURA</option>
+                                                <option value="REPARACION CABLEADO TELEFONICO">REPARACION CABLEADO TELEFONICO</option>
+                                                <option value="REPARACION DE CABLEADO DE RED">REPARACION DE CABLEADO DE RED</option>
+                                                <option value="REPARACION DE CAFETERA">REPARACION DE CAFETERA</option>
+                                                <option value="REPARACION DE EXTENSION TELEFONICA">REPARACION DE EXTENSION TELEFONICA</option>
+                                                <option value="REPARACION DE LAPTOP">REPARACION DE LAPTOP</option>
+                                                <option value="REPORTE DE AVERIAS TELEFONICAS DEM">REPORTE DE AVERIAS TELEFONICAS DEM</option>
+                                                <option value="RESPALDO DE BASES DE DATOS">RESPALDO DE BASES DE DATOS</option>
+                                                <option value="RESPALDO DE INFORMACION DE AUDIENCIAS">RESPALDO DE INFORMACION DE AUDIENCIAS</option>
+                                                <option value="RESPALDO DE SERVIDORES">RESPALDO DE SERVIDORES</option>
+                                                <option value="RESPALDO Y INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES BASICAS OFIMATICA Y ANTIVIRUS">RESPALDO Y INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES BASICAS OFIMATICA Y ANTIVIRUS</option>
+                                                <option value="RESPALDOS CD / DVD">RESPALDOS CD / DVD</option>
+                                                <option value="RESTABLECIMIENTO DE CONTRASEÑA DE INTERNET">RESTABLECIMIENTO DE CONTRASEÑA DE INTERNET</option>
+                                                <option value="RESTABLECIMIENTO DE CONTRASEÑA DE PAGINA TSJ">RESTABLECIMIENTO DE CONTRASEÑA DE PAGINA TSJ</option>
+                                                <option value="RESTABLECIMIENTO DE CONTRASEÑA PARA INGRESAR A LA RED MAGISTRATURA">RESTABLECIMIENTO DE CONTRASEÑA PARA INGRESAR A LA RED MAGISTRATURA</option>
+                                                <option value="RESTRUCTURACION DE CABLEADO Y PUNTOS DE RED">RESTRUCTURACION DE CABLEADO Y PUNTOS DE RED</option>
+                                                <option value="REVISION DE CABLEADO DE RED">REVISION DE CABLEADO DE RED</option>
+                                                <option value="REVISION DE COMPUTADOR">REVISION DE COMPUTADOR</option>
+                                                <option value="REVISION DE FUNCIONALIDAD DE IMPRESORA">REVISION DE FUNCIONALIDAD DE IMPRESORA</option>
+                                                <option value="REVISION DE MONITORES">REVISION DE MONITORES</option>
+                                                <option value="REVISION DE MOUSE">REVISION DE MOUSE</option>
+                                                <option value="REVISION DE SERVIDOR">REVISION DE SERVIDOR</option>
+                                                <option value="REVISION DE TECLADO">REVISION DE TECLADO</option>
+                                                <option value="REVISION EDITOR DE SENTENCIAS">REVISION EDITOR DE SENTENCIAS</option>
+                                                <option value="SISTEMAS JUDICIALES">SISTEMAS JUDICIALES</option>
+                                                <option value="SMART SENSOR">SMART SENSOR</option>
+                                                <option value="SOLICITUDES DE ACCESO INTERNET">SOLICITUDES DE ACCESO INTERNET</option>
+                                                <option value="SOPORTE AL USUARIO">SOPORTE AL USUARIO</option>
+                                                <option value="SOPORTE DE RED INALAMBRICA">SOPORTE DE RED INALAMBRICA</option>
+                                                <option value="SOPORTE DE SOFTWARE">SOPORTE DE SOFTWARE</option>
+                                                <option value="TAREAS ADMINISTRATIVAS">TAREAS ADMINISTRATIVAS</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR EN DETALLE DEL TRABAJO)</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otroTrabajoField">
+                                            <label for="otroTrabajo" class="form-label">Especifique otro trabajo realizado</label>
+                                            <input type="text" class="form-control" id="otroTrabajo" placeholder="Ingrese el trabajo realizado">
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="dependencia" class="form-label required-field">Dependencia</label>
-                                            <input type="text" class="form-control" id="dependencia" required placeholder="Ej: Sistemas, Contabilidad, etc.">
+                                            <select class="form-select" id="dependencia" required>
+                                                <option value="">Seleccione una dependencia</option>
+                                                <option value="BIENES PUBLICOS - DAR MERIDA">BIENES PUBLICOS - DAR MERIDA</option>
+                                                <option value="CESTA TICKET - DAR MERIDA">CESTA TICKET - DAR MERIDA</option>
+                                                <option value="CIRCUITO JUDICIAL DE PROTECCION DE NIÑOS, NIÑAS Y ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">CIRCUITO JUDICIAL DE PROTECCION DE NIÑOS, NIÑAS Y ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="CIRCUITO JUDICIAL DE PROTECCIÓN DEL NIÑO, NIÑA Y ADOLESCENTE DEL ESTADO MÉRIDA, SEDE EL VIGÍA">CIRCUITO JUDICIAL DE PROTECCIÓN DEL NIÑO, NIÑA Y ADOLESCENTE DEL ESTADO MÉRIDA, SEDE EL VIGÍA</option>
+                                                <option value="CIRCUITO JUDICIAL LABORAL DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">CIRCUITO JUDICIAL LABORAL DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA. EXT VIGÍA">CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA. EXT VIGÍA</option>
+                                                <option value="DAR MERIDA">DAR MERIDA</option>
+                                                <option value="DIRECCION ADMINISTRATIVA REGIONAL DEL ESTADO BOLIVARIANO DE MERIDA">DIRECCION ADMINISTRATIVA REGIONAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="FASDEM Y BIENESTAR SOCIAL -DAR MERIDA">FASDEM Y BIENESTAR SOCIAL -DAR MERIDA</option>
+                                                <option value="FINANZAS - DAR MERIDA">FINANZas - DAR MERIDA</option>
+                                                <option value="INFORMATICA - DAR MERIDA">INFORMATICA - DAR MERIDA</option>
+                                                <option value="INSPECTORIA GENERAL DE LOS TRIBUNALES">INSPECTORIA GENERAL DE LOS TRIBUNALES</option>
+                                                <option value="JUZGADO PRIMERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO PRIMERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="JUZGADO SUPERIOR AGRARIO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR AGRARIO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="JUZGADO SUPERIOR PRIMERO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR PRIMERO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="JUZGADO SUPERIOR SEGUNDO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR SEGUNDO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVariano DE MERIDA</option>
+                                                <option value="JUZGADO SUPERIOR CONTENCIOSO ADMINISTRATIVO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR CONTENCIOSO ADMINISTRATIVO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="OFICINA DE RECTORÍA">OFICINA DE RECTORÍA</option>
+                                                <option value="PARTICIPACION CIUDADANA - DAR MERIDA">PARTICIPACION CIUDADANA - DAR MERIDA</option>
+                                                <option value="PERSONAL - RECLUTAMIENTO - DAR MERIDA">PERSONAL - RECLUTAMIENTO - DAR MERIDA</option>
+                                                <option value="SALA DE AUDIENCIAS - DAR MERIDA">SALA DE AUDIENCIAS - DAR MERIDA</option>
+                                                <option value="SISTEMA DE SEGURIDAD ELECTRONICA (SISEEL)">SISTEMA DE SEGURIDAD ELECTRONICA (SISEEL)</option>
+                                                <option value="TRIBUNAL CUARTO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL CUARTO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="TRIBUNAL TERCERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL TERCERO DE MUNICIPIO ORDINARio Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="OCII - DAR MERIDA">OCII - DAR MERIDA</option>
+                                                <option value="CIRCUITO JUDICIAL PENAL CON COMPETENCIA EN MATERIA DE DELITO DE VIOLENCIA CONTRA LA MUJER DEL ESTADO MERIDA">CIRCUITO JUDICIAL PENAL CON COMPETENCIA EN MATERIA DE DELITO DE VIOLENCIA CONTRA LA MUJER DEL ESTADO MERIDA</option>
+                                                <option value="JUZGADO SEGUNDO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SEGUNDO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="PROVEEDURIA - DAR MERIDA">PROVEEDURIA - DAR MERIDA</option>
+                                                <option value="SERVICIOS JUDICIALES - DAR MERIDA">SERVICIOS JUDICIALES - DAR MERIDA</option>
+                                                <option value="NOMINA - DAR MERIDA">NOMINA - DAR MERIDA</option>
+                                                <option value="ORGE">ORGE</option>
+                                                <option value="RECEPCCION - DAR MERIDA">RECEPCCION - DAR MERIDA</option>
+                                                <option value="SECRETARIA - DAR MERIDA">SECRETARIA - DAR MERIDA</option>
+                                                <option value="DEFENSA PUBLICA">DEFENSA PUBLICA</option>
+                                                <option value="TRIBUNAL SEGUNDO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS AND ARICAGUA">TRIBUNAL SEGUNDO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA</option>
+                                                <option value="TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA">TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA</option>
+                                                <option value="TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="OFICINA DE JEFE DE PERSONAL - DAR MERIDA">OFICINA DE JEFE DE PERSONAL - DAR MERIDA</option>
+                                                <option value="INFRAESTRUCTURA - DAR MERIDA">INFRAESTRUCTURA - DAR MERIDA</option>
+                                                <option value="SERVICIOS MÉDICOS">SERVICIOS MÉDICOS</option>
+                                                <option value="OFICINA DE SEGURIDAD DE LA DAR">OFICINA DE SEGURIDAD DE LA DAR</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR A CONTINUACIÓN)</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otraDependenciaField">
+                                            <label for="otraDependencia" class="form-label">Especifique otra dependencia</label>
+                                            <input type="text" class="form-control" id="otraDependencia" placeholder="Ingrese el nombre de la dependencia">
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="fecha" class="form-label required-field">Fecha</label>
                                             <input type="date" class="form-control" id="fecha" required>
+                                            <div class="date-info">La fecha se guardará exactamente como la seleccione</div>
                                         </div>
                                         
                                         <div class="mb-3">
@@ -463,10 +649,20 @@
                                             <select class="form-select" id="solicitud" required>
                                                 <option value="">Seleccione una opción</option>
                                                 <option value="Presencial">Presencial</option>
-                                                <option value="Telefónica">Telefónica</option>
+                                                <option value="Verbal">Verbal</option>
+                                                <option value="Mensaje WhatsApp">Mensaje WhatsApp</option>
+                                                <option value="Mensaje de Texto">Mensaje de Texto</option>
+                                                <option value="Llamada Telefónica">Llamada Telefónica</option>
                                                 <option value="Correo">Correo Electrónico</option>
                                                 <option value="Sistema">Sistema</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR EN DETALLE DEL TRABAJO)</option>
                                             </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otraSolicitudField">
+                                            <label for="otraSolicitud" class="form-label">Especifique otro tipo de solicitud</label>
+                                            <input type="text" class="form-control" id="otraSolicitud" placeholder="Ingrese el tipo de solicitud">
                                         </div>
                                         
                                         <div class="mb-3">
@@ -482,7 +678,14 @@
                                                 <option value="En Proceso">En Proceso</option>
                                                 <option value="Pendiente">Pendiente</option>
                                                 <option value="Cancelado">Cancelado</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR EN OBSERVACIONES)</option>
                                             </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otroStatusField">
+                                            <label for="otroStatus" class="form-label">Especifique otro status</label>
+                                            <input type="text" class="form-control" id="otroStatus" placeholder="Ingrese el status">
                                         </div>
                                     </div>
                                 </div>
@@ -494,6 +697,7 @@
                                         <div class="mb-3">
                                             <label for="fechaCierre" class="form-label">Fecha de Cierre</label>
                                             <input type="date" class="form-control" id="fechaCierre">
+                                            <div class="date-info">La fecha se guardará exactamente como la seleccione</div>
                                         </div>
                                         
                                         <div class="mb-3">
@@ -503,7 +707,14 @@
                                                 <option value="Operativo">Operativo</option>
                                                 <option value="No Operativo">No Operativo</option>
                                                 <option value="En Reparación">En Reparación</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR EN OBSERVACIONES)</option>
                                             </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otraOperatividadField">
+                                            <label for="otraOperatividad" class="form-label">Especifique otra operatividad</label>
+                                            <input type="text" class="form-control" id="otraOperatividad" placeholder="Ingrese la operatividad del equipo">
                                         </div>
                                         
                                         <div class="mb-3">
@@ -515,18 +726,142 @@
                                                 <option value="Scanner">Scanner</option>
                                                 <option value="Servidor">Servidor</option>
                                                 <option value="Red">Equipo de Red</option>
-                                                <option value="Otro">Otro</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
                                             </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otroTipoEquipoField">
+                                            <label for="otroTipoEquipo" class="form-label">Especifique otro tipo de equipo</label>
+                                            <input type="text" class="form-control" id="otroTipoEquipo" placeholder="Ingrese el tipo de equipo">
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="marca" class="form-label required-field">Marca</label>
-                                            <input type="text" class="form-control" id="marca" required placeholder="Ej: HP, Dell, Lenovo, etc.">
+                                            <select class="form-select" id="marca" required>
+                                                <option value="">Seleccione una marca</option>
+                                                <option value="ARKTEK">ARKTEK</option>
+                                                <option value="BOSCH">BOSCH</option>
+                                                <option value="CANON">CANON</option>
+                                                <option value="CARTUCHO 49">CARTUCHO 49</option>
+                                                <option value="CLON">CLON</option>
+                                                <option value="DELL">DELL</option>
+                                                <option value="ERICSSON">ERICSSON</option>
+                                                <option value="FORZA">FORZA</option>
+                                                <option value="GENERICA">GENERICA</option>
+                                                <option value="GENIUS">GENIUS</option>
+                                                <option value="HP">HP</option>
+                                                <option value="IBM">IBM</option>
+                                                <option value="INTER POWER">INTER POWER</option>
+                                                <option value="LANPRO">LANPRO</option>
+                                                <option value="LENOVO">LENOVO</option>
+                                                <option value="LG">LG</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="PANASONIC">PANASONIC</option>
+                                                <option value="SAMSUNG">SAMSUNG</option>
+                                                <option value="SIEMENS">SIEMENS</option>
+                                                <option value="SKIL">SKIL</option>
+                                                <option value="SMART SENSOR">SMART SENSOR</option>
+                                                <option value="SONEVIEW">SONEVIEW</option>
+                                                <option value="VARIOS">VARIOS</option>
+                                                <option value="VIT">VIT</option>
+                                                <option value="ZUH IPOING">ZUH IPOING</option>
+                                                <option value="ZUHI POINT">ZUHI POINT</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otraMarcaField">
+                                            <label for="otraMarca" class="form-label">Especifique otra marca</label>
+                                            <input type="text" class="form-control" id="otraMarca" placeholder="Ingrese la marca">
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="modelo" class="form-label required-field">Modelo</label>
-                                            <input type="text" class="form-control" id="modelo" required placeholder="Ej: EliteDesk 800, OptiPlex 3070, etc.">
+                                            <select class="form-select" id="modelo" required>
+                                                <option value="">Seleccione un modelo</option>
+                                                <option value="1577-E6S">1577-E6S</option>
+                                                <option value="2413-01">2413-01</option>
+                                                <option value="3105MW">3105MW</option>
+                                                <option value="3300U">3300U</option>
+                                                <option value="6636-AC1">6636-AC1</option>
+                                                <option value="6792+B5:B61">6792+B5:B61</option>
+                                                <option value="8171-NBS">8171-NBS</option>
+                                                <option value="8183-DFS">8183-DFS</option>
+                                                <option value="8306-KRS">8306-KRS</option>
+                                                <option value="9482-bw8">9482-bw8</option>
+                                                <option value="9632-CA4">9632-CA4</option>
+                                                <option value="9632-F95">9632-F95</option>
+                                                <option value="ACCU 6000">ACCU 6000</option>
+                                                <option value="BIONAIRE">BIONAIRE</option>
+                                                <option value="DC5700">DC5700</option>
+                                                <option value="DOK-K5313">DOK-K5313</option>
+                                                <option value="E1210-01">E1210-01</option>
+                                                <option value="E2220-01">E2220-01</option>
+                                                <option value="E2220-03">E2220-03</option>
+                                                <option value="E2230-03">E2230-03</option>
+                                                <option value="E2710">E2710</option>
+                                                <option value="EUROSET 8055">EUROSET 8055</option>
+                                                <option value="F6W15A">F6W15A</option>
+                                                <option value="FVR1211B">FVR1211B</option>
+                                                <option value="G3010">G3010</option>
+                                                <option value="G41">G41</option>
+                                                <option value="H170-1">H170-1</option>
+                                                <option value="HP 3003 DW">HP 3003 DW</option>
+                                                <option value="HP 4003DW">HP 4003DW</option>
+                                                <option value="HP 4250">HP 4250</option>
+                                                <option value="HP LASERJET P2035">HP LASERJET P2035</option>
+                                                <option value="HP3003">HP3003</option>
+                                                <option value="HP-49A">HP-49A</option>
+                                                <option value="HP-G3010">HP-G3010</option>
+                                                <option value="IR3025">IR3025</option>
+                                                <option value="IR3225">IR3225</option>
+                                                <option value="K639">K639</option>
+                                                <option value="KB0225">KB0225</option>
+                                                <option value="KX-TG3510LAB">KX-TG3510LAB</option>
+                                                <option value="LASER JET PRO M102W">LASER JET PRO M102W</option>
+                                                <option value="LASET JET 107A">LASET JET 107A</option>
+                                                <option value="LJM101">LJM101</option>
+                                                <option value="LP5AI">LP5AI</option>
+                                                <option value="LPJ2-23">LPJ2-23</option>
+                                                <option value="M106">M106</option>
+                                                <option value="M2100-01-01">M2100-01-01</option>
+                                                <option value="M2400">M2400</option>
+                                                <option value="M2420">M2420</option>
+                                                <option value="M426">M426</option>
+                                                <option value="M55E">M55E</option>
+                                                <option value="M600">M600</option>
+                                                <option value="M696">M696</option>
+                                                <option value="MTM818848S">MTM818848S</option>
+                                                <option value="NO APLICA">NO APLICA</option>
+                                                <option value="OPTIPLEX 7010">OPTIPLEX 7010</option>
+                                                <option value="P1300">P1300</option>
+                                                <option value="P2015">P2015</option>
+                                                <option value="P2413">P2413</option>
+                                                <option value="P3005">P3005</option>
+                                                <option value="PCR-600">PCR-600</option>
+                                                <option value="SIN MODELO">SIN MODELO</option>
+                                                <option value="SKIL 9003 700W 115ML">SKIL 9003 700W 115ML</option>
+                                                <option value="SR954">SR954</option>
+                                                <option value="ST1020M4-02">ST1020M4-02</option>
+                                                <option value="SUPER HOBBY 400w 3/8´´">SUPER HOBBY 400w 3/8´´</option>
+                                                <option value="V1N1058">V1N1058</option>
+                                                <option value="VARIOS">VARIOS</option>
+                                                <option value="VIT M2400">VIT M2400</option>
+                                                <option value="9704">9704</option>
+                                                <option value="MFP452DW">MFP452DW</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="mb-3 conditional-field" id="otroModeloField">
+                                            <label for="otroModelo" class="form-label">Especifique otro modelo</label>
+                                            <input type="text" class="form-control" id="otroModelo" placeholder="Ingrese el modelo">
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="observaciones" class="form-label">Observaciones y Sugerencias</label>
+                                            <textarea class="form-control" id="observaciones" rows="2" placeholder="Ingrese observaciones y sugerencias aquí..."></textarea>
                                         </div>
                                         
                                         <div class="mb-3">
@@ -537,11 +872,6 @@
                                         <div class="mb-3">
                                             <label for="nroBien" class="form-label required-field">Nro Bien</label>
                                             <input type="text" class="form-control" id="nroBien" required placeholder="Número de inventario">
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <label for="toner" class="form-label">Toner (Gramos)</label>
-                                            <input type="number" class="form-control" id="toner" min="0" step="1" placeholder="Cantidad en gramos">
                                         </div>
                                     </div>
                                 </div>
@@ -766,30 +1096,116 @@
         const clearDataButton = document.getElementById('clearData');
         const connectionStatus = document.getElementById('connectionStatus');
         
+        // Obtener todos los campos condicionales
+        const conditionalFields = {
+            categoria: document.getElementById('otraCategoriaField'),
+            trabajoRealizado: document.getElementById('otroTrabajoField'),
+            dependencia: document.getElementById('otraDependenciaField'),
+            solicitud: document.getElementById('otraSolicitudField'),
+            status: document.getElementById('otroStatusField'),
+            operatividad: document.getElementById('otraOperatividadField'),
+            tipoEquipo: document.getElementById('otroTipoEquipoField'),
+            marca: document.getElementById('otraMarcaField'),
+            modelo: document.getElementById('otroModeloField')
+        };
+        
+        // Obtener todos los selects
+        const selects = {
+            categoria: document.getElementById('categoria'),
+            trabajoRealizado: document.getElementById('trabajoRealizado'),
+            dependencia: document.getElementById('dependencia'),
+            solicitud: document.getElementById('solicitud'),
+            status: document.getElementById('status'),
+            operatividad: document.getElementById('operatividad'),
+            tipoEquipo: document.getElementById('tipoEquipo'),
+            marca: document.getElementById('marca'),
+            modelo: document.getElementById('modelo')
+        };
+        
         // Establecer fecha actual por defecto
         document.getElementById('fecha').valueAsDate = new Date();
+        
+        // Configurar event listeners para todos los selects
+        Object.keys(selects).forEach(key => {
+            selects[key].addEventListener('change', function() {
+                toggleConditionalField(key, this.value);
+            });
+        });
+        
+        // Función para mostrar/ocultar campos condicionales
+        function toggleConditionalField(fieldName, value) {
+            const conditionalField = conditionalFields[fieldName];
+            if (value === 'OTRO') {
+                conditionalField.style.display = 'block';
+                // Hacer el campo requerido si es necesario
+                const inputField = conditionalField.querySelector('input');
+                if (inputField) {
+                    inputField.setAttribute('required', 'required');
+                }
+            } else {
+                conditionalField.style.display = 'none';
+                // Quitar el requerido si estaba puesto
+                const inputField = conditionalField.querySelector('input');
+                if (inputField) {
+                    inputField.removeAttribute('required');
+                    inputField.value = '';
+                }
+            }
+        }
         
         // Guardar actividad
         activityForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Obtener valores de campos condicionales si es necesario
+            const categoriaValue = selects.categoria.value === 'OTRO' ? 
+                document.getElementById('otraCategoria').value || 'OTRO' : selects.categoria.value;
+                
+            const trabajoRealizadoValue = selects.trabajoRealizado.value === 'OTRO' ? 
+                document.getElementById('otroTrabajo').value || 'OTRO' : selects.trabajoRealizado.value;
+                
+            const dependenciaValue = selects.dependencia.value === 'OTRO' ? 
+                document.getElementById('otraDependencia').value || 'OTRO' : selects.dependencia.value;
+                
+            const solicitudValue = selects.solicitud.value === 'OTRO' ? 
+                document.getElementById('otraSolicitud').value || 'OTRO' : selects.solicitud.value;
+                
+            const statusValue = selects.status.value === 'OTRO' ? 
+                document.getElementById('otroStatus').value || 'OTRO' : selects.status.value;
+                
+            const operatividadValue = selects.operatividad.value === 'OTRO' ? 
+                document.getElementById('otraOperatividad').value || 'OTRO' : selects.operatividad.value;
+                
+            const tipoEquipoValue = selects.tipoEquipo.value === 'OTRO' ? 
+                document.getElementById('otroTipoEquipo').value || 'OTRO' : selects.tipoEquipo.value;
+                
+            const marcaValue = selects.marca.value === 'OTRO' ? 
+                document.getElementById('otraMarca').value || 'OTRO' : selects.marca.value;
+                
+            const modeloValue = selects.modelo.value === 'OTRO' ? 
+                document.getElementById('otroModelo').value || 'OTRO' : selects.modelo.value;
+            
+            // Obtener la fecha sin ajustes de zona horaria
+            const fechaInput = document.getElementById('fecha').value;
+            const fechaCierreInput = document.getElementById('fechaCierre').value;
+            
             const activity = {
-                categoria: document.getElementById('categoria').value,
-                trabajoRealizado: document.getElementById('trabajoRealizado').value,
-                dependencia: document.getElementById('dependencia').value,
-                fecha: document.getElementById('fecha').value,
+                categoria: categoriaValue,
+                trabajoRealizado: trabajoRealizadoValue,
+                dependencia: dependenciaValue,
+                fecha: fechaInput, // Guardamos el valor directamente sin convertirlo a Date
                 detalleTrabajo: document.getElementById('detalleTrabajo').value,
-                solicitud: document.getElementById('solicitud').value,
+                solicitud: solicitudValue,
                 oati: document.getElementById('oati').value,
-                status: document.getElementById('status').value,
-                fechaCierre: document.getElementById('fechaCierre').value,
-                operatividad: document.getElementById('operatividad').value,
-                tipoEquipo: document.getElementById('tipoEquipo').value,
-                marca: document.getElementById('marca').value,
-                modelo: document.getElementById('modelo').value,
+                status: statusValue,
+                fechaCierre: fechaCierreInput, // Guardamos el valor directamente
+                operatividad: operatividadValue,
+                tipoEquipo: tipoEquipoValue,
+                marca: marcaValue,
+                modelo: modeloValue,
                 serial: document.getElementById('serial').value,
                 nroBien: document.getElementById('nroBien').value,
-                toner: document.getElementById('toner').value,
+                observaciones: document.getElementById('observaciones').value,
                 id: currentEditId || Date.now() // ID único basado en timestamp
             };
             
@@ -809,6 +1225,11 @@
             renderActivities();
             activityForm.reset();
             document.getElementById('fecha').valueAsDate = new Date();
+            
+            // Ocultar todos los campos condicionales
+            Object.values(conditionalFields).forEach(field => {
+                field.style.display = 'none';
+            });
             
             showNotification(`Actividad ${currentEditId ? 'actualizada' : 'registrada'} con éxito!`, 'success');
             
@@ -830,6 +1251,11 @@
             cancelEditButton.style.display = 'none';
             activityForm.reset();
             document.getElementById('fecha').valueAsDate = new Date();
+            
+            // Ocultar todos los campos condicionales
+            Object.values(conditionalFields).forEach(field => {
+                field.style.display = 'none';
+            });
         }
         
         // Guardar actividades en localStorage
@@ -847,7 +1273,12 @@
             }
             
             // Ordenar actividades por fecha (más recientes primero)
-            const sortedActivities = [...activities].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+            const sortedActivities = [...activities].sort((a, b) => {
+                // Convertir fechas a formato comparable
+                const dateA = new Date(a.fecha);
+                const dateB = new Date(b.fecha);
+                return dateB - dateA;
+            });
             
             // Renderizar tabla principal
             activitiesTable.innerHTML = '';
@@ -859,7 +1290,7 @@
                     </td>
                     <td>${formatDate(activity.fecha)}</td>
                     <td>${activity.categoria}</td>
-                    <td>${activity.dependencia}</td>
+                    <td>${activity.dependencia.substring(0, 20)}${activity.dependencia.length > 20 ? '...' : ''}</td>
                     <td>${activity.trabajoRealizado.substring(0, 30)}${activity.trabajoRealizado.length > 30 ? '...' : ''}</td>
                     <td>${activity.oati}</td>
                     <td><span class="badge ${getStatusBadgeClass(activity.status)}">${activity.status}</span></td>
@@ -906,7 +1337,7 @@
                         <small>${formatDate(activity.fecha)}</small>
                     </div>
                     <p class="mb-1">${activity.trabajoRealizado.substring(0, 40)}${activity.trabajoRealizado.length > 40 ? '...' : ''}</p>
-                    <small class="text-muted">${activity.dependencia} - ${activity.oati}</small>
+                    <small class="text-muted">${activity.dependencia.substring(0, 20)}${activity.dependencia.length > 20 ? '...' : ''} - ${activity.oati}</small>
                 `;
                 recentActivities.appendChild(div);
             });
@@ -995,7 +1426,7 @@
                             <p><strong>Modelo:</strong> ${activity.modelo}</p>
                             <p><strong>Serial:</strong> ${activity.serial}</p>
                             <p><strong>Nro Bien:</strong> ${activity.nroBien}</p>
-                            <p><strong>Toner (Gramos):</strong> ${activity.toner || 'N/A'}</p>
+                            <p><strong>Observaciones:</strong> ${activity.observaciones || 'N/A'}</p>
                         </div>
                     </div>
                 `;
@@ -1012,22 +1443,26 @@
                 editIdField.value = id;
                 
                 // Llenar el formulario con los datos de la actividad
-                document.getElementById('categoria').value = activity.categoria;
-                document.getElementById('trabajoRealizado').value = activity.trabajoRealizado;
-                document.getElementById('dependencia').value = activity.dependencia;
+                // Para cada campo, verificar si es un valor predefinido o personalizado
+                setSelectValue('categoria', activity.categoria, 'otraCategoria');
+                setSelectValue('trabajoRealizado', activity.trabajoRealizado, 'otroTrabajo');
+                setSelectValue('dependencia', activity.dependencia, 'otraDependencia');
+                setSelectValue('solicitud', activity.solicitud, 'otraSolicitud');
+                setSelectValue('status', activity.status, 'otroStatus');
+                setSelectValue('operatividad', activity.operatividad, 'otraOperatividad');
+                setSelectValue('tipoEquipo', activity.tipoEquipo, 'otroTipoEquipo');
+                setSelectValue('marca', activity.marca, 'otraMarca');
+                setSelectValue('modelo', activity.modelo, 'otroModelo');
+                
+                // Establecer fechas directamente (sin conversión a objeto Date)
                 document.getElementById('fecha').value = activity.fecha;
+                document.getElementById('fechaCierre').value = activity.fechaCierre || '';
+                
                 document.getElementById('detalleTrabajo').value = activity.detalleTrabajo;
-                document.getElementById('solicitud').value = activity.solicitud;
                 document.getElementById('oati').value = activity.oati;
-                document.getElementById('status').value = activity.status;
-                document.getElementById('fechaCierre').value = activity.fechaCierre;
-                document.getElementById('operatividad').value = activity.operatividad;
-                document.getElementById('tipoEquipo').value = activity.tipoEquipo;
-                document.getElementById('marca').value = activity.marca;
-                document.getElementById('modelo').value = activity.modelo;
                 document.getElementById('serial').value = activity.serial;
                 document.getElementById('nroBien').value = activity.nroBien;
-                document.getElementById('toner').value = activity.toner;
+                document.getElementById('observaciones').value = activity.observaciones || '';
                 
                 // Cambiar el texto del botón
                 submitButton.innerHTML = '<i class="fas fa-save me-2"></i>Actualizar Actividad';
@@ -1035,6 +1470,21 @@
                 
                 // Scroll al formulario
                 document.getElementById('activityForm').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        
+        // Función auxiliar para establecer valores en selects
+        function setSelectValue(selectName, value, inputId) {
+            const select = selects[selectName];
+            const optionExists = Array.from(select.options).some(option => option.value === value);
+            
+            if (optionExists) {
+                select.value = value;
+                conditionalFields[selectName].style.display = 'none';
+            } else {
+                select.value = 'OTRO';
+                document.getElementById(inputId).value = value;
+                conditionalFields[selectName].style.display = 'block';
             }
         }
         
@@ -1089,7 +1539,7 @@
             const tableData = activitiesToExport.map(activity => [
                 formatDate(activity.fecha),
                 activity.categoria,
-                activity.dependencia,
+                activity.dependencia.substring(0, 20) + (activity.dependencia.length > 20 ? '...' : ''),
                 activity.trabajoRealizado.substring(0, 40) + (activity.trabajoRealizado.length > 40 ? '...' : ''),
                 activity.oati,
                 activity.status
@@ -1157,7 +1607,7 @@
                 'Modelo': activity.modelo,
                 'Serial': activity.serial,
                 'Nro Bien': activity.nroBien,
-                'Toner (Gramos)': activity.toner || 'N/A'
+                'Observaciones': activity.observaciones || 'N/A'
             }));
             
             // Crear hoja de trabajo
@@ -1167,8 +1617,8 @@
             const wscols = [
                 {wch: 10}, {wch: 12}, {wch: 15}, {wch: 30}, {wch: 30}, 
                 {wch: 12}, {wch: 15}, {wch: 10}, {wch: 10}, {wch: 12}, 
-                {wch: 12}, {wch: 12}, {wch: 12}, {wch: 12}, {wch: 8}, 
-                {wch: 10}
+                {wch: 12}, {wch: 12}, {wch: 12}, {wch: 12}, {wch: 15},
+                {wch: 20}
             ];
             ws['!cols'] = wscols;
             
@@ -1263,10 +1713,27 @@
             completedActivities.textContent = completed;
         }
         
-        // Formatear fecha
+        // Formatear fecha para mostrar (sin problemas de zona horaria)
         function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            
+            // Si ya es una fecha formateada, devolverla tal cual
+            if (dateString.includes('/')) return dateString;
+            
+            // Si es una fecha en formato ISO (YYYY-MM-DD), formatearla correctamente
+            const parts = dateString.split('-');
+            if (parts.length === 3) {
+                return `${parts[2]}/${parts[1]}/${parts[0]}`;
+            }
+            
+            // Para otros formatos, intentar parsear la fecha
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) {
+                return dateString; // Devolver el string original si no es una fecha válida
+            }
+            
             const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('es-ES', options);
+            return date.toLocaleDateString('es-ES', options);
         }
         
         // Obtener clase para el badge de status
@@ -1359,7 +1826,7 @@
                     </td>
                     <td>${formatDate(activity.fecha)}</td>
                     <td>${activity.categoria}</td>
-                    <td>${activity.dependencia}</td>
+                    <td>${activity.dependencia.substring(0, 20)}${activity.dependencia.length > 20 ? '...' : ''}</td>
                     <td>${activity.trabajoRealizado.substring(0, 30)}${activity.trabajoRealizado.length > 30 ? '...' : ''}</td>
                     <td>${activity.oati}</td>
                     <td><span class="badge ${getStatusBadgeClass(activity.status)}">${activity.status}</span></td>
