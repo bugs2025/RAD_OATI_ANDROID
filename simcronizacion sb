@@ -1,0 +1,36 @@
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // Configuración de Supabase
+  const supabaseUrl = 'https://tu-proyecto.supabase.co';
+  const supabaseKey = 'tu-clave-publica';
+  const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+  
+  // Función para guardar datos
+  async function guardarDato(valor) {
+    const dispositivo = navigator.userAgent.match(/Android/i) 
+      ? 'Android' : 'Ordenador';
+    
+    const { data, error } = await supabase
+      .from('datos_sincronizados')
+      .insert([{ valor, dispositivo }]);
+    
+    if (error) {
+      console.error('Error guardando dato:', error);
+    } else {
+      console.log('Dato guardado:', data);
+    }
+  }
+  
+  // Función para leer datos en tiempo real
+  function suscribirDatos() {
+    const subscription = supabase
+      .from('datos_sincronizados')
+      .on('INSERT', payload => {
+        // Actualizar la interfaz con el nuevo dato
+        console.log('Nuevo dato recibido:', payload.new);
+      })
+      .subscribe();
+    
+    return subscription;
+  }
+</script>
