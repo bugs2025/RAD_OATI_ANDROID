@@ -422,6 +422,74 @@
             color: #6c757d;
             margin-top: 5px;
         }
+        
+        /* Estilos para validación */
+        .is-invalid {
+            border-color: var(--danger-color) !important;
+        }
+        
+        .invalid-feedback {
+            display: none;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875em;
+            color: var(--danger-color);
+        }
+        
+        .is-invalid ~ .invalid-feedback {
+            display: block;
+        }
+        
+        /* Estilos para el modal de importación */
+        .import-instructions {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .import-instructions ol {
+            margin-bottom: 0;
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-input-label {
+            display: block;
+            padding: 12px 15px;
+            background: #e9ecef;
+            border: 2px dashed #ced4da;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-input-label:hover {
+            background: #dee2e6;
+            border-color: #adb5bd;
+        }
+        
+        .file-input-label.has-file {
+            background: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
     </style>
 </head>
 <body>
@@ -458,12 +526,13 @@
                                                 <option value="Instalación">Instalación</option>
                                                 <option value="Soporte">Soporte Técnico</option>
                                                 <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione una categoría</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraCategoriaField">
-                                            <label for="otraCategoria" class="form-label">Ingrese la categoría</label>
+                                            <label for="otraCategoria" class="form-label">Especifique otra categoría</label>
                                             <input type="text" class="form-control" id="otraCategoria" placeholder="Ingrese la categoría">
                                         </div>
                                         
@@ -486,7 +555,7 @@
                                                 <option value="CREACION DE CUENTA DE ACCESO A SISTEMA PROMANAGER">CREACION DE CUENTA DE ACCESO A SISTEMA PROMANAGER</option>
                                                 <option value="CREACION DE CUENTA DE USUARIO DE LA RED MAGISTRATURA">CREACION DE CUENTA DE USUARIO DE LA RED MAGISTRATURA</option>
                                                 <option value="CREACION EDITOR DE SENTENCIAS PAGINA TSJ">CREACION EDITOR DE SENTENCIAS PAGINA TSJ</option>
-                                                <option value="DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTRATURA">DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTrATURA</option>
+                                                <option value="DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTRATURA">DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTRATURA</option>
                                                 <option value="DESCONEXION DE EQUIPO DE COMPUTACION DE LA RED MAGISTRATURA">DESCONEXION DE EQUIPO DE COMPUTACION DE LA RED MAGISTRATURA</option>
                                                 <option value="DESHABILITAR CUENTA DE ACCESO A INTERNET">DESHABILITAR CUENTA DE ACCESO A INTERNET</option>
                                                 <option value="DESHABILITAR CUENTA DE EDITOR DE TEXTO TSJ">DESHABILITAR CUENTA DE EDITOR DE TEXTO TSJ</option>
@@ -512,7 +581,7 @@
                                                 <option value="INSTALACION DE MONITOR">INSTALACION DE MONITOR</option>
                                                 <option value="INSTALACION DE REGULADOR">INSTALACION DE REGULADOR</option>
                                                 <option value="INSTALACIÓN DE SISTEMA OPERATIVO CON CARACTERISTICAS PARA SERVIDOR CON SUS APLICACIONES BASICAS">INSTALACIÓN DE SISTEMA OPERATIVO CON CARACTERISTICAS PARA SERVIDOR CON SUS APLICACIONES BASICAS</option>
-                                                <option value="INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES DE OFIMATICA">INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES OFIMÁTICA</option>
+                                                <option value="INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES DE OFIMATICA">INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES DE OFIMATICA</option>
                                                 <option value="INSTALACION DISCO DURO">INSTALACION DISCO DURO</option>
                                                 <option value="INSTALACION FUENTE DE PODER">INSTALACION FUENTE DE PODER</option>
                                                 <option value="INSTALACION MEMORIA RAM">INSTALACION MEMORIA RAM</option>
@@ -534,7 +603,7 @@
                                                 <option value="PREPARACION DE INFORMACION PARA LA DIRECCION (DESPACHO)">PREPARACION DE INFORMACION PARA LA DIRECCION (DESPACHO)</option>
                                                 <option value="PREPARACION DE INFORMACION PARA LA ODI">PREPARACION DE INFORMACION PARA LA ODI</option>
                                                 <option value="REALIZACION DE INFORME">REALIZACION DE INFORME</option>
-                                                <option value="RECUPERACION OF INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE">RECUPERACION DE INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE</option>
+                                                <option value="RECUPERACION DE INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE">RECUPERACION DE INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE</option>
                                                 <option value="REINCORPORACION DE EQUIPO DE COMPUTACION A RED MAGISTRATURA">REINCORPORACION DE EQUIPO DE COMPUTACION A RED MAGISTRATURA</option>
                                                 <option value="REPARACION CABLEADO TELEFONICO">REPARACION CABLEADO TELEFONICO</option>
                                                 <option value="REPARACION DE CABLEADO DE RED">REPARACION DE CABLEADO DE RED</option>
@@ -567,12 +636,13 @@
                                                 <option value="SOPORTE DE SOFTWARE">SOPORTE DE SOFTWARE</option>
                                                 <option value="TAREAS ADMINISTRATIVAS">TAREAS ADMINISTRATIVAS</option>
                                                 <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR EN DETALLE DEL TRABAJO)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione un trabajo realizado</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otroTrabajoField">
-                                            <label for="otroTrabajo" class="form-label">Ingrese el trabajo realizado</label>
+                                            <label for="otroTrabajo" class="form-label">Especifique otro trabajo realizado</label>
                                             <input type="text" class="form-control" id="otroTrabajo" placeholder="Ingrese el trabajo realizado">
                                         </div>
                                         
@@ -590,14 +660,14 @@
                                                 <option value="DAR MERIDA">DAR MERIDA</option>
                                                 <option value="DIRECCION ADMINISTRATIVA REGIONAL DEL ESTADO BOLIVARIANO DE MERIDA">DIRECCION ADMINISTRATIVA REGIONAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
                                                 <option value="FASDEM Y BIENESTAR SOCIAL -DAR MERIDA">FASDEM Y BIENESTAR SOCIAL -DAR MERIDA</option>
-                                                <option value="FINANZAS - DAR MERIDA">FINANZAS - DAR MERIDA</option>
+                                                <option value="FINANZAS - DAR MERIDA">FINANZas - DAR MERIDA</option>
                                                 <option value="INFORMATICA - DAR MERIDA">INFORMATICA - DAR MERIDA</option>
                                                 <option value="INSPECTORIA GENERAL DE LOS TRIBUNALES">INSPECTORIA GENERAL DE LOS TRIBUNALES</option>
                                                 <option value="JUZGADO PRIMERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO PRIMERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
                                                 <option value="JUZGADO SUPERIOR AGRARIO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR AGRARIO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
                                                 <option value="JUZGADO SUPERIOR PRIMERO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR PRIMERO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
                                                 <option value="JUZGADO SUPERIOR SEGUNDO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR SEGUNDO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVariano DE MERIDA</option>
                                                 <option value="JUZGADO SUPERIOR CONTENCIOSO ADMINISTRATIVO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR CONTENCIOSO ADMINISTRATIVO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
                                                 <option value="OFICINA DE RECTORÍA">OFICINA DE RECTORÍA</option>
                                                 <option value="PARTICIPACION CIUDADANA - DAR MERIDA">PARTICIPACION CIUDADANA - DAR MERIDA</option>
@@ -605,7 +675,7 @@
                                                 <option value="SALA DE AUDIENCIAS - DAR MERIDA">SALA DE AUDIENCIAS - DAR MERIDA</option>
                                                 <option value="SISTEMA DE SEGURIDAD ELECTRONICA (SISEEL)">SISTEMA DE SEGURIDAD ELECTRONICA (SISEEL)</option>
                                                 <option value="TRIBUNAL CUARTO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL CUARTO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="TRIBUNAL TERCERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL TERCERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
+                                                <option value="TRIBUNAL TERCERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL TERCERO DE MUNICIPIO ORDINARio Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
                                                 <option value="OCII - DAR MERIDA">OCII - DAR MERIDA</option>
                                                 <option value="CIRCUITO JUDICIAL PENAL CON COMPETENCIA EN MATERIA DE DELITO DE VIOLENCIA CONTRA LA MUJER DEL ESTADO MERIDA">CIRCUITO JUDICIAL PENAL CON COMPETENCIA EN MATERIA DE DELITO DE VIOLENCIA CONTRA LA MUJER DEL ESTADO MERIDA</option>
                                                 <option value="JUZGADO SEGUNDO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SEGUNDO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
@@ -617,19 +687,20 @@
                                                 <option value="SECRETARIA - DAR MERIDA">SECRETARIA - DAR MERIDA</option>
                                                 <option value="DEFENSA PUBLICA">DEFENSA PUBLICA</option>
                                                 <option value="TRIBUNAL SEGUNDO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS AND ARICAGUA">TRIBUNAL SEGUNDO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA</option>
-                                                <option value="TRIBUNAL PRIMERO OF MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA">TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA</option>
+                                                <option value="TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA">TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA</option>
                                                 <option value="TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
                                                 <option value="OFICINA DE JEFE DE PERSONAL - DAR MERIDA">OFICINA DE JEFE DE PERSONAL - DAR MERIDA</option>
                                                 <option value="INFRAESTRUCTURA - DAR MERIDA">INFRAESTRUCTURA - DAR MERIDA</option>
                                                 <option value="SERVICIOS MÉDICOS">SERVICIOS MÉDICOS</option>
                                                 <option value="OFICINA DE SEGURIDAD DE LA DAR">OFICINA DE SEGURIDAD DE LA DAR</option>
                                                 <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR A CONTINUACIÓN)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione una dependencia</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraDependenciaField">
-                                            <label for="otraDependencia" class="form-label">Ingrese la dependencia</label>
+                                            <label for="otraDependencia" class="form-label">Especifique otra dependencia</label>
                                             <input type="text" class="form-control" id="otraDependencia" placeholder="Ingrese el nombre de la dependencia">
                                         </div>
                                         
@@ -637,11 +708,13 @@
                                             <label for="fecha" class="form-label required-field">Fecha</label>
                                             <input type="date" class="form-control" id="fecha" required>
                                             <div class="date-info">La fecha se guardará exactamente como la seleccione</div>
+                                            <div class="invalid-feedback">Por favor ingrese una fecha</div>
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="detalleTrabajo" class="form-label required-field">Detalle del Trabajo</label>
                                             <textarea class="form-control" id="detalleTrabajo" rows="2" required placeholder="Describa en detalle el trabajo ejecutado..."></textarea>
+                                            <div class="invalid-feedback">Por favor ingrese el detalle del trabajo</div>
                                         </div>
                                         
                                         <div class="mb-3">
@@ -656,18 +729,20 @@
                                                 <option value="Correo">Correo Electrónico</option>
                                                 <option value="Sistema">Sistema</option>
                                                 <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR EN DETALLE DEL TRABAJO)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione cómo fue la solicitud</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraSolicitudField">
-                                            <label for="otraSolicitud" class="form-label">Ingrese el tipo de solicitud</label>
+                                            <label for="otraSolicitud" class="form-label">Especifique otro tipo de solicitud</label>
                                             <input type="text" class="form-control" id="otraSolicitud" placeholder="Ingrese el tipo de solicitud">
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="oati" class="form-label required-field">OATI Responsable</label>
                                             <input type="text" class="form-control" id="oati" required placeholder="Nombre del técnico responsable">
+                                            <div class="invalid-feedback">Por favor ingrese el nombre del OATI responsable</div>
                                         </div>
                                         
                                         <div class="mb-3">
@@ -679,12 +754,13 @@
                                                 <option value="Pendiente">Pendiente</option>
                                                 <option value="Cancelado">Cancelado</option>
                                                 <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR EN OBSERVACIONES)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione el status</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otroStatusField">
-                                            <label for="otroStatus" class="form-label">Ingrese el status</label>
+                                            <label for="otroStatus" class="form-label">Especifique otro status</label>
                                             <input type="text" class="form-control" id="otroStatus" placeholder="Ingrese el status">
                                         </div>
                                     </div>
@@ -708,12 +784,13 @@
                                                 <option value="No Operativo">No Operativo</option>
                                                 <option value="En Reparación">En Reparación</option>
                                                 <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR EN OBSERVACIONES)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione la operatividad del equipo</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraOperatividadField">
-                                            <label for="otraOperatividad" class="form-label">Ingrese la operatividad</label>
+                                            <label for="otraOperatividad" class="form-label">Especifique otra operatividad</label>
                                             <input type="text" class="form-control" id="otraOperatividad" placeholder="Ingrese la operatividad del equipo">
                                         </div>
                                         
@@ -727,12 +804,13 @@
                                                 <option value="Servidor">Servidor</option>
                                                 <option value="Red">Equipo de Red</option>
                                                 <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione el tipo de equipo</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otroTipoEquipoField">
-                                            <label for="otroTipoEquipo" class="form-label">Ingrese el tipo de equipo</label>
+                                            <label for="otroTipoEquipo" class="form-label">Especifique otro tipo de equipo</label>
                                             <input type="text" class="form-control" id="otroTipoEquipo" placeholder="Ingrese el tipo de equipo">
                                         </div>
                                         
@@ -767,12 +845,13 @@
                                                 <option value="VIT">VIT</option>
                                                 <option value="ZUH IPOING">ZUH IPOING</option>
                                                 <option value="ZUHI POINT">ZUHI POINT</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione la marca</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraMarcaField">
-                                            <label for="otraMarca" class="form-label">Ingrese la marca</label>
+                                            <label for="otraMarca" class="form-label">Especifique otra marca</label>
                                             <input type="text" class="form-control" id="otraMarca" placeholder="Ingrese la marca">
                                         </div>
                                         
@@ -850,12 +929,13 @@
                                                 <option value="VIT M2400">VIT M2400</option>
                                                 <option value="9704">9704</option>
                                                 <option value="MFP452DW">MFP452DW</option>
-                                                <option value="OTRO">OTRO</option>
+                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
                                             </select>
+                                            <div class="invalid-feedback">Por favor seleccione el modelo</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otroModeloField">
-                                            <label for="otroModelo" class="form-label">Ingrese el modelo</label>
+                                            <label for="otroModelo" class="form-label">Especifique otro modelo</label>
                                             <input type="text" class="form-control" id="otroModelo" placeholder="Ingrese el modelo">
                                         </div>
                                         
@@ -867,11 +947,13 @@
                                         <div class="mb-3">
                                             <label for="serial" class="form-label required-field">Serial</label>
                                             <input type="text" class="form-control" id="serial" required placeholder="Número de serie del equipo">
+                                            <div class="invalid-feedback">Por favor ingrese el serial del equipo</div>
                                         </div>
                                         
                                         <div class="mb-3">
                                             <label for="nroBien" class="form-label required-field">Nro Bien</label>
                                             <input type="text" class="form-control" id="nroBien" required placeholder="Número de inventario">
+                                            <div class="invalid-feedback">Por favor ingrese el número de bien</div>
                                         </div>
                                     </div>
                                 </div>
@@ -919,7 +1001,6 @@
                                 <button class="btn btn-outline-info btn-sm touch-target" id="importData">
                                     <i class="fas fa-upload me-1"></i>Importar
                                 </button>
-                                <input type="file" id="importFile" accept=".json" style="display: none;">
                                 <button class="btn btn-outline-warning btn-sm touch-target" id="clearData">
                                     <i class="fas fa-trash me-1"></i>Limpiar
                                 </button>
@@ -1052,6 +1133,47 @@
         </div>
     </div>
 
+    <!-- Modal para Importación -->
+    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importModalLabel">Importar Datos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="import-instructions">
+                        <h6>Instrucciones:</h6>
+                        <ol>
+                            <li>Selecciona un archivo JSON exportado previamente desde OATI</li>
+                            <li>Los datos importados reemplazarán los datos actuales</li>
+                            <li>Se recomienda hacer una copia de seguridad antes de importar</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="file-input-wrapper mb-3">
+                        <input type="file" id="importFile" accept=".json" class="form-control">
+                        <label for="importFile" class="file-input-label" id="fileInputLabel">
+                            <i class="fas fa-file-upload me-2"></i>
+                            <span>Seleccionar archivo JSON</span>
+                        </label>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Advertencia:</strong> Esta acción reemplazará todos los datos actuales.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary touch-target" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary touch-target" id="confirmImport">
+                        <i class="fas fa-upload me-1"></i>Importar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="connectionStatus" class="connection-status online">
         <i class="fas fa-database me-1"></i> Almacenamiento Local
     </div>
@@ -1069,6 +1191,7 @@
         let activities = JSON.parse(localStorage.getItem('activities')) || [];
         let currentEditId = null;
         let currentViewId = null;
+        let importModal = null;
         
         // Elementos del DOM
         const activityForm = document.getElementById('activityForm');
@@ -1086,7 +1209,7 @@
         const exportAllPdfButton = document.getElementById('exportAllPdf');
         const exportSelectedExcelButton = document.getElementById('exportSelectedExcel');
         const exportAllExcelButton = document.getElementById('exportAllExcel');
-        const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
+        const viewModalElement = new bootstrap.Modal(document.getElementById('viewModal'));
         const modalBody = document.getElementById('modalBody');
         const exportSinglePdfButton = document.getElementById('exportSinglePdf');
         const exportSingleExcelButton = document.getElementById('exportSingleExcel');
@@ -1095,6 +1218,9 @@
         const importFileInput = document.getElementById('importFile');
         const clearDataButton = document.getElementById('clearData');
         const connectionStatus = document.getElementById('connectionStatus');
+        const importModalElement = new bootstrap.Modal(document.getElementById('importModal'));
+        const fileInputLabel = document.getElementById('fileInputLabel');
+        const confirmImportButton = document.getElementById('confirmImport');
         
         // Obtener todos los campos condicionales
         const conditionalFields = {
@@ -1153,9 +1279,32 @@
             }
         }
         
+        // Función para validar el formulario
+        function validateForm() {
+            const requiredFields = document.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            });
+            
+            return isValid;
+        }
+        
         // Guardar actividad
         activityForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Validar formulario
+            if (!validateForm()) {
+                showNotification('Por favor complete todos los campos requeridos', 'error');
+                return;
+            }
             
             // Obtener valores de campos condicionales si es necesario
             const categoriaValue = selects.categoria.value === 'OTRO' ? 
@@ -1431,7 +1580,7 @@
                     </div>
                 `;
                 
-                viewModal.show();
+                viewModalElement.show();
             }
         }
         
@@ -1500,178 +1649,220 @@
         
         // Exportar a PDF
         function exportToPdf(id = null) {
-            const doc = new jsPDF({
-                orientation: 'landscape',
-                unit: 'mm',
-                format: 'a4'
-            });
-            
-            let activitiesToExport = [];
-            
-            if (id) {
-                // Exportar una sola actividad
-                activitiesToExport = activities.filter(a => a.id === id);
-            } else {
-                // Exportar actividades seleccionadas o todas
-                const selectedIds = Array.from(document.querySelectorAll('.activity-checkbox:checked'))
-                    .map(checkbox => parseInt(checkbox.value));
+            try {
+                const doc = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
                 
-                activitiesToExport = selectedIds.length > 0 
-                    ? activities.filter(a => selectedIds.includes(a.id))
-                    : activities;
+                let activitiesToExport = [];
+                
+                if (id) {
+                    // Exportar una sola actividad
+                    activitiesToExport = activities.filter(a => a.id === id);
+                } else {
+                    // Exportar actividades seleccionadas o todas
+                    const selectedIds = Array.from(document.querySelectorAll('.activity-checkbox:checked'))
+                        .map(checkbox => parseInt(checkbox.value));
+                    
+                    activitiesToExport = selectedIds.length > 0 
+                        ? activities.filter(a => selectedIds.includes(a.id))
+                        : activities;
+                }
+                
+                if (activitiesToExport.length === 0) {
+                    showNotification('No hay actividades para exportar', 'warning');
+                    return;
+                }
+                
+                // Agregar título y logo
+                doc.setFontSize(16);
+                doc.setTextColor(40, 40, 40);
+                doc.text('OATI - Oficina de Apoyo Técnico Informático', 15, 15);
+                doc.setFontSize(14);
+                doc.text('Reporte de Actividades', 15, 22);
+                doc.setFontSize(10);
+                doc.text(`Fecha de generación: ${new Date().toLocaleDateString()}`, 15, 29);
+                
+                // Preparar datos para la tabla
+                const tableData = activitiesToExport.map(activity => [
+                    formatDate(activity.fecha),
+                    activity.categoria,
+                    activity.dependencia.substring(0, 20) + (activity.dependencia.length > 20 ? '...' : ''),
+                    activity.trabajoRealizado.substring(0, 40) + (activity.trabajoRealizado.length > 40 ? '...' : ''),
+                    activity.oati,
+                    activity.status
+                ]);
+                
+                // Crear tabla
+                doc.autoTable({
+                    startY: 35,
+                    head: [['Fecha', 'Categoría', 'Dependencia', 'Trabajo Realizado', 'OATI', 'Status']],
+                    body: tableData,
+                    theme: 'grid',
+                    headStyles: {
+                        fillColor: [74, 101, 128],
+                        textColor: 255,
+                        fontStyle: 'bold'
+                    },
+                    alternateRowStyles: {
+                        fillColor: [240, 240, 240]
+                    },
+                    margin: { top: 35 },
+                    styles: { fontSize: 8 }
+                });
+                
+                // Guardar el PDF
+                doc.save('OATI_Reporte_Actividades.pdf');
+                showNotification('Reporte PDF exportado correctamente', 'success');
+            } catch (error) {
+                console.error('Error al exportar PDF:', error);
+                showNotification('Error al exportar PDF: ' + error.message, 'error');
             }
-            
-            if (activitiesToExport.length === 0) {
-                showNotification('No hay actividades para exportar', 'warning');
-                return;
-            }
-            
-            // Agregar título y logo
-            doc.setFontSize(16);
-            doc.setTextColor(40, 40, 40);
-            doc.text('OATI - Oficina de Apoyo Técnico Informático', 15, 15);
-            doc.setFontSize(14);
-            doc.text('Reporte de Actividades', 15, 22);
-            doc.setFontSize(10);
-            doc.text(`Fecha de generación: ${new Date().toLocaleDateString()}`, 15, 29);
-            
-            // Preparar datos para la tabla
-            const tableData = activitiesToExport.map(activity => [
-                formatDate(activity.fecha),
-                activity.categoria,
-                activity.dependencia.substring(0, 20) + (activity.dependencia.length > 20 ? '...' : ''),
-                activity.trabajoRealizado.substring(0, 40) + (activity.trabajoRealizado.length > 40 ? '...' : ''),
-                activity.oati,
-                activity.status
-            ]);
-            
-            // Crear tabla
-            doc.autoTable({
-                startY: 35,
-                head: [['Fecha', 'Categoría', 'Dependencia', 'Trabajo Realizado', 'OATI', 'Status']],
-                body: tableData,
-                theme: 'grid',
-                headStyles: {
-                    fillColor: [74, 101, 128],
-                    textColor: 255,
-                    fontStyle: 'bold'
-                },
-                alternateRowStyles: {
-                    fillColor: [240, 240, 240]
-                },
-                margin: { top: 35 },
-                styles: { fontSize: 8 }
-            });
-            
-            // Guardar el PDF
-            doc.save('OATI_Reporte_Actividades.pdf');
-            showNotification('Reporte PDF exportado correctamente', 'success');
         }
         
         // Exportar a Excel
         function exportToExcel(id = null) {
-            let activitiesToExport = [];
-            
-            if (id) {
-                // Exportar una sola actividad
-                activitiesToExport = activities.filter(a => a.id === id);
-            } else {
-                // Exportar actividades seleccionadas o todas
-                const selectedIds = Array.from(document.querySelectorAll('.activity-checkbox:checked'))
-                    .map(checkbox => parseInt(checkbox.value));
+            try {
+                let activitiesToExport = [];
                 
-                activitiesToExport = selectedIds.length > 0 
-                    ? activities.filter(a => selectedIds.includes(a.id))
-                    : activities;
+                if (id) {
+                    // Exportar una sola actividad
+                    activitiesToExport = activities.filter(a => a.id === id);
+                } else {
+                    // Exportar actividades seleccionadas o todas
+                    const selectedIds = Array.from(document.querySelectorAll('.activity-checkbox:checked'))
+                        .map(checkbox => parseInt(checkbox.value));
+                    
+                    activitiesToExport = selectedIds.length > 0 
+                        ? activities.filter(a => selectedIds.includes(a.id))
+                        : activities;
+                }
+                
+                if (activitiesToExport.length === 0) {
+                    showNotification('No hay actividades para exportar', 'warning');
+                    return;
+                }
+                
+                // Preparar datos para Excel
+                const excelData = activitiesToExport.map(activity => ({
+                    'Fecha': formatDate(activity.fecha),
+                    'Categoría': activity.categoria,
+                    'Dependencia': activity.dependencia,
+                    'Trabajo Realizado': activity.trabajoRealizado,
+                    'Detalle del Trabajo': activity.detalleTrabajo,
+                    'Solicitud': activity.solicitud,
+                    'OATI Responsable': activity.oati,
+                    'Status': activity.status,
+                    'Fecha de Cierre': activity.fechaCierre ? formatDate(activity.fechaCierre) : 'N/A',
+                    'Operatividad': activity.operatividad,
+                    'Tipo de Equipo': activity.tipoEquipo,
+                    'Marca': activity.marca,
+                    'Modelo': activity.modelo,
+                    'Serial': activity.serial,
+                    'Nro Bien': activity.nroBien,
+                    'Observaciones': activity.observaciones || 'N/A'
+                }));
+                
+                // Crear hoja de trabajo
+                const ws = XLSX.utils.json_to_sheet(excelData);
+                
+                // Ajustar el ancho de las columnas
+                const wscols = [
+                    {wch: 10}, {wch: 12}, {wch: 15}, {wch: 30}, {wch: 30}, 
+                    {wch: 12}, {wch: 15}, {wch: 10}, {wch: 10}, {wch: 12}, 
+                    {wch: 12}, {wch: 12}, {wch: 12}, {wch: 12}, {wch: 15},
+                    {wch: 20}
+                ];
+                ws['!cols'] = wscols;
+                
+                // Crear libro de trabajo
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, 'Actividades OATI');
+                
+                // Guardar archivo
+                XLSX.writeFile(wb, 'OATI_Reporte_Actividades.xlsx');
+                showNotification('Reporte Excel exportado correctamente', 'success');
+            } catch (error) {
+                console.error('Error al exportar Excel:', error);
+                showNotification('Error al exportar Excel: ' + error.message, 'error');
             }
-            
-            if (activitiesToExport.length === 0) {
-                showNotification('No hay actividades para exportar', 'warning');
-                return;
-            }
-            
-            // Preparar datos para Excel
-            const excelData = activitiesToExport.map(activity => ({
-                'Fecha': formatDate(activity.fecha),
-                'Categoría': activity.categoria,
-                'Dependencia': activity.dependencia,
-                'Trabajo Realizado': activity.trabajoRealizado,
-                'Detalle del Trabajo': activity.detalleTrabajo,
-                'Solicitud': activity.solicitud,
-                'OATI Responsable': activity.oati,
-                'Status': activity.status,
-                'Fecha de Cierre': activity.fechaCierre ? formatDate(activity.fechaCierre) : 'N/A',
-                'Operatividad': activity.operatividad,
-                'Tipo de Equipo': activity.tipoEquipo,
-                'Marca': activity.marca,
-                'Modelo': activity.modelo,
-                'Serial': activity.serial,
-                'Nro Bien': activity.nroBien,
-                'Observaciones': activity.observaciones || 'N/A'
-            }));
-            
-            // Crear hoja de trabajo
-            const ws = XLSX.utils.json_to_sheet(excelData);
-            
-            // Ajustar el ancho de las columnas
-            const wscols = [
-                {wch: 10}, {wch: 12}, {wch: 15}, {wch: 30}, {wch: 30}, 
-                {wch: 12}, {wch: 15}, {wch: 10}, {wch: 10}, {wch: 12}, 
-                {wch: 12}, {wch: 12}, {wch: 12}, {wch: 12}, {wch: 15},
-                {wch: 20}
-            ];
-            ws['!cols'] = wscols;
-            
-            // Crear libro de trabajo
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Actividades OATI');
-            
-            // Guardar archivo
-            XLSX.writeFile(wb, 'OATI_Reporte_Actividades.xlsx');
-            showNotification('Reporte Excel exportado correctamente', 'success');
         }
         
         // Exportar datos a JSON
         function exportToJson() {
-            const dataStr = JSON.stringify(activities, null, 2);
-            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            
-            const exportFileDefaultName = 'actividades_oati.json';
-            
-            const linkElement = document.createElement('a');
-            linkElement.setAttribute('href', dataUri);
-            linkElement.setAttribute('download', exportFileDefaultName);
-            linkElement.click();
-            
-            showNotification('Datos exportados correctamente', 'success');
+            try {
+                const dataStr = JSON.stringify(activities, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                
+                // Crear un enlace de descarga
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'actividades_oati.json';
+                
+                // Simular clic en el enlace
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Liberar el objeto URL
+                setTimeout(() => URL.revokeObjectURL(url), 100);
+                
+                showNotification('Datos exportados correctamente', 'success');
+            } catch (error) {
+                console.error('Error al exportar JSON:', error);
+                showNotification('Error al exportar datos: ' + error.message, 'error');
+            }
         }
         
         // Importar datos desde JSON
-        function importFromJson(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    try {
-                        const contents = e.target.result;
-                        const importedActivities = JSON.parse(contents);
-                        
-                        if (Array.isArray(importedActivities)) {
-                            if (confirm(`¿Importar ${importedActivities.length} actividades? Se reemplazarán los datos actuales.`)) {
-                                activities = importedActivities;
-                                saveActivities();
-                                renderActivities();
-                                showNotification('Datos importados correctamente', 'success');
-                            }
-                        } else {
-                            showNotification('El archivo no contiene datos válidos', 'error');
-                        }
-                    } catch (error) {
-                        showNotification('Error al importar el archivo: ' + error.message, 'error');
-                    }
-                };
-                reader.readAsText(file);
+        function importFromJson() {
+            const file = importFileInput.files[0];
+            if (!file) {
+                showNotification('Por favor seleccione un archivo', 'warning');
+                return;
             }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const contents = e.target.result;
+                    const importedActivities = JSON.parse(contents);
+                    
+                    if (Array.isArray(importedActivities)) {
+                        // Validar que los datos importados tengan la estructura correcta
+                        const isValid = importedActivities.every(activity => 
+                            activity && 
+                            typeof activity === 'object' &&
+                            activity.categoria !== undefined &&
+                            activity.trabajoRealizado !== undefined
+                        );
+                        
+                        if (isValid) {
+                            activities = importedActivities;
+                            saveActivities();
+                            renderActivities();
+                            importModalElement.hide();
+                            showNotification(`Datos importados correctamente. ${importedActivities.length} actividades cargadas.`, 'success');
+                        } else {
+                            showNotification('El archivo no contiene datos válidos de OATI', 'error');
+                        }
+                    } else {
+                        showNotification('El archivo no contiene una lista de actividades válida', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error al importar:', error);
+                    showNotification('Error al importar el archivo: ' + error.message, 'error');
+                }
+            };
+            
+            reader.onerror = function() {
+                showNotification('Error al leer el archivo', 'error');
+            };
+            
+            reader.readAsText(file);
         }
         
         // Limpiar todos los datos
@@ -1765,19 +1956,37 @@
         });
         
         exportSinglePdfButton.addEventListener('click', () => {
-            viewModal.hide();
+            viewModalElement.hide();
             exportToPdf(currentViewId);
         });
         
         exportSingleExcelButton.addEventListener('click', () => {
-            viewModal.hide();
+            viewModalElement.hide();
             exportToExcel(currentViewId);
         });
         
         // Event listeners para importar/exportar datos
         exportDataButton.addEventListener('click', exportToJson);
-        importDataButton.addEventListener('click', () => importFileInput.click());
-        importFileInput.addEventListener('change', importFromJson);
+        
+        importDataButton.addEventListener('click', () => {
+            importFileInput.value = '';
+            fileInputLabel.className = 'file-input-label';
+            fileInputLabel.innerHTML = '<i class="fas fa-file-upload me-2"></i><span>Seleccionar archivo JSON</span>';
+            importModalElement.show();
+        });
+        
+        importFileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                fileInputLabel.className = 'file-input-label has-file';
+                fileInputLabel.innerHTML = `<i class="fas fa-file me-2"></i><span>${this.files[0].name}</span>`;
+            } else {
+                fileInputLabel.className = 'file-input-label';
+                fileInputLabel.innerHTML = '<i class="fas fa-file-upload me-2"></i><span>Seleccionar archivo JSON</span>';
+            }
+        });
+        
+        confirmImportButton.addEventListener('click', importFromJson);
+        
         clearDataButton.addEventListener('click', clearAllData);
         
         // Buscar actividades
