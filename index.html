@@ -2,10 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#2c3e50">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OATI - Sistema de Registro de Actividades</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -27,44 +24,21 @@
             background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding-bottom: 80px;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
         }
         
         .header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 15px 0;
+            padding: 20px 0;
             margin-bottom: 20px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: "";
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.05"><text x="50%" y="50%" font-size="12" text-anchor="middle" fill="white">OATI</text></svg>');
-            z-index: 0;
         }
         
         .card {
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .card:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
         
         .card-header {
@@ -72,10 +46,7 @@
             color: white;
             border-radius: 10px 10px 0 0 !important;
             font-weight: bold;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 15px 20px;
         }
         
         .form-section {
@@ -91,36 +62,16 @@
             font-weight: 600;
             border: none;
             border-radius: 8px;
-            touch-action: manipulation;
         }
         
         .btn-primary {
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
         }
         
-        .btn-success {
-            background: linear-gradient(to right, var(--success-color), #2ecc71);
-        }
-        
         .required-field::after {
             content: " *";
             color: var(--danger-color);
             font-weight: bold;
-        }
-        
-        .activity-table {
-            font-size: 0.85rem;
-            width: 100%;
-        }
-        
-        .activity-table th {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 10px 8px;
-        }
-        
-        .activity-table td {
-            padding: 8px 6px;
         }
         
         .stats-box {
@@ -139,30 +90,47 @@
             margin: 8px 0;
         }
         
-        .action-buttons {
-            white-space: nowrap;
-        }
-        
         .action-buttons .btn {
             margin: 0 2px;
             padding: 6px 8px;
             font-size: 0.8rem;
         }
         
-        .modal-content {
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .modal-header {
-            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+        .floating-button {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
             color: white;
-            border-radius: 12px 12px 0 0;
-            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            font-size: 1.5rem;
         }
         
-        .checkbox-cell {
-            width: 35px;
+        .conditional-field {
+            display: none;
+        }
+        
+        .is-invalid {
+            border-color: var(--danger-color) !important;
+        }
+        
+        .invalid-feedback {
+            display: none;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-size: 0.875em;
+            color: var(--danger-color);
+        }
+        
+        .is-invalid ~ .invalid-feedback {
+            display: block;
         }
         
         .export-options {
@@ -173,41 +141,12 @@
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
         
-        .oatilogo {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
         .storage-info {
             background: linear-gradient(135deg, var(--light-color), #dfe6e9);
             padding: 15px;
             border-radius: 8px;
             margin-top: 15px;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .connection-status {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            z-index: 1000;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-            font-size: 0.9rem;
-        }
-        
-        .online {
-            background-color: var(--success-color);
-            color: white;
-        }
-        
-        .offline {
-            background-color: var(--warning-color);
-            color: white;
         }
         
         .sync-options {
@@ -227,108 +166,6 @@
             font-weight: bold;
         }
         
-        .loading {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Mejoras para formularios en móviles */
-        .form-control, .form-select {
-            border-radius: 8px;
-            padding: 14px;
-            border: 2px solid #e1e5eb;
-            font-size: 16px; /* Previene el zoom en iOS */
-            touch-action: manipulation;
-        }
-        
-        input, select, textarea {
-            font-size: 16px; /* Evita zoom automático en iOS */
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
-        }
-        
-        /* Mejoras para la navegación táctil */
-        .btn, .form-control, .form-select, .form-check-input {
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        /* Ajustes para pantallas pequeñas */
-        @media (max-width: 768px) {
-            .card-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .action-buttons {
-                margin-top: 8px;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-            }
-            
-            .stats-box {
-                margin-bottom: 12px;
-            }
-            
-            .container {
-                padding-left: 10px;
-                padding-right: 10px;
-            }
-            
-            .header {
-                padding: 12px 0;
-                margin-bottom: 15px;
-            }
-            
-            .header h1 {
-                font-size: 1.5rem;
-            }
-            
-            .header .lead {
-                font-size: 0.9rem;
-            }
-            
-            .activity-table {
-                font-size: 0.8rem;
-            }
-            
-            .activity-table th, .activity-table td {
-                padding: 6px 4px;
-            }
-            
-            .action-buttons .btn {
-                padding: 4px 6px;
-                font-size: 0.75rem;
-            }
-            
-            .btn {
-                padding: 10px 12px;
-                font-size: 0.9rem;
-            }
-            
-            .export-options .btn {
-                margin-bottom: 5px;
-                font-size: 0.8rem;
-            }
-        }
-        
-        /* Mejoras para tablets */
-        @media (min-width: 769px) and (max-width: 1024px) {
-            .activity-table {
-                font-size: 0.82rem;
-            }
-        }
-        
-        /* Animaciones */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -338,7 +175,6 @@
             animation: fadeIn 0.4s ease forwards;
         }
         
-        /* Badges mejorados */
         .badge {
             padding: 6px 10px;
             border-radius: 16px;
@@ -362,152 +198,81 @@
             background: linear-gradient(to right, var(--danger-color), #c0392b) !important;
         }
         
-        /* Mejora para los modales en móviles */
-        .modal-dialog {
-            margin: 10px;
-        }
-        
-        /* Ajuste para evitar desbordamiento en móviles */
         .table-responsive {
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
         
-        /* Botón flotante para formulario rápido */
-        .floating-button {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        .activity-table {
+            font-size: 0.85rem;
+            width: 100%;
+        }
+        
+        .activity-table th {
+            background-color: var(--secondary-color);
             color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 999;
-            font-size: 1.5rem;
+            padding: 10px 8px;
         }
         
-        /* Mejoras de accesibilidad táctil */
-        .touch-target {
-            min-height: 44px;
-            min-width: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .activity-table td {
+            padding: 8px 6px;
         }
         
-        /* Estilos para campos de búsqueda en selects */
-        .select-search {
-            margin-bottom: 10px;
+        .checkbox-cell {
+            width: 35px;
         }
         
-        /* Estilos para campos condicionales */
-        .conditional-field {
-            display: none;
-        }
-        
-        /* Icono de almacenamiento */
-        .storage-icon {
-            font-size: 1.2rem;
-            margin-right: 5px;
-        }
-        
-        /* Mensaje de información sobre fechas */
         .date-info {
             font-size: 0.8rem;
             color: #6c757d;
             margin-top: 5px;
         }
         
-        /* Estilos para validación */
-        .is-invalid {
-            border-color: var(--danger-color) !important;
-        }
-        
-        .invalid-feedback {
-            display: none;
-            width: 100%;
-            margin-top: 0.25rem;
-            font-size: 0.875em;
-            color: var(--danger-color);
-        }
-        
-        .is-invalid ~ .invalid-feedback {
-            display: block;
-        }
-        
-        /* Estilos para el modal de importación */
-        .import-instructions {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-        }
-        
-        .import-instructions ol {
-            margin-bottom: 0;
-        }
-        
-        .file-input-wrapper {
-            position: relative;
+        .modal-content {
+            border-radius: 12px;
             overflow: hidden;
-            display: inline-block;
-            width: 100%;
         }
         
-        .file-input-wrapper input[type=file] {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
+        .modal-header {
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            color: white;
+            border-radius: 12px 12px 0 0;
+            padding: 15px 20px;
         }
         
-        .file-input-label {
-            display: block;
-            padding: 12px 15px;
-            background: #e9ecef;
-            border: 2px dashed #ced4da;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .file-input-label:hover {
-            background: #dee2e6;
-            border-color: #adb5bd;
-        }
-        
-        .file-input-label.has-file {
-            background: #d4edda;
-            border-color: #c3e6cb;
-            color: #155724;
+        @media (max-width: 768px) {
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .action-buttons {
+                margin-top: 8px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
         }
     </style>
 </head>
 <body>
     <div class="header text-center">
-        <div class="oatilogo">
-            <i class="fas fa-laptop-code"></i>
+        <div class="container">
+            <div class="oatilogo">
+                <i class="fas fa-laptop-code fa-2x mb-2"></i>
+            </div>
+            <h1>OATI - Sistema de Registro</h1>
+            <p class="lead">Oficina de Apoyo Técnico Informático</p>
         </div>
-        <h1>OATI - Sistema de Registro</h1>
-        <p class="lead">Oficina de Apoyo Técnico Informático</p>
     </div>
 
     <div class="container">
+        <!-- Formulario de Registro -->
         <div class="row">
             <div class="col-12">
                 <div class="card fade-in">
                     <div class="card-header">
                         <span><i class="fas fa-plus-circle me-2"></i>Nuevo Registro</span>
-                        <span class="feature-badge"><i class="fas fa-database storage-icon"></i> Almacenamiento Local</span>
+                        <span class="feature-badge"><i class="fas fa-database me-1"></i> Almacenamiento Local</span>
                     </div>
                     <div class="card-body">
                         <form id="activityForm">
@@ -541,100 +306,10 @@
                                             <select class="form-select" id="trabajoRealizado" required>
                                                 <option value="">Seleccione un trabajo realizado</option>
                                                 <option value="ACTUALIZACIÓN DE ANTIVIRUS">ACTUALIZACIÓN DE ANTIVIRUS</option>
-                                                <option value="ADECUACION DE APLICACIÓN, PARA EL ACCESO DEL FUNCIONARIO A LA MISMA">ADECUACION DE APLICACIÓN, PARA EL ACCESO DEL FUNCIONARIO A LA MISMA</option>
-                                                <option value="ANALISIS DE COMPUTADOR CON DR. WEB ANTIVIRUS">ANALISIS DE COMPUTADOR CON DR. WEB ANTIVIRUS</option>
-                                                <option value="ANALISIS DE COMPUTADOR CON KASPERSKY ANTIVIRUS">ANALISIS DE COMPUTADOR CON KASPERSKY ANTIVIRUS</option>
-                                                <option value="ANALISIS DE DISCO DURO DE COMPUTADOR CON HDD REGENERADOR">ANALISIS DE DISCO DURO DE COMPUTADOR CON HDD REGENERADOR</option>
-                                                <option value="ANALISIS DE DISCO DURO DE COMPUTADOR CON VICTORIA RESCUE">ANALISIS DE DISCO DURO DE COMPUTADOR CON VICTORIA RESCUE</option>
-                                                <option value="CONFIGURACION DE FECHA Y HORA">CONFIGURACION DE FECHA Y HORA</option>
-                                                <option value="CONFIGURACION DE SISTEMA GISA">CONFIGURACION DE SISTEMA GISA</option>
-                                                <option value="CREACCION DE CARPETA COMPARTIDA">CREACCION DE CARPETA COMPARTIDA</option>
-                                                <option value="CREACCION DE CUENTA PARA EN ACCESO AL SISTEMA DE BIENES PUBLICOS">CREACCION DE CUENTA PARA EN ACCESO AL SISTEMA DE BIENES PUBLICOS</option>
-                                                <option value="CREACION DE CORREO ELECTRONICO">CREACION DE CORREO ELECTRONICO</option>
-                                                <option value="CREACION DE CUENTA DE ACCESO A SISTEMA DE BIENES PUBLICOS">CREACION DE CUENTA DE ACCESO A SISTEMA DE BIENES PUBLICOS</option>
-                                                <option value="CREACION DE CUENTA DE ACCESO A SISTEMA PROMANAGER">CREACION DE CUENTA DE ACCESO A SISTEMA PROMANAGER</option>
-                                                <option value="CREACION DE CUENTA DE USUARIO DE LA RED MAGISTRATURA">CREACION DE CUENTA DE USUARIO DE LA RED MAGISTRATURA</option>
-                                                <option value="CREACION EDITOR DE SENTENCIAS PAGINA TSJ">CREACION EDITOR DE SENTENCIAS PAGINA TSJ</option>
-                                                <option value="DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTRATURA">DESBLOQUEO DE CUENTA DE USUARIO DE LA RED MAGISTRATURA</option>
-                                                <option value="DESCONEXION DE EQUIPO DE COMPUTACION DE LA RED MAGISTRATURA">DESCONEXION DE EQUIPO DE COMPUTACION DE LA RED MAGISTRATURA</option>
-                                                <option value="DESHABILITAR CUENTA DE ACCESO A INTERNET">DESHABILITAR CUENTA DE ACCESO A INTERNET</option>
-                                                <option value="DESHABILITAR CUENTA DE EDITOR DE TEXTO TSJ">DESHABILITAR CUENTA DE EDITOR DE TEXTO TSJ</option>
-                                                <option value="DESHABILITAR CUENTA DE RED MAGISTRATURA">DESHABILITAR CUENTA DE RED MAGISTRATURA</option>
-                                                <option value="ELABORACION DE PROYECTOS">ELABORACION DE PROYECTOS</option>
-                                                <option value="EVENTOS / INSTALACION DE EQUIPOS AUDIOVISUALES">EVENTOS / INSTALACION DE EQUIPOS AUDIOVISUALES</option>
-                                                <option value="FORMACION AL USUARIO">FORMACION AL USUARIO</option>
-                                                <option value="HABILITAR ACCESO A CARPETA COMPARTIDA">HABILITAR ACCESO A CARPETA COMPARTIDA</option>
-                                                <option value="HABILITAR CUENTA DE ACCESO A INTERNET">HABILITAR CUENTA DE ACCESO A INTERNET</option>
-                                                <option value="HABILITAR CUENTA DE RED MAGISTRATURA">HABILITAR CUENTA DE RED MAGISTRATURA</option>
-                                                <option value="HABILITAR CUENTAS DE USUARIO PARA EL ACCESO AL SISTEMA DE BIENES PUBLICOS">HABILITAR CUENTAS DE USUARIO PARA EL ACCESO AL SISTEMA DE BIENES PUBLICOS</option>
-                                                <option value="HABILITAR USUARIO PARA EL ACCESO AL SISTEMA GISA REPORTES">HABILITAR USUARIO PARA EL ACCESO AL SISTEMA GISA REPORTES</option>
-                                                <option value="INCORPORACION DE EQUIPO A MAGISTRATURA">INCORPORACION DE EQUIPO A MAGISTRATURA</option>
-                                                <option value="INSTALACION BATERIA CR032">INSTALACION BATERIA CR032</option>
-                                                <option value="INSTALACION CABLEADO DE RED">INSTALACION CABLEADO DE RED</option>
-                                                <option value="INSTALACION CABLEADO TELEFONICO">INSTALACION CABLEADO TELEFONICO</option>
-                                                <option value="INSTALACION CAMARA DE SEGURIDAD">INSTALACION CAMARA DE SEGURIDAD</option>
-                                                <option value="INSTALACION DE ANTENAS INALAMBRICAS / ROUTER / INTERCONEXION DE SEDES">INSTALACION DE ANTENAS INALAMBRICAS / ROUTER / INTERCONEXION DE SEDES</option>
-                                                <option value="INSTALACION DE APLICACIONES">INSTALACION DE APLICACIONES</option>
-                                                <option value="INSTALACION DE CAMARAS DE SEGURIDAD">INSTALACION DE CAMARAS DE SEGURIDAD</option>
-                                                <option value="INSTALACION DE ESCANER">INSTALACION DE ESCANER</option>
-                                                <option value="INSTALACION DE IMPRESORA">INSTALACION DE IMPRESORA</option>
-                                                <option value="INSTALACION DE MONITOR">INSTALACION DE MONITOR</option>
-                                                <option value="INSTALACION DE REGULADOR">INSTALACION DE REGULADOR</option>
-                                                <option value="INSTALACIÓN DE SISTEMA OPERATIVO CON CARACTERISTICAS PARA SERVIDOR CON SUS APLICACIONES BASICAS">INSTALACIÓN DE SISTEMA OPERATIVO CON CARACTERISTICAS PARA SERVIDOR CON SUS APLICACIONES BASICAS</option>
-                                                <option value="INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES DE OFIMATICA">INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES DE OFIMATICA</option>
-                                                <option value="INSTALACION DISCO DURO">INSTALACION DISCO DURO</option>
-                                                <option value="INSTALACION FUENTE DE PODER">INSTALACION FUENTE DE PODER</option>
-                                                <option value="INSTALACION MEMORIA RAM">INSTALACION MEMORIA RAM</option>
-                                                <option value="INSTALACION TARJETA DE RED ALAMBRICA">INSTALACION TARJETA DE RED ALAMBRICA</option>
-                                                <option value="INSTALACION TARJETA DE RED INALAMBRICA">INSTALACION TARJETA DE RED INALAMBRICA</option>
-                                                <option value="INSTALACION DE EQUIPOS DE COMPUTACION">INSTALACION DE EQUIPOS DE COMPUTACION</option>
-                                                <option value="HABILITAR ACCESO A FORMATO EN EXCEL">HABILITAR ACCESO A FORMATO EN EXCEL</option>
-                                                <option value="ASIGNACIÓN DE GRUPO DE TRABAJO EN DIRECTORIO ACTIVO">ASIGNACIÓN DE GRUPO DE TRABAJO EN DIRECTORIO ACTIVO</option>
-                                                <option value="INSTALACION TARJETA DE VIDEO">INSTALACION TARJETA DE VIDEO</option>
-                                                <option value="INSTALACION UNIDAD DE DVD">INSTALACION UNIDAD DVD</option>
-                                                <option value="MANTENIMIENTO 'LIMPIEZA INTERNA' DEL COMPUTADOR">MANTENIMIENTO "LIMPIEZA INTERNA" DEL COMPUTADOR</option>
-                                                <option value="MANTENIMIENTO / ACTUALIZACIÓN INTERNO DE BASE DE DATOS GISA">MANTENIMIENTO / ACTUALIZACIÓN INTERNO DE BASE DE DATOS GISA</option>
-                                                <option value="MANTENIMIENTO DE SERVIDORES">MANTENIMIENTO DE SERVIDORES</option>
-                                                <option value="MANTENIMIENTO INTERNO DE FORMATO DE CONTROL DE IMPRESIONES">MANTENIMIENTO INTERNO DE FORMATO DE CONTROL DE IMPRESIONES</option>
-                                                <option value="MANTENIMIENTO INTERNO DE BASE DE DATOS INTRADAR">MANTENIMIENTO INTERNO DE BASE DE DATOS INTRADAR</option>
-                                                <option value="MANTENIMIENTO INTERNO DE BASE DE DATOS PROMANAGER">MANTENIMIENTO INTERNO DE BASE DE DATOS PROMANAGER</option>
-                                                <option value="MANTENIMIENTO O REFRESCAMIENTO DE USUARIO">MANTENIMIENTO O REFRESCAMIENTO DE USUARIO</option>
-                                                <option value="MOVIMIENTO DE EQUIPOS">MOVIMIENTO DE EQUIPOS</option>
-                                                <option value="PREPARACION DE INFORMACION PARA LA DIRECCION (DESPACHO)">PREPARACION DE INFORMACION PARA LA DIRECCION (DESPACHO)</option>
-                                                <option value="PREPARACION DE INFORMACION PARA LA ODI">PREPARACION DE INFORMACION PARA LA ODI</option>
-                                                <option value="REALIZACION DE INFORME">REALIZACION DE INFORME</option>
-                                                <option value="RECUPERACION DE INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE">RECUPERACION DE INFORMACION PERDIDA O BORRADA ACCIDENTALMENTE</option>
-                                                <option value="REINCORPORACION DE EQUIPO DE COMPUTACION A RED MAGISTRATURA">REINCORPORACION DE EQUIPO DE COMPUTACION A RED MAGISTRATURA</option>
-                                                <option value="REPARACION CABLEADO TELEFONICO">REPARACION CABLEADO TELEFONICO</option>
-                                                <option value="REPARACION DE CABLEADO DE RED">REPARACION DE CABLEADO DE RED</option>
-                                                <option value="REPARACION DE CAFETERA">REPARACION DE CAFETERA</option>
-                                                <option value="REPARACION DE EXTENSION TELEFONICA">REPARACION DE EXTENSION TELEFONICA</option>
-                                                <option value="REPARACION DE LAPTOP">REPARACION DE LAPTOP</option>
-                                                <option value="REPORTE DE AVERIAS TELEFONICAS DEM">REPORTE DE AVERIAS TELEFONICAS DEM</option>
-                                                <option value="RESPALDO DE BASES DE DATOS">RESPALDO DE BASES DE DATOS</option>
-                                                <option value="RESPALDO DE INFORMACION DE AUDIENCIAS">RESPALDO DE INFORMACION DE AUDIENCIAS</option>
-                                                <option value="RESPALDO DE SERVIDORES">RESPALDO DE SERVIDORES</option>
-                                                <option value="RESPALDO Y INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES BASICAS OFIMATICA Y ANTIVIRUS">RESPALDO Y INSTALACIÓN DE SISTEMA OPERATIVO CON SUS APLICACIONES BASICAS OFIMATICA Y ANTIVIRUS</option>
-                                                <option value="RESPALDOS CD / DVD">RESPALDOS CD / DVD</option>
-                                                <option value="RESTABLECIMIENTO DE CONTRASEÑA DE INTERNET">RESTABLECIMIENTO DE CONTRASEÑA DE INTERNET</option>
-                                                <option value="RESTABLECIMIENTO DE CONTRASEÑA DE PAGINA TSJ">RESTABLECIMIENTO DE CONTRASEÑA DE PAGINA TSJ</option>
-                                                <option value="RESTABLECIMIENTO DE CONTRASEÑA PARA INGRESAR A LA RED MAGISTRATURA">RESTABLECIMIENTO DE CONTRASEÑA PARA INGRESAR A LA RED MAGISTRATURA</option>
-                                                <option value="RESTRUCTURACION DE CABLEADO Y PUNTOS DE RED">RESTRUCTURACION DE CABLEADO Y PUNTOS DE RED</option>
-                                                <option value="REVISION DE CABLEADO DE RED">REVISION DE CABLEADO DE RED</option>
-                                                <option value="REVISION DE COMPUTADOR">REVISION DE COMPUTADOR</option>
-                                                <option value="REVISION DE FUNCIONALIDAD DE IMPRESORA">REVISION DE FUNCIONALIDAD DE IMPRESORA</option>
-                                                <option value="REVISION DE MONITORES">REVISION DE MONITORES</option>
-                                                <option value="REVISION DE MOUSE">REVISION DE MOUSE</option>
-                                                <option value="REVISION DE SERVIDOR">REVISION DE SERVIDOR</option>
-                                                <option value="REVISION DE TECLADO">REVISION DE TECLADO</option>
-                                                <option value="REVISION EDITOR DE SENTENCIAS">REVISION EDITOR DE SENTENCIAS</option>
-                                                <option value="SISTEMAS JUDICIALES">SISTEMAS JUDICIALES</option>
-                                                <option value="SMART SENSOR">SMART SENSOR</option>
-                                                <option value="SOLICITUDES DE ACCESO INTERNET">SOLICITUDES DE ACCESO INTERNET</option>
+                                                <option value="INSTALACIÓN DE SISTEMA OPERATIVO">INSTALACIÓN DE SISTEMA OPERATIVO</option>
+                                                <option value="MANTENIMIENTO DE COMPUTADORA">MANTENIMIENTO DE COMPUTADORA</option>
+                                                <option value="REPARACIÓN DE IMPRESORA">REPARACIÓN DE IMPRESORA</option>
                                                 <option value="SOPORTE AL USUARIO">SOPORTE AL USUARIO</option>
-                                                <option value="SOPORTE DE RED INALAMBRICA">SOPORTE DE RED INALAMBRICA</option>
-                                                <option value="SOPORTE DE SOFTWARE">SOPORTE DE SOFTWARE</option>
-                                                <option value="TAREAS ADMINISTRATIVAS">TAREAS ADMINISTRATIVAS</option>
                                                 <option value="NO APLICA">NO APLICA</option>
                                                 <option value="OTRO">OTRO (ESPECIFICAR EN DETALLE DEL TRABAJO)</option>
                                             </select>
@@ -650,49 +325,10 @@
                                             <label for="dependencia" class="form-label required-field">Dependencia</label>
                                             <select class="form-select" id="dependencia" required>
                                                 <option value="">Seleccione una dependencia</option>
-                                                <option value="BIENES PUBLICOS - DAR MERIDA">BIENES PUBLICOS - DAR MERIDA</option>
-                                                <option value="CESTA TICKET - DAR MERIDA">CESTA TICKET - DAR MERIDA</option>
-                                                <option value="CIRCUITO JUDICIAL DE PROTECCION DE NIÑOS, NIÑAS Y ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">CIRCUITO JUDICIAL DE PROTECCION DE NIÑOS, NIÑAS Y ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="CIRCUITO JUDICIAL DE PROTECCIÓN DEL NIÑO, NIÑA Y ADOLESCENTE DEL ESTADO MÉRIDA, SEDE EL VIGÍA">CIRCUITO JUDICIAL DE PROTECCIÓN DEL NIÑO, NIÑA Y ADOLESCENTE DEL ESTADO MÉRIDA, SEDE EL VIGÍA</option>
-                                                <option value="CIRCUITO JUDICIAL LABORAL DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">CIRCUITO JUDICIAL LABORAL DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA. EXT VIGÍA">CIRCUITO JUDICIAL PENAL SECCION ADOLESCENTES DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA. EXT VIGÍA</option>
-                                                <option value="DAR MERIDA">DAR MERIDA</option>
-                                                <option value="DIRECCION ADMINISTRATIVA REGIONAL DEL ESTADO BOLIVARIANO DE MERIDA">DIRECCION ADMINISTRATIVA REGIONAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="FASDEM Y BIENESTAR SOCIAL -DAR MERIDA">FASDEM Y BIENESTAR SOCIAL -DAR MERIDA</option>
-                                                <option value="FINANZAS - DAR MERIDA">FINANZas - DAR MERIDA</option>
                                                 <option value="INFORMATICA - DAR MERIDA">INFORMATICA - DAR MERIDA</option>
-                                                <option value="INSPECTORIA GENERAL DE LOS TRIBUNALES">INSPECTORIA GENERAL DE LOS TRIBUNALES</option>
-                                                <option value="JUZGADO PRIMERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO PRIMERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="JUZGADO SUPERIOR AGRARIO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR AGRARIO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="JUZGADO SUPERIOR PRIMERO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR PRIMERO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="JUZGADO SUPERIOR SEGUNDO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR SEGUNDO CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO TERCERO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVariano DE MERIDA</option>
-                                                <option value="JUZGADO SUPERIOR CONTENCIOSO ADMINISTRATIVO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SUPERIOR CONTENCIOSO ADMINISTRATIVO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="OFICINA DE RECTORÍA">OFICINA DE RECTORÍA</option>
-                                                <option value="PARTICIPACION CIUDADANA - DAR MERIDA">PARTICIPACION CIUDADANA - DAR MERIDA</option>
-                                                <option value="PERSONAL - RECLUTAMIENTO - DAR MERIDA">PERSONAL - RECLUTAMIENTO - DAR MERIDA</option>
-                                                <option value="SALA DE AUDIENCIAS - DAR MERIDA">SALA DE AUDIENCIAS - DAR MERIDA</option>
-                                                <option value="SISTEMA DE SEGURIDAD ELECTRONICA (SISEEL)">SISTEMA DE SEGURIDAD ELECTRONICA (SISEEL)</option>
-                                                <option value="TRIBUNAL CUARTO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL CUARTO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="TRIBUNAL TERCERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL TERCERO DE MUNICIPIO ORDINARio Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="OCII - DAR MERIDA">OCII - DAR MERIDA</option>
-                                                <option value="CIRCUITO JUDICIAL PENAL CON COMPETENCIA EN MATERIA DE DELITO DE VIOLENCIA CONTRA LA MUJER DEL ESTADO MERIDA">CIRCUITO JUDICIAL PENAL CON COMPETENCIA EN MATERIA DE DELITO DE VIOLENCIA CONTRA LA MUJER DEL ESTADO MERIDA</option>
-                                                <option value="JUZGADO SEGUNDO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">JUZGADO SEGUNDO DE PRIMERA INSTANCIA CIVIL, MERCANTIL Y TRANSITO DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="PROVEEDURIA - DAR MERIDA">PROVEEDURIA - DAR MERIDA</option>
-                                                <option value="SERVICIOS JUDICIALES - DAR MERIDA">SERVICIOS JUDICIALES - DAR MERIDA</option>
-                                                <option value="NOMINA - DAR MERIDA">NOMINA - DAR MERIDA</option>
-                                                <option value="ORGE">ORGE</option>
-                                                <option value="RECEPCCION - DAR MERIDA">RECEPCCION - DAR MERIDA</option>
-                                                <option value="SECRETARIA - DAR MERIDA">SECRETARIA - DAR MERIDA</option>
-                                                <option value="DEFENSA PUBLICA">DEFENSA PUBLICA</option>
-                                                <option value="TRIBUNAL SEGUNDO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS AND ARICAGUA">TRIBUNAL SEGUNDO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA</option>
-                                                <option value="TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA">TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS CAMPO ELIAS Y ARICAGUA</option>
-                                                <option value="TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA">TRIBUNAL PRIMERO DE MUNICIPIO ORDINARIO Y EJECUTOR DE MEDIDAS DE LOS MUNICIPIOS LIBERTADOR Y SANTOS MARQUINA DE LA CIRCUNSCRIPCION JUDICIAL DEL ESTADO BOLIVARIANO DE MERIDA</option>
-                                                <option value="OFICINA DE JEFE DE PERSONAL - DAR MERIDA">OFICINA DE JEFE DE PERSONAL - DAR MERIDA</option>
-                                                <option value="INFRAESTRUCTURA - DAR MERIDA">INFRAESTRUCTURA - DAR MERIDA</option>
-                                                <option value="SERVICIOS MÉDICOS">SERVICIOS MÉDICOS</option>
-                                                <option value="OFICINA DE SEGURIDAD DE LA DAR">OFICINA DE SEGURIDAD DE LA DAR</option>
+                                                <option value="DIRECCION ADMINISTRATIVA">DIRECCION ADMINISTRATIVA</option>
+                                                <option value="RECURSOS HUMANOS">RECURSOS HUMANOS</option>
+                                                <option value="CONTABILIDAD">CONTABILIDAD</option>
                                                 <option value="NO APLICA">NO APLICA</option>
                                                 <option value="OTRO">OTRO (ESPECIFICAR A CONTINUACIÓN)</option>
                                             </select>
@@ -724,10 +360,8 @@
                                                 <option value="Presencial">Presencial</option>
                                                 <option value="Verbal">Verbal</option>
                                                 <option value="Mensaje WhatsApp">Mensaje WhatsApp</option>
-                                                <option value="Mensaje de Texto">Mensaje de Texto</option>
                                                 <option value="Llamada Telefónica">Llamada Telefónica</option>
                                                 <option value="Correo">Correo Electrónico</option>
-                                                <option value="Sistema">Sistema</option>
                                                 <option value="NO APLICA">NO APLICA</option>
                                                 <option value="OTRO">OTRO (ESPECIFICAR EN DETALLE DEL TRABAJO)</option>
                                             </select>
@@ -818,33 +452,11 @@
                                             <label for="marca" class="form-label required-field">Marca</label>
                                             <select class="form-select" id="marca" required>
                                                 <option value="">Seleccione una marca</option>
-                                                <option value="ARKTEK">ARKTEK</option>
-                                                <option value="BOSCH">BOSCH</option>
-                                                <option value="CANON">CANON</option>
-                                                <option value="CARTUCHO 49">CARTUCHO 49</option>
-                                                <option value="CLON">CLON</option>
                                                 <option value="DELL">DELL</option>
-                                                <option value="ERICSSON">ERICSSON</option>
-                                                <option value="FORZA">FORZA</option>
-                                                <option value="GENERICA">GENERICA</option>
-                                                <option value="GENIUS">GENIUS</option>
                                                 <option value="HP">HP</option>
-                                                <option value="IBM">IBM</option>
-                                                <option value="INTER POWER">INTER POWER</option>
-                                                <option value="LANPRO">LANPRO</option>
                                                 <option value="LENOVO">LENOVO</option>
-                                                <option value="LG">LG</option>
+                                                <option value="CANON">CANON</option>
                                                 <option value="NO APLICA">NO APLICA</option>
-                                                <option value="PANASONIC">PANASONIC</option>
-                                                <option value="SAMSUNG">SAMSUNG</option>
-                                                <option value="SIEMENS">SIEMENS</option>
-                                                <option value="SKIL">SKIL</option>
-                                                <option value="SMART SENSOR">SMART SENSOR</option>
-                                                <option value="SONEVIEW">SONEVIEW</option>
-                                                <option value="VARIOS">VARIOS</option>
-                                                <option value="VIT">VIT</option>
-                                                <option value="ZUH IPOING">ZUH IPOING</option>
-                                                <option value="ZUHI POINT">ZUHI POINT</option>
                                                 <option value="OTRO">OTRO (ESPECIFICAR)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione la marca</div>
@@ -859,76 +471,10 @@
                                             <label for="modelo" class="form-label required-field">Modelo</label>
                                             <select class="form-select" id="modelo" required>
                                                 <option value="">Seleccione un modelo</option>
-                                                <option value="1577-E6S">1577-E6S</option>
-                                                <option value="2413-01">2413-01</option>
-                                                <option value="3105MW">3105MW</option>
-                                                <option value="3300U">3300U</option>
-                                                <option value="6636-AC1">6636-AC1</option>
-                                                <option value="6792+B5:B61">6792+B5:B61</option>
-                                                <option value="8171-NBS">8171-NBS</option>
-                                                <option value="8183-DFS">8183-DFS</option>
-                                                <option value="8306-KRS">8306-KRS</option>
-                                                <option value="9482-bw8">9482-bw8</option>
-                                                <option value="9632-CA4">9632-CA4</option>
-                                                <option value="9632-F95">9632-F95</option>
-                                                <option value="ACCU 6000">ACCU 6000</option>
-                                                <option value="BIONAIRE">BIONAIRE</option>
-                                                <option value="DC5700">DC5700</option>
-                                                <option value="DOK-K5313">DOK-K5313</option>
-                                                <option value="E1210-01">E1210-01</option>
-                                                <option value="E2220-01">E2220-01</option>
-                                                <option value="E2220-03">E2220-03</option>
-                                                <option value="E2230-03">E2230-03</option>
-                                                <option value="E2710">E2710</option>
-                                                <option value="EUROSET 8055">EUROSET 8055</option>
-                                                <option value="F6W15A">F6W15A</option>
-                                                <option value="FVR1211B">FVR1211B</option>
-                                                <option value="G3010">G3010</option>
-                                                <option value="G41">G41</option>
-                                                <option value="H170-1">H170-1</option>
-                                                <option value="HP 3003 DW">HP 3003 DW</option>
-                                                <option value="HP 4003DW">HP 4003DW</option>
-                                                <option value="HP 4250">HP 4250</option>
-                                                <option value="HP LASERJET P2035">HP LASERJET P2035</option>
-                                                <option value="HP3003">HP3003</option>
-                                                <option value="HP-49A">HP-49A</option>
-                                                <option value="HP-G3010">HP-G3010</option>
-                                                <option value="IR3025">IR3025</option>
-                                                <option value="IR3225">IR3225</option>
-                                                <option value="K639">K639</option>
-                                                <option value="KB0225">KB0225</option>
-                                                <option value="KX-TG3510LAB">KX-TG3510LAB</option>
-                                                <option value="LASER JET PRO M102W">LASER JET PRO M102W</option>
-                                                <option value="LASET JET 107A">LASET JET 107A</option>
-                                                <option value="LJM101">LJM101</option>
-                                                <option value="LP5AI">LP5AI</option>
-                                                <option value="LPJ2-23">LPJ2-23</option>
-                                                <option value="M106">M106</option>
-                                                <option value="M2100-01-01">M2100-01-01</option>
-                                                <option value="M2400">M2400</option>
-                                                <option value="M2420">M2420</option>
-                                                <option value="M426">M426</option>
-                                                <option value="M55E">M55E</option>
-                                                <option value="M600">M600</option>
-                                                <option value="M696">M696</option>
-                                                <option value="MTM818848S">MTM818848S</option>
-                                                <option value="NO APLICA">NO APLICA</option>
                                                 <option value="OPTIPLEX 7010">OPTIPLEX 7010</option>
-                                                <option value="P1300">P1300</option>
-                                                <option value="P2015">P2015</option>
-                                                <option value="P2413">P2413</option>
-                                                <option value="P3005">P3005</option>
-                                                <option value="PCR-600">PCR-600</option>
-                                                <option value="SIN MODELO">SIN MODELO</option>
-                                                <option value="SKIL 9003 700W 115ML">SKIL 9003 700W 115ML</option>
-                                                <option value="SR954">SR954</option>
-                                                <option value="ST1020M4-02">ST1020M4-02</option>
-                                                <option value="SUPER HOBBY 400w 3/8´´">SUPER HOBBY 400w 3/8´´</option>
-                                                <option value="V1N1058">V1N1058</option>
-                                                <option value="VARIOS">VARIOS</option>
-                                                <option value="VIT M2400">VIT M2400</option>
-                                                <option value="9704">9704</option>
-                                                <option value="MFP452DW">MFP452DW</option>
+                                                <option value="LASERJET P2035">LASERJET P2035</option>
+                                                <option value="THINKCENTRE M720">THINKCENTRE M720</option>
+                                                <option value="NO APLICA">NO APLICA</option>
                                                 <option value="OTRO">OTRO (ESPECIFICAR)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione el modelo</div>
@@ -960,10 +506,10 @@
                             </div>
                             
                             <div class="d-grid gap-2 mt-3">
-                                <button type="submit" class="btn btn-primary btn-lg touch-target" id="submitButton">
+                                <button type="submit" class="btn btn-primary btn-lg" id="submitButton">
                                     <i class="fas fa-save me-2"></i>Guardar Actividad
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-lg touch-target" id="cancelEditButton" style="display: none;">
+                                <button type="button" class="btn btn-secondary btn-lg" id="cancelEditButton" style="display: none;">
                                     <i class="fas fa-times me-2"></i>Cancelar Edición
                                 </button>
                             </div>
@@ -971,56 +517,49 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="stats-box fade-in">
-                            <h5><i class="fas fa-chart-bar me-2"></i>Resumen</h5>
-                            <div class="stats-number" id="totalActivities">0</div>
-                            <p>Actividades registradas</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="stats-box fade-in">
-                            <h5><i class="fas fa-check-circle me-2"></i>Estado Actual</h5>
-                            <div class="stats-number" id="completedActivities">0</div>
-                            <p>Completadas</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="storage-info fade-in">
-                            <h5><i class="fas fa-database me-2"></i>Almacenamiento</h5>
-                            <p>Datos guardados localmente</p>
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-outline-primary btn-sm touch-target" id="exportData">
-                                    <i class="fas fa-download me-1"></i>Exportar
-                                </button>
-                                <button class="btn btn-outline-info btn-sm touch-target" id="importData">
-                                    <i class="fas fa-upload me-1"></i>Importar
-                                </button>
-                                <button class="btn btn-outline-warning btn-sm touch-target" id="clearData">
-                                    <i class="fas fa-trash me-1"></i>Limpiar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card fade-in mt-3">
-                    <div class="card-header">
-                        <i class="fas fa-history me-2"></i>Últimas Actividades
-                    </div>
-                    <div class="card-body p-0">
-                        <div class="list-group" id="recentActivities">
-                            <div class="list-group-item text-center">No hay actividades recientes</div>
-                        </div>
-                    </div>
-                </div>
+        </div>
 
-                <div class="sync-options fade-in mt-3">
+        <!-- Estadísticas y Controles -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="stats-box fade-in">
+                    <h5><i class="fas fa-chart-bar me-2"></i>Resumen</h5>
+                    <div class="stats-number" id="totalActivities">0</div>
+                    <p>Actividades registradas</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="stats-box fade-in">
+                    <h5><i class="fas fa-check-circle me-2"></i>Estado Actual</h5>
+                    <div class="stats-number" id="completedActivities">0</div>
+                    <p>Completadas</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="storage-info fade-in">
+                    <h5><i class="fas fa-database me-2"></i>Almacenamiento</h5>
+                    <p>Datos guardados localmente</p>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary btn-sm" id="exportData">
+                            <i class="fas fa-download me-1"></i>Exportar JSON
+                        </button>
+                        <button class="btn btn-outline-info btn-sm" id="importData">
+                            <i class="fas fa-upload me-1"></i>Importar JSON
+                        </button>
+                        <button class="btn btn-outline-warning btn-sm" id="clearData">
+                            <i class="fas fa-trash me-1"></i>Limpiar Datos
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sincronización -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="sync-options fade-in">
                     <h5><i class="fas fa-sync me-2"></i>Sincronización Manual</h5>
                     <p>Para usar en múltiples dispositivos:</p>
                     <ol>
@@ -1031,7 +570,8 @@
                 </div>
             </div>
         </div>
-        
+
+        <!-- Tabla de Actividades -->
         <div class="row mt-3">
             <div class="col-12">
                 <div class="export-options fade-in">
@@ -1039,16 +579,10 @@
                         <div class="col-md-8">
                             <h5><i class="fas fa-file-export me-2"></i>Opciones de Exportación</h5>
                             <div class="d-flex gap-2 flex-wrap">
-                                <button class="btn btn-danger touch-target" id="exportSelectedPdf">
-                                    <i class="fas fa-file-pdf me-1"></i>Seleccionados (PDF)
-                                </button>
-                                <button class="btn btn-danger touch-target" id="exportAllPdf">
+                                <button class="btn btn-danger" id="exportAllPdf">
                                     <i class="fas fa-file-pdf me-1"></i>Todos (PDF)
                                 </button>
-                                <button class="btn btn-success touch-target" id="exportSelectedExcel">
-                                    <i class="fas fa-file-excel me-1"></i>Seleccionados (Excel)
-                                </button>
-                                <button class="btn btn-success touch-target" id="exportAllExcel">
+                                <button class="btn btn-success" id="exportAllExcel">
                                     <i class="fas fa-file-excel me-1"></i>Todos (Excel)
                                 </button>
                             </div>
@@ -1057,7 +591,7 @@
                             <div class="d-flex align-items-end h-100">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Buscar..." id="searchInput">
-                                    <button class="btn btn-outline-secondary touch-target" type="button" id="searchButton">
+                                    <button class="btn btn-outline-secondary" type="button" id="searchButton">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
@@ -1104,8 +638,8 @@
         </div>
     </div>
 
-    <!-- Botón flotante para formulario rápido -->
-    <a href="#activityForm" class="floating-button touch-target">
+    <!-- Botón flotante -->
+    <a href="#activityForm" class="floating-button">
         <i class="fas fa-plus"></i>
     </a>
 
@@ -1121,62 +655,20 @@
                     <!-- Contenido dinámico -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary touch-target" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-danger touch-target" id="exportSinglePdf">
-                        <i class="fas fa-file-pdf me-1"></i>PDF
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-danger" id="exportSinglePdf">
+                        <i class="fas fa-file-pdf me-1"></i>Exportar PDF
                     </button>
-                    <button type="button" class="btn btn-success touch-target" id="exportSingleExcel">
-                        <i class="fas fa-file-excel me-1"></i>Excel
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para Importación -->
-    <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="importModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="importModalLabel">Importar Datos</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="import-instructions">
-                        <h6>Instrucciones:</h6>
-                        <ol>
-                            <li>Selecciona un archivo JSON exportado previamente desde OATI</li>
-                            <li>Los datos importados reemplazarán los datos actuales</li>
-                            <li>Se recomienda hacer una copia de seguridad antes de importar</li>
-                        </ol>
-                    </div>
-                    
-                    <div class="file-input-wrapper mb-3">
-                        <input type="file" id="importFile" accept=".json" class="form-control">
-                        <label for="importFile" class="file-input-label" id="fileInputLabel">
-                            <i class="fas fa-file-upload me-2"></i>
-                            <span>Seleccionar archivo JSON</span>
-                        </label>
-                    </div>
-                    
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        <strong>Advertencia:</strong> Esta acción reemplazará todos los datos actuales.
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary touch-target" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary touch-target" id="confirmImport">
-                        <i class="fas fa-upload me-1"></i>Importar
+                    <button type="button" class="btn btn-success" id="exportSingleExcel">
+                        <i class="fas fa-file-excel me-1"></i>Exportar Excel
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="connectionStatus" class="connection-status online">
-        <i class="fas fa-database me-1"></i> Almacenamiento Local
-    </div>
+    <!-- Input oculto para importar -->
+    <input type="file" id="importFile" accept=".json" style="display: none;">
 
     <footer class="bg-dark text-white text-center py-3 mt-4">
         <p class="mb-0">OATI - Oficina de Apoyo Técnico Informático &copy; 2023</p>
@@ -1191,12 +683,10 @@
         let activities = JSON.parse(localStorage.getItem('activities')) || [];
         let currentEditId = null;
         let currentViewId = null;
-        let importModal = null;
-        
+
         // Elementos del DOM
         const activityForm = document.getElementById('activityForm');
         const activitiesTable = document.getElementById('activitiesTable');
-        const recentActivities = document.getElementById('recentActivities');
         const totalActivities = document.getElementById('totalActivities');
         const completedActivities = document.getElementById('completedActivities');
         const searchInput = document.getElementById('searchInput');
@@ -1205,24 +695,18 @@
         const cancelEditButton = document.getElementById('cancelEditButton');
         const editIdField = document.getElementById('editId');
         const selectAllCheckbox = document.getElementById('selectAll');
-        const exportSelectedPdfButton = document.getElementById('exportSelectedPdf');
         const exportAllPdfButton = document.getElementById('exportAllPdf');
-        const exportSelectedExcelButton = document.getElementById('exportSelectedExcel');
         const exportAllExcelButton = document.getElementById('exportAllExcel');
-        const viewModalElement = new bootstrap.Modal(document.getElementById('viewModal'));
-        const modalBody = document.getElementById('modalBody');
-        const exportSinglePdfButton = document.getElementById('exportSinglePdf');
-        const exportSingleExcelButton = document.getElementById('exportSingleExcel');
         const exportDataButton = document.getElementById('exportData');
         const importDataButton = document.getElementById('importData');
         const importFileInput = document.getElementById('importFile');
         const clearDataButton = document.getElementById('clearData');
-        const connectionStatus = document.getElementById('connectionStatus');
-        const importModalElement = new bootstrap.Modal(document.getElementById('importModal'));
-        const fileInputLabel = document.getElementById('fileInputLabel');
-        const confirmImportButton = document.getElementById('confirmImport');
-        
-        // Obtener todos los campos condicionales
+        const viewModal = new bootstrap.Modal(document.getElementById('viewModal'));
+        const modalBody = document.getElementById('modalBody');
+        const exportSinglePdfButton = document.getElementById('exportSinglePdf');
+        const exportSingleExcelButton = document.getElementById('exportSingleExcel');
+
+        // Campos condicionales
         const conditionalFields = {
             categoria: document.getElementById('otraCategoriaField'),
             trabajoRealizado: document.getElementById('otroTrabajoField'),
@@ -1234,8 +718,8 @@
             marca: document.getElementById('otraMarcaField'),
             modelo: document.getElementById('otroModeloField')
         };
-        
-        // Obtener todos los selects
+
+        // Selects
         const selects = {
             categoria: document.getElementById('categoria'),
             trabajoRealizado: document.getElementById('trabajoRealizado'),
@@ -1247,39 +731,28 @@
             marca: document.getElementById('marca'),
             modelo: document.getElementById('modelo')
         };
-        
-        // Establecer fecha actual por defecto
+
+        // Establecer fecha actual
         document.getElementById('fecha').valueAsDate = new Date();
-        
-        // Configurar event listeners para todos los selects
+
+        // Configurar event listeners para selects
         Object.keys(selects).forEach(key => {
             selects[key].addEventListener('change', function() {
                 toggleConditionalField(key, this.value);
             });
         });
-        
-        // Función para mostrar/ocultar campos condicionales
+
+        // Función para campos condicionales
         function toggleConditionalField(fieldName, value) {
             const conditionalField = conditionalFields[fieldName];
             if (value === 'OTRO') {
                 conditionalField.style.display = 'block';
-                // Hacer el campo requerido si es necesario
-                const inputField = conditionalField.querySelector('input');
-                if (inputField) {
-                    inputField.setAttribute('required', 'required');
-                }
             } else {
                 conditionalField.style.display = 'none';
-                // Quitar el requerido si estaba puesto
-                const inputField = conditionalField.querySelector('input');
-                if (inputField) {
-                    inputField.removeAttribute('required');
-                    inputField.value = '';
-                }
             }
         }
-        
-        // Función para validar el formulario
+
+        // Validar formulario
         function validateForm() {
             const requiredFields = document.querySelectorAll('[required]');
             let isValid = true;
@@ -1295,18 +768,17 @@
             
             return isValid;
         }
-        
+
         // Guardar actividad
         activityForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Validar formulario
             if (!validateForm()) {
                 showNotification('Por favor complete todos los campos requeridos', 'error');
                 return;
             }
             
-            // Obtener valores de campos condicionales si es necesario
+            // Obtener valores de campos condicionales
             const categoriaValue = selects.categoria.value === 'OTRO' ? 
                 document.getElementById('otraCategoria').value || 'OTRO' : selects.categoria.value;
                 
@@ -1334,20 +806,16 @@
             const modeloValue = selects.modelo.value === 'OTRO' ? 
                 document.getElementById('otroModelo').value || 'OTRO' : selects.modelo.value;
             
-            // Obtener la fecha sin ajustes de zona horaria
-            const fechaInput = document.getElementById('fecha').value;
-            const fechaCierreInput = document.getElementById('fechaCierre').value;
-            
             const activity = {
                 categoria: categoriaValue,
                 trabajoRealizado: trabajoRealizadoValue,
                 dependencia: dependenciaValue,
-                fecha: fechaInput, // Guardamos el valor directamente sin convertirlo a Date
+                fecha: document.getElementById('fecha').value,
                 detalleTrabajo: document.getElementById('detalleTrabajo').value,
                 solicitud: solicitudValue,
                 oati: document.getElementById('oati').value,
                 status: statusValue,
-                fechaCierre: fechaCierreInput, // Guardamos el valor directamente
+                fechaCierre: document.getElementById('fechaCierre').value,
                 operatividad: operatividadValue,
                 tipoEquipo: tipoEquipoValue,
                 marca: marcaValue,
@@ -1355,18 +823,18 @@
                 serial: document.getElementById('serial').value,
                 nroBien: document.getElementById('nroBien').value,
                 observaciones: document.getElementById('observaciones').value,
-                id: currentEditId || Date.now() // ID único basado en timestamp
+                id: currentEditId || Date.now()
             };
             
             if (currentEditId) {
-                // Editar actividad existente
+                // Editar
                 const index = activities.findIndex(a => a.id === currentEditId);
                 if (index !== -1) {
                     activities[index] = activity;
                 }
                 cancelEdit();
             } else {
-                // Nueva actividad
+                // Nuevo
                 activities.push(activity);
             }
             
@@ -1375,25 +843,16 @@
             activityForm.reset();
             document.getElementById('fecha').valueAsDate = new Date();
             
-            // Ocultar todos los campos condicionales
+            // Ocultar campos condicionales
             Object.values(conditionalFields).forEach(field => {
                 field.style.display = 'none';
             });
             
             showNotification(`Actividad ${currentEditId ? 'actualizada' : 'registrada'} con éxito!`, 'success');
-            
-            // Desplazar hacia el formulario en móviles
-            if (window.innerWidth < 768) {
-                setTimeout(() => {
-                    document.getElementById('activityForm').scrollIntoView({ behavior: 'smooth' });
-                }, 300);
-            }
         });
-        
+
         // Cancelar edición
-        cancelEditButton.addEventListener('click', cancelEdit);
-        
-        function cancelEdit() {
+        cancelEditButton.addEventListener('click', function() {
             currentEditId = null;
             editIdField.value = '';
             submitButton.innerHTML = '<i class="fas fa-save me-2"></i>Guardar Actividad';
@@ -1401,35 +860,26 @@
             activityForm.reset();
             document.getElementById('fecha').valueAsDate = new Date();
             
-            // Ocultar todos los campos condicionales
             Object.values(conditionalFields).forEach(field => {
                 field.style.display = 'none';
             });
-        }
-        
-        // Guardar actividades en localStorage
+        });
+
+        // Guardar en localStorage
         function saveActivities() {
             localStorage.setItem('activities', JSON.stringify(activities));
             updateStats();
         }
-        
-        // Renderizar actividades en la tabla
+
+        // Renderizar actividades
         function renderActivities() {
             if (activities.length === 0) {
                 activitiesTable.innerHTML = '<tr><td colspan="8" class="text-center">No hay actividades registradas</td></tr>';
-                recentActivities.innerHTML = '<div class="list-group-item text-center">No hay actividades recientes</div>';
                 return;
             }
             
-            // Ordenar actividades por fecha (más recientes primero)
-            const sortedActivities = [...activities].sort((a, b) => {
-                // Convertir fechas a formato comparable
-                const dateA = new Date(a.fecha);
-                const dateB = new Date(b.fecha);
-                return dateB - dateA;
-            });
+            const sortedActivities = [...activities].sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
             
-            // Renderizar tabla principal
             activitiesTable.innerHTML = '';
             sortedActivities.forEach(activity => {
                 const tr = document.createElement('tr');
@@ -1444,13 +894,13 @@
                     <td>${activity.oati}</td>
                     <td><span class="badge ${getStatusBadgeClass(activity.status)}">${activity.status}</span></td>
                     <td class="action-buttons">
-                        <button class="btn btn-sm btn-info view-btn touch-target" data-id="${activity.id}">
+                        <button class="btn btn-sm btn-info view-btn" data-id="${activity.id}">
                             <i class="fas fa-eye"></i>
                         </button>
-                        <button class="btn btn-sm btn-warning edit-btn touch-target" data-id="${activity.id}">
+                        <button class="btn btn-sm btn-warning edit-btn" data-id="${activity.id}">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-sm btn-danger delete-btn touch-target" data-id="${activity.id}">
+                        <button class="btn btn-sm btn-danger delete-btn" data-id="${activity.id}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -1458,43 +908,13 @@
                 activitiesTable.appendChild(tr);
             });
             
-            // Renderizar actividades recientes
-            renderRecentActivities(sortedActivities.slice(0, 5));
-            
-            // Añadir event listeners a los botones
             addButtonListeners();
-            
-            // Añadir event listener a los checkboxes
             addCheckboxListeners();
         }
-        
-        // Renderizar actividades recientes
-        function renderRecentActivities(activities) {
-            recentActivities.innerHTML = '';
-            
-            if (activities.length === 0) {
-                recentActivities.innerHTML = '<div class="list-group-item text-center">No hay actividades recientes</div>';
-                return;
-            }
-            
-            activities.forEach(activity => {
-                const div = document.createElement('div');
-                div.className = 'list-group-item';
-                div.innerHTML = `
-                    <div class="d-flex w-100 justify-content-between">
-                        <h6 class="mb-1">${activity.categoria}</h6>
-                        <small>${formatDate(activity.fecha)}</small>
-                    </div>
-                    <p class="mb-1">${activity.trabajoRealizado.substring(0, 40)}${activity.trabajoRealizado.length > 40 ? '...' : ''}</p>
-                    <small class="text-muted">${activity.dependencia.substring(0, 20)}${activity.dependencia.length > 20 ? '...' : ''} - ${activity.oati}</small>
-                `;
-                recentActivities.appendChild(div);
-            });
-        }
-        
-        // Añadir event listeners a los botones
+
+        // Añadir event listeners a botones
         function addButtonListeners() {
-            // Botones de ver
+            // Botones de vista previa
             document.querySelectorAll('.view-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = parseInt(this.getAttribute('data-id'));
@@ -1502,7 +922,7 @@
                 });
             });
             
-            // Botones de editar
+            // Botones de edición
             document.querySelectorAll('.edit-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = parseInt(this.getAttribute('data-id'));
@@ -1510,7 +930,7 @@
                 });
             });
             
-            // Botones de eliminar
+            // Botones de eliminación
             document.querySelectorAll('.delete-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const id = parseInt(this.getAttribute('data-id'));
@@ -1518,17 +938,13 @@
                 });
             });
         }
-        
-        // Añadir event listeners a los checkboxes
+
+        // Añadir event listeners a checkboxes
         function addCheckboxListeners() {
-            // Checkbox individuales
             document.querySelectorAll('.activity-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    updateSelectAllCheckbox();
-                });
+                checkbox.addEventListener('change', updateSelectAllCheckbox);
             });
             
-            // Checkbox "Seleccionar todos"
             selectAllCheckbox.addEventListener('change', function() {
                 const checkboxes = document.querySelectorAll('.activity-checkbox');
                 checkboxes.forEach(checkbox => {
@@ -1536,18 +952,15 @@
                 });
             });
         }
-        
-        // Actualizar el estado del checkbox "Seleccionar todos"
+
+        // Actualizar checkbox "Seleccionar todos"
         function updateSelectAllCheckbox() {
             const checkboxes = document.querySelectorAll('.activity-checkbox');
             const allChecked = checkboxes.length > 0 && Array.from(checkboxes).every(checkbox => checkbox.checked);
-            const someChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-            
             selectAllCheckbox.checked = allChecked;
-            selectAllCheckbox.indeterminate = someChecked && !allChecked;
         }
-        
-        // Ver actividad
+
+        // Vista previa de actividad
         function viewActivity(id) {
             const activity = activities.find(a => a.id === id);
             if (activity) {
@@ -1580,10 +993,10 @@
                     </div>
                 `;
                 
-                viewModalElement.show();
+                viewModal.show();
             }
         }
-        
+
         // Editar actividad
         function editActivity(id) {
             const activity = activities.find(a => a.id === id);
@@ -1591,8 +1004,7 @@
                 currentEditId = id;
                 editIdField.value = id;
                 
-                // Llenar el formulario con los datos de la actividad
-                // Para cada campo, verificar si es un valor predefinido o personalizado
+                // Llenar formulario
                 setSelectValue('categoria', activity.categoria, 'otraCategoria');
                 setSelectValue('trabajoRealizado', activity.trabajoRealizado, 'otroTrabajo');
                 setSelectValue('dependencia', activity.dependencia, 'otraDependencia');
@@ -1603,25 +1015,21 @@
                 setSelectValue('marca', activity.marca, 'otraMarca');
                 setSelectValue('modelo', activity.modelo, 'otroModelo');
                 
-                // Establecer fechas directamente (sin conversión a objeto Date)
                 document.getElementById('fecha').value = activity.fecha;
                 document.getElementById('fechaCierre').value = activity.fechaCierre || '';
-                
                 document.getElementById('detalleTrabajo').value = activity.detalleTrabajo;
                 document.getElementById('oati').value = activity.oati;
                 document.getElementById('serial').value = activity.serial;
                 document.getElementById('nroBien').value = activity.nroBien;
                 document.getElementById('observaciones').value = activity.observaciones || '';
                 
-                // Cambiar el texto del botón
                 submitButton.innerHTML = '<i class="fas fa-save me-2"></i>Actualizar Actividad';
                 cancelEditButton.style.display = 'block';
                 
-                // Scroll al formulario
                 document.getElementById('activityForm').scrollIntoView({ behavior: 'smooth' });
             }
         }
-        
+
         // Función auxiliar para establecer valores en selects
         function setSelectValue(selectName, value, inputId) {
             const select = selects[selectName];
@@ -1636,7 +1044,7 @@
                 conditionalFields[selectName].style.display = 'block';
             }
         }
-        
+
         // Eliminar actividad
         function deleteActivity(id) {
             if (confirm('¿Está seguro de que desea eliminar esta actividad?')) {
@@ -1646,58 +1054,43 @@
                 showNotification('Actividad eliminada correctamente', 'success');
             }
         }
-        
+
         // Exportar a PDF
-        function exportToPdf(id = null) {
+        function exportToPdf(activitiesToExport = null) {
             try {
+                const activitiesData = activitiesToExport || activities;
+                
+                if (activitiesData.length === 0) {
+                    showNotification('No hay actividades para exportar', 'warning');
+                    return;
+                }
+                
                 const doc = new jsPDF({
                     orientation: 'landscape',
                     unit: 'mm',
                     format: 'a4'
                 });
                 
-                let activitiesToExport = [];
-                
-                if (id) {
-                    // Exportar una sola actividad
-                    activitiesToExport = activities.filter(a => a.id === id);
-                } else {
-                    // Exportar actividades seleccionadas o todas
-                    const selectedIds = Array.from(document.querySelectorAll('.activity-checkbox:checked'))
-                        .map(checkbox => parseInt(checkbox.value));
-                    
-                    activitiesToExport = selectedIds.length > 0 
-                        ? activities.filter(a => selectedIds.includes(a.id))
-                        : activities;
-                }
-                
-                if (activitiesToExport.length === 0) {
-                    showNotification('No hay actividades para exportar', 'warning');
-                    return;
-                }
-                
-                // Agregar título y logo
+                // Título
                 doc.setFontSize(16);
                 doc.setTextColor(40, 40, 40);
-                doc.text('OATI - Oficina de Apoyo Técnico Informático', 15, 15);
-                doc.setFontSize(14);
-                doc.text('Reporte de Actividades', 15, 22);
+                doc.text('OATI - Reporte de Actividades', 15, 15);
                 doc.setFontSize(10);
-                doc.text(`Fecha de generación: ${new Date().toLocaleDateString()}`, 15, 29);
+                doc.text(`Fecha de generación: ${new Date().toLocaleDateString()}`, 15, 22);
                 
                 // Preparar datos para la tabla
-                const tableData = activitiesToExport.map(activity => [
+                const tableData = activitiesData.map(activity => [
                     formatDate(activity.fecha),
                     activity.categoria,
-                    activity.dependencia.substring(0, 20) + (activity.dependencia.length > 20 ? '...' : ''),
-                    activity.trabajoRealizado.substring(0, 40) + (activity.trabajoRealizado.length > 40 ? '...' : ''),
+                    activity.dependencia,
+                    activity.trabajoRealizado,
                     activity.oati,
                     activity.status
                 ]);
                 
                 // Crear tabla
                 doc.autoTable({
-                    startY: 35,
+                    startY: 30,
                     head: [['Fecha', 'Categoría', 'Dependencia', 'Trabajo Realizado', 'OATI', 'Status']],
                     body: tableData,
                     theme: 'grid',
@@ -1706,47 +1099,39 @@
                         textColor: 255,
                         fontStyle: 'bold'
                     },
-                    alternateRowStyles: {
-                        fillColor: [240, 240, 240]
-                    },
-                    margin: { top: 35 },
-                    styles: { fontSize: 8 }
+                    styles: { fontSize: 8 },
+                    columnStyles: {
+                        0: { cellWidth: 20 },
+                        1: { cellWidth: 25 },
+                        2: { cellWidth: 35 },
+                        3: { cellWidth: 45 },
+                        4: { cellWidth: 25 },
+                        5: { cellWidth: 20 }
+                    }
                 });
                 
                 // Guardar el PDF
                 doc.save('OATI_Reporte_Actividades.pdf');
                 showNotification('Reporte PDF exportado correctamente', 'success');
+                
             } catch (error) {
                 console.error('Error al exportar PDF:', error);
                 showNotification('Error al exportar PDF: ' + error.message, 'error');
             }
         }
-        
+
         // Exportar a Excel
-        function exportToExcel(id = null) {
+        function exportToExcel(activitiesToExport = null) {
             try {
-                let activitiesToExport = [];
+                const activitiesData = activitiesToExport || activities;
                 
-                if (id) {
-                    // Exportar una sola actividad
-                    activitiesToExport = activities.filter(a => a.id === id);
-                } else {
-                    // Exportar actividades seleccionadas o todas
-                    const selectedIds = Array.from(document.querySelectorAll('.activity-checkbox:checked'))
-                        .map(checkbox => parseInt(checkbox.value));
-                    
-                    activitiesToExport = selectedIds.length > 0 
-                        ? activities.filter(a => selectedIds.includes(a.id))
-                        : activities;
-                }
-                
-                if (activitiesToExport.length === 0) {
+                if (activitiesData.length === 0) {
                     showNotification('No hay actividades para exportar', 'warning');
                     return;
                 }
                 
                 // Preparar datos para Excel
-                const excelData = activitiesToExport.map(activity => ({
+                const excelData = activitiesData.map(activity => ({
                     'Fecha': formatDate(activity.fecha),
                     'Categoría': activity.categoria,
                     'Dependencia': activity.dependencia,
@@ -1768,15 +1153,6 @@
                 // Crear hoja de trabajo
                 const ws = XLSX.utils.json_to_sheet(excelData);
                 
-                // Ajustar el ancho de las columnas
-                const wscols = [
-                    {wch: 10}, {wch: 12}, {wch: 15}, {wch: 30}, {wch: 30}, 
-                    {wch: 12}, {wch: 15}, {wch: 10}, {wch: 10}, {wch: 12}, 
-                    {wch: 12}, {wch: 12}, {wch: 12}, {wch: 12}, {wch: 15},
-                    {wch: 20}
-                ];
-                ws['!cols'] = wscols;
-                
                 // Crear libro de trabajo
                 const wb = XLSX.utils.book_new();
                 XLSX.utils.book_append_sheet(wb, ws, 'Actividades OATI');
@@ -1784,88 +1160,64 @@
                 // Guardar archivo
                 XLSX.writeFile(wb, 'OATI_Reporte_Actividades.xlsx');
                 showNotification('Reporte Excel exportado correctamente', 'success');
+                
             } catch (error) {
                 console.error('Error al exportar Excel:', error);
                 showNotification('Error al exportar Excel: ' + error.message, 'error');
             }
         }
-        
-        // Exportar datos a JSON
+
+        // Exportar a JSON
         function exportToJson() {
             try {
                 const dataStr = JSON.stringify(activities, null, 2);
                 const dataBlob = new Blob([dataStr], { type: 'application/json' });
                 
-                // Crear un enlace de descarga
                 const url = URL.createObjectURL(dataBlob);
                 const link = document.createElement('a');
                 link.href = url;
                 link.download = 'actividades_oati.json';
                 
-                // Simular clic en el enlace
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
                 
-                // Liberar el objeto URL
                 setTimeout(() => URL.revokeObjectURL(url), 100);
                 
                 showNotification('Datos exportados correctamente', 'success');
             } catch (error) {
-                console.error('Error al exportar JSON:', error);
                 showNotification('Error al exportar datos: ' + error.message, 'error');
             }
         }
-        
-        // Importar datos desde JSON
-        function importFromJson() {
-            const file = importFileInput.files[0];
-            if (!file) {
-                showNotification('Por favor seleccione un archivo', 'warning');
-                return;
-            }
+
+        // Importar desde JSON
+        function importFromJson(event) {
+            const file = event.target.files[0];
+            if (!file) return;
             
             const reader = new FileReader();
             reader.onload = function(e) {
                 try {
-                    const contents = e.target.result;
-                    const importedActivities = JSON.parse(contents);
+                    const importedActivities = JSON.parse(e.target.result);
                     
                     if (Array.isArray(importedActivities)) {
-                        // Validar que los datos importados tengan la estructura correcta
-                        const isValid = importedActivities.every(activity => 
-                            activity && 
-                            typeof activity === 'object' &&
-                            activity.categoria !== undefined &&
-                            activity.trabajoRealizado !== undefined
-                        );
-                        
-                        if (isValid) {
+                        if (confirm(`¿Importar ${importedActivities.length} actividades? Se reemplazarán los datos actuales.`)) {
                             activities = importedActivities;
                             saveActivities();
                             renderActivities();
-                            importModalElement.hide();
-                            showNotification(`Datos importados correctamente. ${importedActivities.length} actividades cargadas.`, 'success');
-                        } else {
-                            showNotification('El archivo no contiene datos válidos de OATI', 'error');
+                            showNotification('Datos importados correctamente', 'success');
                         }
                     } else {
-                        showNotification('El archivo no contiene una lista de actividades válida', 'error');
+                        showNotification('El archivo no contiene datos válidos', 'error');
                     }
                 } catch (error) {
-                    console.error('Error al importar:', error);
                     showNotification('Error al importar el archivo: ' + error.message, 'error');
                 }
             };
-            
-            reader.onerror = function() {
-                showNotification('Error al leer el archivo', 'error');
-            };
-            
             reader.readAsText(file);
         }
-        
-        // Limpiar todos los datos
+
+        // Limpiar datos
         function clearAllData() {
             if (confirm('¿Está seguro de que desea eliminar TODOS los datos? Esta acción no se puede deshacer.')) {
                 activities = [];
@@ -1874,60 +1226,41 @@
                 showNotification('Todos los datos han sido eliminados', 'success');
             }
         }
-        
+
         // Mostrar notificación
         function showNotification(message, type = 'success') {
-            // Crear elemento de notificación
             const notification = document.createElement('div');
             notification.className = `alert alert-${type} alert-dismissible fade show`;
-            notification.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 1050; min-width: 250px; max-width: 80%;';
+            notification.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 1050; min-width: 250px;';
             notification.innerHTML = `
                 ${message}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             `;
             
-            // Agregar al cuerpo
             document.body.appendChild(notification);
             
-            // Auto-eliminar después de 5 segundos
             setTimeout(() => {
                 if (notification.parentNode) {
                     notification.parentNode.removeChild(notification);
                 }
             }, 5000);
         }
-        
+
         // Actualizar estadísticas
         function updateStats() {
             totalActivities.textContent = activities.length;
             const completed = activities.filter(a => a.status === 'Completado').length;
             completedActivities.textContent = completed;
         }
-        
-        // Formatear fecha para mostrar (sin problemas de zona horaria)
+
+        // Formatear fecha
         function formatDate(dateString) {
             if (!dateString) return 'N/A';
-            
-            // Si ya es una fecha formateada, devolverla tal cual
-            if (dateString.includes('/')) return dateString;
-            
-            // Si es una fecha en formato ISO (YYYY-MM-DD), formatearla correctamente
-            const parts = dateString.split('-');
-            if (parts.length === 3) {
-                return `${parts[2]}/${parts[1]}/${parts[0]}`;
-            }
-            
-            // Para otros formatos, intentar parsear la fecha
             const date = new Date(dateString);
-            if (isNaN(date.getTime())) {
-                return dateString; // Devolver el string original si no es una fecha válida
-            }
-            
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            return date.toLocaleDateString('es-ES', options);
+            return date.toLocaleDateString('es-ES');
         }
-        
-        // Obtener clase para el badge de status
+
+        // Obtener clase para badge de status
         function getStatusBadgeClass(status) {
             switch(status) {
                 case 'Completado': return 'bg-success';
@@ -1937,66 +1270,44 @@
                 default: return 'bg-secondary';
             }
         }
-        
-        // Event listeners para exportación
-        exportSelectedPdfButton.addEventListener('click', () => exportToPdf());
-        exportAllPdfButton.addEventListener('click', () => {
-            const checkboxes = document.querySelectorAll('.activity-checkbox');
-            checkboxes.forEach(checkbox => checkbox.checked = true);
-            updateSelectAllCheckbox();
-            exportToPdf();
-        });
-        
-        exportSelectedExcelButton.addEventListener('click', () => exportToExcel());
-        exportAllExcelButton.addEventListener('click', () => {
-            const checkboxes = document.querySelectorAll('.activity-checkbox');
-            checkboxes.forEach(checkbox => checkbox.checked = true);
-            updateSelectAllCheckbox();
-            exportToExcel();
-        });
-        
-        exportSinglePdfButton.addEventListener('click', () => {
-            viewModalElement.hide();
-            exportToPdf(currentViewId);
-        });
-        
-        exportSingleExcelButton.addEventListener('click', () => {
-            viewModalElement.hide();
-            exportToExcel(currentViewId);
-        });
-        
-        // Event listeners para importar/exportar datos
+
+        // Event listeners para exportación/importación
         exportDataButton.addEventListener('click', exportToJson);
-        
-        importDataButton.addEventListener('click', () => {
-            importFileInput.value = '';
-            fileInputLabel.className = 'file-input-label';
-            fileInputLabel.innerHTML = '<i class="fas fa-file-upload me-2"></i><span>Seleccionar archivo JSON</span>';
-            importModalElement.show();
-        });
-        
-        importFileInput.addEventListener('change', function() {
-            if (this.files.length > 0) {
-                fileInputLabel.className = 'file-input-label has-file';
-                fileInputLabel.innerHTML = `<i class="fas fa-file me-2"></i><span>${this.files[0].name}</span>`;
-            } else {
-                fileInputLabel.className = 'file-input-label';
-                fileInputLabel.innerHTML = '<i class="fas fa-file-upload me-2"></i><span>Seleccionar archivo JSON</span>';
+        importDataButton.addEventListener('click', () => importFileInput.click());
+        importFileInput.addEventListener('change', importFromJson);
+        clearDataButton.addEventListener('click', clearAllData);
+
+        // Exportación PDF y Excel
+        exportAllPdfButton.addEventListener('click', () => exportToPdf());
+        exportAllExcelButton.addEventListener('click', () => exportToExcel());
+
+        // Exportación individual desde vista previa
+        exportSinglePdfButton.addEventListener('click', () => {
+            if (currentViewId) {
+                const activity = activities.find(a => a.id === currentViewId);
+                if (activity) {
+                    exportToPdf([activity]);
+                    viewModal.hide();
+                }
             }
         });
-        
-        confirmImportButton.addEventListener('click', importFromJson);
-        
-        clearDataButton.addEventListener('click', clearAllData);
-        
+
+        exportSingleExcelButton.addEventListener('click', () => {
+            if (currentViewId) {
+                const activity = activities.find(a => a.id === currentViewId);
+                if (activity) {
+                    exportToExcel([activity]);
+                    viewModal.hide();
+                }
+            }
+        });
+
         // Buscar actividades
         searchButton.addEventListener('click', searchActivities);
         searchInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchActivities();
-            }
+            if (e.key === 'Enter') searchActivities();
         });
-        
+
         function searchActivities() {
             const searchText = searchInput.value.toLowerCase();
             
@@ -2009,17 +1320,12 @@
                 activity.categoria.toLowerCase().includes(searchText) ||
                 activity.trabajoRealizado.toLowerCase().includes(searchText) ||
                 activity.dependencia.toLowerCase().includes(searchText) ||
-                activity.detalleTrabajo.toLowerCase().includes(searchText) ||
-                activity.oati.toLowerCase().includes(searchText) ||
-                activity.status.toLowerCase().includes(searchText) ||
-                activity.tipoEquipo.toLowerCase().includes(searchText) ||
-                activity.marca.toLowerCase().includes(searchText) ||
-                activity.modelo.toLowerCase().includes(searchText)
+                activity.oati.toLowerCase().includes(searchText)
             );
             
             renderFilteredActivities(filteredActivities);
         }
-        
+
         function renderFilteredActivities(filteredActivities) {
             if (filteredActivities.length === 0) {
                 activitiesTable.innerHTML = '<tr><td colspan="8" class="text-center">No se encontraron actividades</td></tr>';
@@ -2040,13 +1346,13 @@
                     <td>${activity.oati}</td>
                     <td><span class="badge ${getStatusBadgeClass(activity.status)}">${activity.status}</span></td>
                     <td class="action-buttons">
-                        <button class="btn btn-sm btn-info view-btn touch-target" data-id="${activity.id}">
+                        <button class="btn btn-sm btn-info view-btn" data-id="${activity.id}">
                             <i class="fas fa-eye"></i>
                         </button>
-                        <button class="btn btn-sm btn-warning edit-btn touch-target" data-id="${activity.id}">
+                        <button class="btn btn-sm btn-warning edit-btn" data-id="${activity.id}">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="btn btn-sm btn-danger delete-btn touch-target" data-id="${activity.id}">
+                        <button class="btn btn-sm btn-danger delete-btn" data-id="${activity.id}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
@@ -2057,15 +1363,10 @@
             addButtonListeners();
             addCheckboxListeners();
         }
-        
-        // Inicializar la aplicación
+
+        // Inicializar
         renderActivities();
         updateStats();
-        
-        // Prevenir zoom en campos de entrada en iOS
-        document.addEventListener('touchstart', function() {
-            // No hacer nada, solo prevenir el zoom
-        }, { passive: false });
     </script>
 </body>
 </html>
