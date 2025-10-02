@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OATI - Sistema de Registro de Actividades</title>
+    <title>OATI - SISTEMA DE REGISTRO DE ACTIVIDADES</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -24,6 +24,7 @@
             background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding-bottom: 80px;
+            font-size: 14px;
         }
         
         .header {
@@ -47,6 +48,7 @@
             border-radius: 10px 10px 0 0 !important;
             font-weight: bold;
             padding: 15px 20px;
+            text-transform: uppercase;
         }
         
         .form-section {
@@ -55,6 +57,11 @@
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-section h5 {
+            text-transform: uppercase;
+            font-size: 16px;
         }
         
         .btn {
@@ -211,6 +218,7 @@
             background-color: var(--secondary-color);
             color: white;
             padding: 10px 8px;
+            text-transform: uppercase;
         }
         
         .activity-table td {
@@ -239,6 +247,18 @@
             padding: 15px 20px;
         }
         
+        .modal-title {
+            text-transform: uppercase;
+        }
+        
+        select option {
+            text-transform: capitalize;
+        }
+        
+        .btn, .form-label, .form-control, .form-select {
+            font-size: 14px;
+        }
+        
         @media (max-width: 768px) {
             .card-header {
                 flex-direction: column;
@@ -260,8 +280,8 @@
             <div class="oatilogo">
                 <i class="fas fa-laptop-code fa-2x mb-2"></i>
             </div>
-            <h1>OATI - Sistema de Registro</h1>
-            <p class="lead">Oficina de Apoyo Técnico Informático</p>
+            <h1>OATI - SISTEMA DE REGISTRO</h1>
+            <p class="lead">OFICINA DE APOYO TÉCNICO INFORMÁTICO</p>
         </div>
     </div>
 
@@ -271,8 +291,8 @@
             <div class="col-12">
                 <div class="card fade-in">
                     <div class="card-header">
-                        <span><i class="fas fa-plus-circle me-2"></i>Nuevo Registro</span>
-                        <span class="feature-badge"><i class="fas fa-database me-1"></i> Almacenamiento Local</span>
+                        <span><i class="fas fa-plus-circle me-2"></i>NUEVO REGISTRO</span>
+                        <span class="feature-badge"><i class="fas fa-database me-1"></i> ALMACENAMIENTO LOCAL</span>
                     </div>
                     <div class="card-body">
                         <form id="activityForm">
@@ -280,121 +300,121 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-section">
-                                        <h5><i class="fas fa-tasks me-2"></i>Información de la Actividad</h5>
+                                        <h5><i class="fas fa-tasks me-2"></i>INFORMACIÓN DE LA ACTIVIDAD</h5>
                                         
                                         <div class="mb-3">
-                                            <label for="categoria" class="form-label required-field">Categoría</label>
+                                            <label for="categoria" class="form-label required-field">CATEGORÍA</label>
                                             <select class="form-select" id="categoria" required>
                                                 <option value="">Seleccione una categoría</option>
                                                 <option value="Mantenimiento">Mantenimiento</option>
                                                 <option value="Reparación">Reparación</option>
                                                 <option value="Instalación">Instalación</option>
-                                                <option value="Soporte">Soporte Técnico</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
+                                                <option value="Soporte">Soporte técnico</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione una categoría</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraCategoriaField">
-                                            <label for="otraCategoria" class="form-label">Especifique otra categoría</label>
+                                            <label for="otraCategoria" class="form-label">ESPECIFIQUE OTRA CATEGORÍA</label>
                                             <input type="text" class="form-control" id="otraCategoria" placeholder="Ingrese la categoría">
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="trabajoRealizado" class="form-label required-field">Trabajo Realizado</label>
+                                            <label for="trabajoRealizado" class="form-label required-field">TRABAJO REALIZADO</label>
                                             <select class="form-select" id="trabajoRealizado" required>
                                                 <option value="">Seleccione un trabajo realizado</option>
-                                                <option value="ACTUALIZACIÓN DE ANTIVIRUS">ACTUALIZACIÓN DE ANTIVIRUS</option>
-                                                <option value="INSTALACIÓN DE SISTEMA OPERATIVO">INSTALACIÓN DE SISTEMA OPERATIVO</option>
-                                                <option value="MANTENIMIENTO DE COMPUTADORA">MANTENIMIENTO DE COMPUTADORA</option>
-                                                <option value="REPARACIÓN DE IMPRESORA">REPARACIÓN DE IMPRESORA</option>
-                                                <option value="SOPORTE AL USUARIO">SOPORTE AL USUARIO</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR EN DETALLE DEL TRABAJO)</option>
+                                                <option value="Actualización de antivirus">Actualización de antivirus</option>
+                                                <option value="Instalación de sistema operativo">Instalación de sistema operativo</option>
+                                                <option value="Mantenimiento de computadora">Mantenimiento de computadora</option>
+                                                <option value="Reparación de impresora">Reparación de impresora</option>
+                                                <option value="Soporte al usuario">Soporte al usuario</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar en detalle del trabajo)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione un trabajo realizado</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otroTrabajoField">
-                                            <label for="otroTrabajo" class="form-label">Especifique otro trabajo realizado</label>
+                                            <label for="otroTrabajo" class="form-label">ESPECIFIQUE OTRO TRABAJO REALIZADO</label>
                                             <input type="text" class="form-control" id="otroTrabajo" placeholder="Ingrese el trabajo realizado">
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="dependencia" class="form-label required-field">Dependencia</label>
+                                            <label for="dependencia" class="form-label required-field">DEPENDENCIA</label>
                                             <select class="form-select" id="dependencia" required>
                                                 <option value="">Seleccione una dependencia</option>
-                                                <option value="INFORMATICA - DAR MERIDA">INFORMATICA - DAR MERIDA</option>
-                                                <option value="DIRECCION ADMINISTRATIVA">DIRECCION ADMINISTRATIVA</option>
-                                                <option value="RECURSOS HUMANOS">RECURSOS HUMANOS</option>
-                                                <option value="CONTABILIDAD">CONTABILIDAD</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR A CONTINUACIÓN)</option>
+                                                <option value="INFORMATICA - DAR MERIDA">Informática - DAR Mérida</option>
+                                                <option value="DIRECCION ADMINISTRATIVA">Dirección administrativa</option>
+                                                <option value="RECURSOS HUMANOS">Recursos humanos</option>
+                                                <option value="CONTABILIDAD">Contabilidad</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar a continuación)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione una dependencia</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraDependenciaField">
-                                            <label for="otraDependencia" class="form-label">Especifique otra dependencia</label>
+                                            <label for="otraDependencia" class="form-label">ESPECIFIQUE OTRA DEPENDENCIA</label>
                                             <input type="text" class="form-control" id="otraDependencia" placeholder="Ingrese el nombre de la dependencia">
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="fecha" class="form-label required-field">Fecha</label>
+                                            <label for="fecha" class="form-label required-field">FECHA</label>
                                             <input type="date" class="form-control" id="fecha" required>
-                                            <div class="date-info">La fecha se guardará exactamente como la seleccione</div>
+                                            <div class="date-info">Seleccione la fecha del registro</div>
                                             <div class="invalid-feedback">Por favor ingrese una fecha</div>
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="detalleTrabajo" class="form-label required-field">Detalle del Trabajo</label>
+                                            <label for="detalleTrabajo" class="form-label required-field">DETALLE DEL TRABAJO</label>
                                             <textarea class="form-control" id="detalleTrabajo" rows="2" required placeholder="Describa en detalle el trabajo ejecutado..."></textarea>
                                             <div class="invalid-feedback">Por favor ingrese el detalle del trabajo</div>
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="solicitud" class="form-label required-field">Cómo fue la Solicitud</label>
+                                            <label for="solicitud" class="form-label required-field">CÓMO FUE LA SOLICITUD</label>
                                             <select class="form-select" id="solicitud" required>
                                                 <option value="">Seleccione una opción</option>
                                                 <option value="Presencial">Presencial</option>
                                                 <option value="Verbal">Verbal</option>
                                                 <option value="Mensaje WhatsApp">Mensaje WhatsApp</option>
-                                                <option value="Llamada Telefónica">Llamada Telefónica</option>
-                                                <option value="Correo">Correo Electrónico</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR EN DETALLE DEL TRABAJO)</option>
+                                                <option value="Llamada Telefónica">Llamada telefónica</option>
+                                                <option value="Correo">Correo electrónico</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar en detalle del trabajo)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione cómo fue la solicitud</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraSolicitudField">
-                                            <label for="otraSolicitud" class="form-label">Especifique otro tipo de solicitud</label>
+                                            <label for="otraSolicitud" class="form-label">ESPECIFIQUE OTRO TIPO DE SOLICITUD</label>
                                             <input type="text" class="form-control" id="otraSolicitud" placeholder="Ingrese el tipo de solicitud">
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="oati" class="form-label required-field">OATI Responsable</label>
+                                            <label for="oati" class="form-label required-field">OATI RESPONSABLE</label>
                                             <input type="text" class="form-control" id="oati" required placeholder="Nombre del técnico responsable">
                                             <div class="invalid-feedback">Por favor ingrese el nombre del OATI responsable</div>
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="status" class="form-label required-field">Status</label>
+                                            <label for="status" class="form-label required-field">STATUS</label>
                                             <select class="form-select" id="status" required>
                                                 <option value="">Seleccione el status</option>
                                                 <option value="Completado">Completado</option>
-                                                <option value="En Proceso">En Proceso</option>
+                                                <option value="En Proceso">En proceso</option>
                                                 <option value="Pendiente">Pendiente</option>
                                                 <option value="Cancelado">Cancelado</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR EN OBSERVACIONES)</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar en observaciones)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione el status</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otroStatusField">
-                                            <label for="otroStatus" class="form-label">Especifique otro status</label>
+                                            <label for="otroStatus" class="form-label">ESPECIFIQUE OTRO STATUS</label>
                                             <input type="text" class="form-control" id="otroStatus" placeholder="Ingrese el status">
                                         </div>
                                     </div>
@@ -402,102 +422,102 @@
                                 
                                 <div class="col-md-6">
                                     <div class="form-section">
-                                        <h5><i class="fas fa-desktop me-2"></i>Información del Equipo</h5>
+                                        <h5><i class="fas fa-desktop me-2"></i>INFORMACIÓN DEL EQUIPO</h5>
                                         
                                         <div class="mb-3">
-                                            <label for="fechaCierre" class="form-label">Fecha de Cierre</label>
+                                            <label for="fechaCierre" class="form-label">FECHA DE CIERRE</label>
                                             <input type="date" class="form-control" id="fechaCierre">
-                                            <div class="date-info">La fecha se guardará exactamente como la seleccione</div>
+                                            <div class="date-info">Seleccione la fecha de cierre (opcional)</div>
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="operatividad" class="form-label required-field">Operatividad del Equipo</label>
+                                            <label for="operatividad" class="form-label required-field">OPERATIVIDAD DEL EQUIPO</label>
                                             <select class="form-select" id="operatividad" required>
                                                 <option value="">Seleccione una opción</option>
                                                 <option value="Operativo">Operativo</option>
-                                                <option value="No Operativo">No Operativo</option>
-                                                <option value="En Reparación">En Reparación</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR EN OBSERVACIONES)</option>
+                                                <option value="No Operativo">No operativo</option>
+                                                <option value="En Reparación">En reparación</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar en observaciones)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione la operatividad del equipo</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraOperatividadField">
-                                            <label for="otraOperatividad" class="form-label">Especifique otra operatividad</label>
+                                            <label for="otraOperatividad" class="form-label">ESPECIFIQUE OTRA OPERATIVIDAD</label>
                                             <input type="text" class="form-control" id="otraOperatividad" placeholder="Ingrese la operatividad del equipo">
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="tipoEquipo" class="form-label required-field">Tipo de Equipo</label>
+                                            <label for="tipoEquipo" class="form-label required-field">TIPO DE EQUIPO</label>
                                             <select class="form-select" id="tipoEquipo" required>
                                                 <option value="">Seleccione un tipo</option>
                                                 <option value="Computadora">Computadora</option>
                                                 <option value="Impresora">Impresora</option>
                                                 <option value="Scanner">Scanner</option>
                                                 <option value="Servidor">Servidor</option>
-                                                <option value="Red">Equipo de Red</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
+                                                <option value="Red">Equipo de red</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione el tipo de equipo</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otroTipoEquipoField">
-                                            <label for="otroTipoEquipo" class="form-label">Especifique otro tipo de equipo</label>
+                                            <label for="otroTipoEquipo" class="form-label">ESPECIFIQUE OTRO TIPO DE EQUIPO</label>
                                             <input type="text" class="form-control" id="otroTipoEquipo" placeholder="Ingrese el tipo de equipo">
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="marca" class="form-label required-field">Marca</label>
+                                            <label for="marca" class="form-label required-field">MARCA</label>
                                             <select class="form-select" id="marca" required>
                                                 <option value="">Seleccione una marca</option>
-                                                <option value="DELL">DELL</option>
+                                                <option value="DELL">Dell</option>
                                                 <option value="HP">HP</option>
-                                                <option value="LENOVO">LENOVO</option>
-                                                <option value="CANON">CANON</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
+                                                <option value="LENOVO">Lenovo</option>
+                                                <option value="CANON">Canon</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione la marca</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otraMarcaField">
-                                            <label for="otraMarca" class="form-label">Especifique otra marca</label>
+                                            <label for="otraMarca" class="form-label">ESPECIFIQUE OTRA MARCA</label>
                                             <input type="text" class="form-control" id="otraMarca" placeholder="Ingrese la marca">
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="modelo" class="form-label required-field">Modelo</label>
+                                            <label for="modelo" class="form-label required-field">MODELO</label>
                                             <select class="form-select" id="modelo" required>
                                                 <option value="">Seleccione un modelo</option>
-                                                <option value="OPTIPLEX 7010">OPTIPLEX 7010</option>
-                                                <option value="LASERJET P2035">LASERJET P2035</option>
-                                                <option value="THINKCENTRE M720">THINKCENTRE M720</option>
-                                                <option value="NO APLICA">NO APLICA</option>
-                                                <option value="OTRO">OTRO (ESPECIFICAR)</option>
+                                                <option value="OPTIPLEX 7010">Optiplex 7010</option>
+                                                <option value="LASERJET P2035">Laserjet P2035</option>
+                                                <option value="THINKCENTRE M720">Thinkcentre M720</option>
+                                                <option value="NO APLICA">No aplica</option>
+                                                <option value="OTRO">Otro (especificar)</option>
                                             </select>
                                             <div class="invalid-feedback">Por favor seleccione el modelo</div>
                                         </div>
                                         
                                         <div class="mb-3 conditional-field" id="otroModeloField">
-                                            <label for="otroModelo" class="form-label">Especifique otro modelo</label>
+                                            <label for="otroModelo" class="form-label">ESPECIFIQUE OTRO MODELO</label>
                                             <input type="text" class="form-control" id="otroModelo" placeholder="Ingrese el modelo">
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="observaciones" class="form-label">Observaciones y Sugerencias</label>
+                                            <label for="observaciones" class="form-label">OBSERVACIONES Y SUGERENCIAS</label>
                                             <textarea class="form-control" id="observaciones" rows="2" placeholder="Ingrese observaciones y sugerencias aquí..."></textarea>
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="serial" class="form-label required-field">Serial</label>
+                                            <label for="serial" class="form-label required-field">SERIAL</label>
                                             <input type="text" class="form-control" id="serial" required placeholder="Número de serie del equipo">
                                             <div class="invalid-feedback">Por favor ingrese el serial del equipo</div>
                                         </div>
                                         
                                         <div class="mb-3">
-                                            <label for="nroBien" class="form-label required-field">Nro Bien</label>
+                                            <label for="nroBien" class="form-label required-field">NRO BIEN</label>
                                             <input type="text" class="form-control" id="nroBien" required placeholder="Número de inventario">
                                             <div class="invalid-feedback">Por favor ingrese el número de bien</div>
                                         </div>
@@ -507,10 +527,10 @@
                             
                             <div class="d-grid gap-2 mt-3">
                                 <button type="submit" class="btn btn-primary btn-lg" id="submitButton">
-                                    <i class="fas fa-save me-2"></i>Guardar Actividad
+                                    <i class="fas fa-save me-2"></i>GUARDAR ACTIVIDAD
                                 </button>
                                 <button type="button" class="btn btn-secondary btn-lg" id="cancelEditButton" style="display: none;">
-                                    <i class="fas fa-times me-2"></i>Cancelar Edición
+                                    <i class="fas fa-times me-2"></i>CANCELAR EDICIÓN
                                 </button>
                             </div>
                         </form>
@@ -523,33 +543,33 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="stats-box fade-in">
-                    <h5><i class="fas fa-chart-bar me-2"></i>Resumen</h5>
+                    <h5><i class="fas fa-chart-bar me-2"></i>RESUMEN</h5>
                     <div class="stats-number" id="totalActivities">0</div>
-                    <p>Actividades registradas</p>
+                    <p>ACTIVIDADES REGISTRADAS</p>
                 </div>
             </div>
             
             <div class="col-md-4">
                 <div class="stats-box fade-in">
-                    <h5><i class="fas fa-check-circle me-2"></i>Estado Actual</h5>
+                    <h5><i class="fas fa-check-circle me-2"></i>ESTADO ACTUAL</h5>
                     <div class="stats-number" id="completedActivities">0</div>
-                    <p>Completadas</p>
+                    <p>COMPLETADAS</p>
                 </div>
             </div>
             
             <div class="col-md-4">
                 <div class="storage-info fade-in">
-                    <h5><i class="fas fa-database me-2"></i>Almacenamiento</h5>
-                    <p>Datos guardados localmente</p>
+                    <h5><i class="fas fa-database me-2"></i>ALMACENAMIENTO</h5>
+                    <p>DATOS GUARDADOS LOCALMENTE</p>
                     <div class="d-grid gap-2">
                         <button class="btn btn-outline-primary btn-sm" id="exportData">
-                            <i class="fas fa-download me-1"></i>Exportar JSON
+                            <i class="fas fa-download me-1"></i>EXPORTAR JSON
                         </button>
                         <button class="btn btn-outline-info btn-sm" id="importData">
-                            <i class="fas fa-upload me-1"></i>Importar JSON
+                            <i class="fas fa-upload me-1"></i>IMPORTAR JSON
                         </button>
                         <button class="btn btn-outline-warning btn-sm" id="clearData">
-                            <i class="fas fa-trash me-1"></i>Limpiar Datos
+                            <i class="fas fa-trash me-1"></i>LIMPIAR DATOS
                         </button>
                     </div>
                 </div>
@@ -560,12 +580,12 @@
         <div class="row mt-3">
             <div class="col-12">
                 <div class="sync-options fade-in">
-                    <h5><i class="fas fa-sync me-2"></i>Sincronización Manual</h5>
-                    <p>Para usar en múltiples dispositivos:</p>
+                    <h5><i class="fas fa-sync me-2"></i>SINCRONIZACIÓN MANUAL</h5>
+                    <p>PARA USAR EN MÚLTIPLES DISPOSITIVOS:</p>
                     <ol>
-                        <li>Exporta los datos desde este dispositivo</li>
-                        <li>Guarda el archivo JSON</li>
-                        <li>Importa el archivo en el otro dispositivo</li>
+                        <li>EXPORTA LOS DATOS DESDE ESTE DISPOSITIVO</li>
+                        <li>GUARDA EL ARCHIVO JSON</li>
+                        <li>IMPORTA EL ARCHIVO EN EL OTRO DISPOSITIVO</li>
                     </ol>
                 </div>
             </div>
@@ -577,20 +597,20 @@
                 <div class="export-options fade-in">
                     <div class="row">
                         <div class="col-md-8">
-                            <h5><i class="fas fa-file-export me-2"></i>Opciones de Exportación</h5>
+                            <h5><i class="fas fa-file-export me-2"></i>OPCIONES DE EXPORTACIÓN</h5>
                             <div class="d-flex gap-2 flex-wrap">
                                 <button class="btn btn-danger" id="exportAllPdf">
-                                    <i class="fas fa-file-pdf me-1"></i>Todos (PDF)
+                                    <i class="fas fa-file-pdf me-1"></i>TODOS (PDF)
                                 </button>
                                 <button class="btn btn-success" id="exportAllExcel">
-                                    <i class="fas fa-file-excel me-1"></i>Todos (Excel)
+                                    <i class="fas fa-file-excel me-1"></i>TODOS (EXCEL)
                                 </button>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="d-flex align-items-end h-100">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar..." id="searchInput">
+                                    <input type="text" class="form-control" placeholder="BUSCAR..." id="searchInput">
                                     <button class="btn btn-outline-secondary" type="button" id="searchButton">
                                         <i class="fas fa-search"></i>
                                     </button>
@@ -602,11 +622,11 @@
                 
                 <div class="card fade-in">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <span><i class="fas fa-table me-2"></i>Registro de Actividades</span>
+                        <span><i class="fas fa-table me-2"></i>REGISTRO DE ACTIVIDADES</span>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="selectAll">
                             <label class="form-check-label" for="selectAll">
-                                Seleccionar todos
+                                SELECCIONAR TODOS
                             </label>
                         </div>
                     </div>
@@ -616,18 +636,18 @@
                                 <thead>
                                     <tr>
                                         <th class="checkbox-cell"></th>
-                                        <th>Fecha</th>
-                                        <th>Categoría</th>
-                                        <th>Dependencia</th>
-                                        <th>Trabajo</th>
+                                        <th>FECHA</th>
+                                        <th>CATEGORÍA</th>
+                                        <th>DEPENDENCIA</th>
+                                        <th>TRABAJO</th>
                                         <th>OATI</th>
-                                        <th>Status</th>
-                                        <th>Acciones</th>
+                                        <th>STATUS</th>
+                                        <th>ACCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody id="activitiesTable">
                                     <tr>
-                                        <td colspan="8" class="text-center">No hay actividades registradas</td>
+                                        <td colspan="8" class="text-center">NO HAY ACTIVIDADES REGISTRADAS</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -648,19 +668,19 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="viewModalLabel">Detalles de la Actividad - OATI</h5>
+                    <h5 class="modal-title" id="viewModalLabel">DETALLES DE LA ACTIVIDAD - OATI</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modalBody">
                     <!-- Contenido dinámico -->
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CERRAR</button>
                     <button type="button" class="btn btn-danger" id="exportSinglePdf">
-                        <i class="fas fa-file-pdf me-1"></i>Exportar PDF
+                        <i class="fas fa-file-pdf me-1"></i>EXPORTAR PDF
                     </button>
                     <button type="button" class="btn btn-success" id="exportSingleExcel">
-                        <i class="fas fa-file-excel me-1"></i>Exportar Excel
+                        <i class="fas fa-file-excel me-1"></i>EXPORTAR EXCEL
                     </button>
                 </div>
             </div>
@@ -671,7 +691,7 @@
     <input type="file" id="importFile" accept=".json" style="display: none;">
 
     <footer class="bg-dark text-white text-center py-3 mt-4">
-        <p class="mb-0">OATI - Oficina de Apoyo Técnico Informático &copy; 2023</p>
+        <p class="mb-0">OATI - OFICINA DE APOYO TÉCNICO INFORMÁTICO &copy; 2023</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -731,9 +751,6 @@
             marca: document.getElementById('marca'),
             modelo: document.getElementById('modelo')
         };
-
-        // Establecer fecha actual
-        document.getElementById('fecha').valueAsDate = new Date();
 
         // Configurar event listeners para selects
         Object.keys(selects).forEach(key => {
@@ -810,7 +827,7 @@
                 categoria: categoriaValue,
                 trabajoRealizado: trabajoRealizadoValue,
                 dependencia: dependenciaValue,
-                fecha: document.getElementById('fecha').value,
+                fecha: document.getElementById('fecha').value, // Fecha manual del usuario
                 detalleTrabajo: document.getElementById('detalleTrabajo').value,
                 solicitud: solicitudValue,
                 oati: document.getElementById('oati').value,
@@ -841,7 +858,6 @@
             saveActivities();
             renderActivities();
             activityForm.reset();
-            document.getElementById('fecha').valueAsDate = new Date();
             
             // Ocultar campos condicionales
             Object.values(conditionalFields).forEach(field => {
@@ -855,10 +871,9 @@
         cancelEditButton.addEventListener('click', function() {
             currentEditId = null;
             editIdField.value = '';
-            submitButton.innerHTML = '<i class="fas fa-save me-2"></i>Guardar Actividad';
+            submitButton.innerHTML = '<i class="fas fa-save me-2"></i>GUARDAR ACTIVIDAD';
             cancelEditButton.style.display = 'none';
             activityForm.reset();
-            document.getElementById('fecha').valueAsDate = new Date();
             
             Object.values(conditionalFields).forEach(field => {
                 field.style.display = 'none';
@@ -874,7 +889,7 @@
         // Renderizar actividades
         function renderActivities() {
             if (activities.length === 0) {
-                activitiesTable.innerHTML = '<tr><td colspan="8" class="text-center">No hay actividades registradas</td></tr>';
+                activitiesTable.innerHTML = '<tr><td colspan="8" class="text-center">NO HAY ACTIVIDADES REGISTRADAS</td></tr>';
                 return;
             }
             
@@ -969,7 +984,7 @@
                 modalBody.innerHTML = `
                     <div class="row">
                         <div class="col-md-6">
-                            <h6>Información de la Actividad</h6>
+                            <h6>INFORMACIÓN DE LA ACTIVIDAD</h6>
                             <p><strong>Categoría:</strong> ${activity.categoria}</p>
                             <p><strong>Trabajo Realizado:</strong> ${activity.trabajoRealizado}</p>
                             <p><strong>Dependencia:</strong> ${activity.dependencia}</p>
@@ -980,7 +995,7 @@
                             <p><strong>Status:</strong> <span class="badge ${getStatusBadgeClass(activity.status)}">${activity.status}</span></p>
                         </div>
                         <div class="col-md-6">
-                            <h6>Información del Equipo</h6>
+                            <h6>INFORMACIÓN DEL EQUIPO</h6>
                             <p><strong>Fecha de Cierre:</strong> ${activity.fechaCierre ? formatDate(activity.fechaCierre) : 'N/A'}</p>
                             <p><strong>Operatividad:</strong> ${activity.operatividad}</p>
                             <p><strong>Tipo de Equipo:</strong> ${activity.tipoEquipo}</p>
@@ -1023,7 +1038,7 @@
                 document.getElementById('nroBien').value = activity.nroBien;
                 document.getElementById('observaciones').value = activity.observaciones || '';
                 
-                submitButton.innerHTML = '<i class="fas fa-save me-2"></i>Actualizar Actividad';
+                submitButton.innerHTML = '<i class="fas fa-save me-2"></i>ACTUALIZAR ACTIVIDAD';
                 cancelEditButton.style.display = 'block';
                 
                 document.getElementById('activityForm').scrollIntoView({ behavior: 'smooth' });
@@ -1047,11 +1062,11 @@
 
         // Eliminar actividad
         function deleteActivity(id) {
-            if (confirm('¿Está seguro de que desea eliminar esta actividad?')) {
+            if (confirm('¿ESTÁ SEGURO DE QUE DESEA ELIMINAR ESTA ACTIVIDAD?')) {
                 activities = activities.filter(a => a.id !== id);
                 saveActivities();
                 renderActivities();
-                showNotification('Actividad eliminada correctamente', 'success');
+                showNotification('ACTIVIDAD ELIMINADA CORRECTAMENTE', 'success');
             }
         }
 
@@ -1061,7 +1076,7 @@
                 const activitiesData = activitiesToExport || activities;
                 
                 if (activitiesData.length === 0) {
-                    showNotification('No hay actividades para exportar', 'warning');
+                    showNotification('NO HAY ACTIVIDADES PARA EXPORTAR', 'warning');
                     return;
                 }
                 
@@ -1074,9 +1089,9 @@
                 // Título
                 doc.setFontSize(16);
                 doc.setTextColor(40, 40, 40);
-                doc.text('OATI - Reporte de Actividades', 15, 15);
+                doc.text('OATI - REPORTE DE ACTIVIDADES', 15, 15);
                 doc.setFontSize(10);
-                doc.text(`Fecha de generación: ${new Date().toLocaleDateString()}`, 15, 22);
+                doc.text(`FECHA DE GENERACIÓN: ${new Date().toLocaleDateString()}`, 15, 22);
                 
                 // Preparar datos para la tabla
                 const tableData = activitiesData.map(activity => [
@@ -1091,7 +1106,7 @@
                 // Crear tabla
                 doc.autoTable({
                     startY: 30,
-                    head: [['Fecha', 'Categoría', 'Dependencia', 'Trabajo Realizado', 'OATI', 'Status']],
+                    head: [['FECHA', 'CATEGORÍA', 'DEPENDENCIA', 'TRABAJO REALIZADO', 'OATI', 'STATUS']],
                     body: tableData,
                     theme: 'grid',
                     headStyles: {
@@ -1111,12 +1126,12 @@
                 });
                 
                 // Guardar el PDF
-                doc.save('OATI_Reporte_Actividades.pdf');
-                showNotification('Reporte PDF exportado correctamente', 'success');
+                doc.save('OATI_REPORTE_ACTIVIDADES.pdf');
+                showNotification('REPORTE PDF EXPORTADO CORRECTAMENTE', 'success');
                 
             } catch (error) {
                 console.error('Error al exportar PDF:', error);
-                showNotification('Error al exportar PDF: ' + error.message, 'error');
+                showNotification('ERROR AL EXPORTAR PDF: ' + error.message, 'error');
             }
         }
 
@@ -1126,28 +1141,28 @@
                 const activitiesData = activitiesToExport || activities;
                 
                 if (activitiesData.length === 0) {
-                    showNotification('No hay actividades para exportar', 'warning');
+                    showNotification('NO HAY ACTIVIDADES PARA EXPORTAR', 'warning');
                     return;
                 }
                 
                 // Preparar datos para Excel
                 const excelData = activitiesData.map(activity => ({
-                    'Fecha': formatDate(activity.fecha),
-                    'Categoría': activity.categoria,
-                    'Dependencia': activity.dependencia,
-                    'Trabajo Realizado': activity.trabajoRealizado,
-                    'Detalle del Trabajo': activity.detalleTrabajo,
-                    'Solicitud': activity.solicitud,
-                    'OATI Responsable': activity.oati,
-                    'Status': activity.status,
-                    'Fecha de Cierre': activity.fechaCierre ? formatDate(activity.fechaCierre) : 'N/A',
-                    'Operatividad': activity.operatividad,
-                    'Tipo de Equipo': activity.tipoEquipo,
-                    'Marca': activity.marca,
-                    'Modelo': activity.modelo,
-                    'Serial': activity.serial,
-                    'Nro Bien': activity.nroBien,
-                    'Observaciones': activity.observaciones || 'N/A'
+                    'FECHA': formatDate(activity.fecha),
+                    'CATEGORÍA': activity.categoria,
+                    'DEPENDENCIA': activity.dependencia,
+                    'TRABAJO REALIZADO': activity.trabajoRealizado,
+                    'DETALLE DEL TRABAJO': activity.detalleTrabajo,
+                    'SOLICITUD': activity.solicitud,
+                    'OATI RESPONSABLE': activity.oati,
+                    'STATUS': activity.status,
+                    'FECHA DE CIERRE': activity.fechaCierre ? formatDate(activity.fechaCierre) : 'N/A',
+                    'OPERATIVIDAD': activity.operatividad,
+                    'TIPO DE EQUIPO': activity.tipoEquipo,
+                    'MARCA': activity.marca,
+                    'MODELO': activity.modelo,
+                    'SERIAL': activity.serial,
+                    'NRO BIEN': activity.nroBien,
+                    'OBSERVACIONES': activity.observaciones || 'N/A'
                 }));
                 
                 // Crear hoja de trabajo
@@ -1155,15 +1170,15 @@
                 
                 // Crear libro de trabajo
                 const wb = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(wb, ws, 'Actividades OATI');
+                XLSX.utils.book_append_sheet(wb, ws, 'ACTIVIDADES OATI');
                 
                 // Guardar archivo
-                XLSX.writeFile(wb, 'OATI_Reporte_Actividades.xlsx');
-                showNotification('Reporte Excel exportado correctamente', 'success');
+                XLSX.writeFile(wb, 'OATI_REPORTE_ACTIVIDADES.xlsx');
+                showNotification('REPORTE EXCEL EXPORTADO CORRECTAMENTE', 'success');
                 
             } catch (error) {
                 console.error('Error al exportar Excel:', error);
-                showNotification('Error al exportar Excel: ' + error.message, 'error');
+                showNotification('ERROR AL EXPORTAR EXCEL: ' + error.message, 'error');
             }
         }
 
@@ -1184,9 +1199,9 @@
                 
                 setTimeout(() => URL.revokeObjectURL(url), 100);
                 
-                showNotification('Datos exportados correctamente', 'success');
+                showNotification('DATOS EXPORTADOS CORRECTAMENTE', 'success');
             } catch (error) {
-                showNotification('Error al exportar datos: ' + error.message, 'error');
+                showNotification('ERROR AL EXPORTAR DATOS: ' + error.message, 'error');
             }
         }
 
@@ -1201,17 +1216,17 @@
                     const importedActivities = JSON.parse(e.target.result);
                     
                     if (Array.isArray(importedActivities)) {
-                        if (confirm(`¿Importar ${importedActivities.length} actividades? Se reemplazarán los datos actuales.`)) {
+                        if (confirm(`¿IMPORTAR ${importedActivities.length} ACTIVIDADES? SE REEMPLAZARÁN LOS DATOS ACTUALES.`)) {
                             activities = importedActivities;
                             saveActivities();
                             renderActivities();
-                            showNotification('Datos importados correctamente', 'success');
+                            showNotification('DATOS IMPORTADOS CORRECTAMENTE', 'success');
                         }
                     } else {
-                        showNotification('El archivo no contiene datos válidos', 'error');
+                        showNotification('EL ARCHIVO NO CONTIENE DATOS VÁLIDOS', 'error');
                     }
                 } catch (error) {
-                    showNotification('Error al importar el archivo: ' + error.message, 'error');
+                    showNotification('ERROR AL IMPORTAR EL ARCHIVO: ' + error.message, 'error');
                 }
             };
             reader.readAsText(file);
@@ -1219,11 +1234,11 @@
 
         // Limpiar datos
         function clearAllData() {
-            if (confirm('¿Está seguro de que desea eliminar TODOS los datos? Esta acción no se puede deshacer.')) {
+            if (confirm('¿ESTÁ SEGURO DE QUE DESEA ELIMINAR TODOS LOS DATOS? ESTA ACCIÓN NO SE PUEDE DESHACER.')) {
                 activities = [];
                 saveActivities();
                 renderActivities();
-                showNotification('Todos los datos han sido eliminados', 'success');
+                showNotification('TODOS LOS DATOS HAN SIDO ELIMINADOS', 'success');
             }
         }
 
@@ -1328,7 +1343,7 @@
 
         function renderFilteredActivities(filteredActivities) {
             if (filteredActivities.length === 0) {
-                activitiesTable.innerHTML = '<tr><td colspan="8" class="text-center">No se encontraron actividades</td></tr>';
+                activitiesTable.innerHTML = '<tr><td colspan="8" class="text-center">NO SE ENCONTRARON ACTIVIDADES</td></tr>';
                 return;
             }
             
